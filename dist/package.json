@@ -1,0 +1,42 @@
+{
+  "name": "angular2-draggable",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "ngc -p src"
+  },
+  "author": "Xie Ziyu <xieziyu@foxmail.com> (https://xieziyu.github.io/)",
+  "keywords": [
+    "angular",
+    "2",
+    "4",
+    "draggable",
+    "ng"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/xieziyu/angular2-draggable.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xieziyu/angular2-draggable/issues",
+    "email": "xieziyu@foxmail.com"
+  },
+  "homepage": "https://github.com/xieziyu/angular2-draggable#readme",
+  "main": "./lib/angular-draggable.module.js",
+  "dependencies": {
+    "core-js": "^2.4.1",
+    "rxjs": "^5.0.1",
+    "zone.js": "^0.7.6"
+  },
+  "devDependencies": {
+    "@angular/compiler-cli": "^2.4.0",
+    "typescript": "~2.0.0"
+  },
+  "peerDependencies": {
+    "@angular/common": "^2.4.0 || ^4.0.0",
+    "@angular/compiler": "^2.4.0 || ^4.0.0",
+    "@angular/core": "^2.4.0 || ^4.0.0",
+    "@angular/platform-browser": "^2.4.0 || ^4.0.0",
+    "@angular/platform-browser-dynamic": "^2.4.0 || ^4.0.0"
+  }
+}

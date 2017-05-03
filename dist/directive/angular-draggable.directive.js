@@ -16,7 +16,7 @@ export var AngularDraggableDirective = (function () {
     }
     Object.defineProperty(AngularDraggableDirective.prototype, "ngDraggable", {
         set: function (setting) {
-            if (setting != undefined && setting != null && setting != '') {
+            if (setting !== undefined && setting !== null && setting !== '') {
                 this.allowDrag = !!setting;
                 var element = this.handle ? this.handle : this.el.nativeElement;
                 if (this.allowDrag) {

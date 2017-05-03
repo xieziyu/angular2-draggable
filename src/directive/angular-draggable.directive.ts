@@ -7,7 +7,7 @@ class Position {
 @Directive({
   selector: '[ngDraggable]'
 })
-export class AngularDraggableDirective implements OnInit{
+export class AngularDraggableDirective implements OnInit {
   private allowDrag: boolean = true;
   private moving: boolean = false;
   private orignal: Position = null;
@@ -16,7 +16,7 @@ export class AngularDraggableDirective implements OnInit{
 
   @Input()
   set ngDraggable(setting: any) {
-    if (setting != undefined && setting != null && setting != '') {
+    if (setting !== undefined && setting !== null && setting !== '') {
       this.allowDrag = !!setting;
 
       let element = this.handle ? this.handle : this.el.nativeElement;

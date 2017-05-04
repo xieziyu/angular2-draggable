@@ -34,7 +34,7 @@ export class AngularDraggableDirective implements OnInit {
 
   ngOnInit() {
     this.renderer.setElementStyle(this.el.nativeElement, 'position', 'relative');
-    
+
     if (this.allowDrag) {
       
       let element = this.handle ? this.handle : this.el.nativeElement;
@@ -71,6 +71,7 @@ export class AngularDraggableDirective implements OnInit {
 
   @HostListener('document:mouseup')
   onMouseUp() {
+    this.el.nativeElement.style.removeProperty('z-index');
     this.moving = false;
   }
 
@@ -82,6 +83,7 @@ export class AngularDraggableDirective implements OnInit {
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event:MouseEvent) {
     if (this.moving && this.allowDrag) {
+      this.el.nativeElement.style.zIndex = "99999";
       this.moveTo(event.clientX, event.clientY);
     }
   }

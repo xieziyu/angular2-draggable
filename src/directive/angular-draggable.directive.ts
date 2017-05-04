@@ -33,8 +33,9 @@ export class AngularDraggableDirective implements OnInit {
   constructor(private el: ElementRef, private renderer: Renderer) { }
 
   ngOnInit() {
+    this.renderer.setElementStyle(this.el.nativeElement, 'position', 'relative');
+    
     if (this.allowDrag) {
-      this.renderer.setElementStyle(this.el.nativeElement, 'position', 'relative');
       
       let element = this.handle ? this.handle : this.el.nativeElement;
       this.renderer.setElementClass(element, 'ng-draggable', true);

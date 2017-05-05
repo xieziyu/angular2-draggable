@@ -13,6 +13,8 @@ export var AngularDraggableDirective = (function () {
         this.allowDrag = true;
         this.moving = false;
         this.orignal = null;
+        this.oldZIndex = '';
+        this.oldPosition = '';
     }
     Object.defineProperty(AngularDraggableDirective.prototype, "ngDraggable", {
         set: function (setting) {
@@ -31,19 +33,48 @@ export var AngularDraggableDirective = (function () {
         configurable: true
     });
     AngularDraggableDirective.prototype.ngOnInit = function () {
-        this.renderer.setElementStyle(this.el.nativeElement, 'position', 'relative');
         if (this.allowDrag) {
             var element = this.handle ? this.handle : this.el.nativeElement;
             this.renderer.setElementClass(element, 'ng-draggable', true);
         }
     };
     AngularDraggableDirective.prototype.getPosition = function (x, y) {
-        return new Position(x - this.el.nativeElement.style.left.replace('px', ''), y - this.el.nativeElement.style.top.replace('px', ''));
+        var left = parseInt(this.el.nativeElement.style.left.replace('px', ''));
+        var top = parseInt(this.el.nativeElement.style.top.replace('px', ''));
+        if (window) {
+            left = parseInt(window.getComputedStyle(this.el.nativeElement, null).getPropertyValue("left"));
+            top = parseInt(window.getComputedStyle(this.el.nativeElement, null).getPropertyValue("top"));
+        }
+        return new Position(x - left, y - top);
     };
     AngularDraggableDirective.prototype.moveTo = function (x, y) {
         if (this.orignal) {
-            this.el.nativeElement.style.left = (x - this.orignal.x) + 'px';
-            this.el.nativeElement.style.top = (y - this.orignal.y) + 'px';
+            this.renderer.setElementStyle(this.el.nativeElement, 'left', (x - this.orignal.x) + "px");
+            this.renderer.setElementStyle(this.el.nativeElement, 'top', (y - this.orignal.y) + "px");
+        }
+    };
+    AngularDraggableDirective.prototype.pickUp = function () {
+        this.oldZIndex = this.el.nativeElement.style.zIndex ? this.el.nativeElement.style.zIndex : '';
+        this.oldPosition = this.el.nativeElement.style.position ? this.el.nativeElement.style.position : '';
+        if (window) {
+            this.oldZIndex = window.getComputedStyle(this.el.nativeElement, null).getPropertyValue("z-index");
+            this.oldPosition = window.getComputedStyle(this.el.nativeElement, null).getPropertyValue("position");
+        }
+        var position = 'relative';
+        if (this.oldPosition && (this.oldPosition === 'absolute' ||
+            this.oldPosition === 'fixed' ||
+            this.oldPosition === 'relative')) {
+            position = this.oldPosition;
+        }
+        this.renderer.setElementStyle(this.el.nativeElement, 'position', position);
+        this.renderer.setElementStyle(this.el.nativeElement, 'z-index', '99999');
+    };
+    AngularDraggableDirective.prototype.putBack = function () {
+        if (this.oldZIndex) {
+            this.renderer.setElementStyle(this.el.nativeElement, 'z-index', this.oldZIndex);
+        }
+        else {
+            this.el.nativeElement.style.removeProperty('z-index');
         }
     };
     AngularDraggableDirective.prototype.onMouseDown = function (event) {
@@ -52,27 +83,30 @@ export var AngularDraggableDirective = (function () {
         }
         this.moving = true;
         this.orignal = this.getPosition(event.clientX, event.clientY);
+        this.pickUp();
     };
     AngularDraggableDirective.prototype.onMouseUp = function () {
-        this.el.nativeElement.style.removeProperty('z-index');
+        this.putBack();
         this.moving = false;
     };
     AngularDraggableDirective.prototype.onMouseLeave = function () {
+        this.putBack();
         this.moving = false;
     };
     AngularDraggableDirective.prototype.onMouseMove = function (event) {
         if (this.moving && this.allowDrag) {
-            this.el.nativeElement.style.zIndex = "99999";
             this.moveTo(event.clientX, event.clientY);
         }
     };
     AngularDraggableDirective.prototype.onTouchEnd = function () {
+        this.putBack();
         this.moving = false;
     };
     AngularDraggableDirective.prototype.onTouchStart = function (event) {
         event.stopPropagation();
         this.moving = true;
         this.orignal = this.getPosition(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
+        this.pickUp();
     };
     AngularDraggableDirective.prototype.onTouchMove = function (event) {
         event.stopPropagation();

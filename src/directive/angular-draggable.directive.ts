@@ -11,6 +11,8 @@ export class AngularDraggableDirective implements OnInit {
   private allowDrag: boolean = true;
   private moving: boolean = false;
   private orignal: Position = null;
+  private oldZIndex: string = '';
+  private oldPosition: string = '';
 
   @Input() handle: HTMLElement;
 
@@ -33,26 +35,61 @@ export class AngularDraggableDirective implements OnInit {
   constructor(private el: ElementRef, private renderer: Renderer) { }
 
   ngOnInit() {
-    this.renderer.setElementStyle(this.el.nativeElement, 'position', 'relative');
-
     if (this.allowDrag) {
-      
       let element = this.handle ? this.handle : this.el.nativeElement;
       this.renderer.setElementClass(element, 'ng-draggable', true);
     }
   }
 
   private getPosition(x: number, y: number) {
-    return new Position(
-      x - this.el.nativeElement.style.left.replace('px',''),
-      y - this.el.nativeElement.style.top.replace('px','')
-    );
+    let left = parseInt(this.el.nativeElement.style.left.replace('px',''));
+    let top = parseInt(this.el.nativeElement.style.top.replace('px',''));
+
+    if (window) {
+      left = parseInt(window.getComputedStyle(this.el.nativeElement, null).getPropertyValue("left"));
+      top = parseInt(window.getComputedStyle(this.el.nativeElement, null).getPropertyValue("top"));
+    }
+    
+    return new Position(x - left, y - top);
   }
 
   private moveTo(x: number, y: number) {
     if (this.orignal) {
-      this.el.nativeElement.style.left = (x - this.orignal.x) + 'px';
-      this.el.nativeElement.style.top = (y - this.orignal.y) + 'px';
+      this.renderer.setElementStyle(this.el.nativeElement, 'left', `${x - this.orignal.x}px`);
+      this.renderer.setElementStyle(this.el.nativeElement, 'top', `${y - this.orignal.y}px`);
+    }
+  }
+
+  private pickUp() {
+    // get old z-index and position:
+    this.oldZIndex = this.el.nativeElement.style.zIndex ? this.el.nativeElement.style.zIndex : '';
+    this.oldPosition = this.el.nativeElement.style.position ? this.el.nativeElement.style.position : '';
+
+    if (window) {
+      this.oldZIndex = window.getComputedStyle(this.el.nativeElement, null).getPropertyValue("z-index");
+      this.oldPosition = window.getComputedStyle(this.el.nativeElement, null).getPropertyValue("position");
+    }
+
+    // setup default position:
+    let position = 'relative';
+
+    // check if old position is draggable:
+    if (this.oldPosition && (
+        this.oldPosition === 'absolute' ||
+        this.oldPosition === 'fixed' ||
+        this.oldPosition === 'relative')) {
+      position = this.oldPosition;
+    }
+
+    this.renderer.setElementStyle(this.el.nativeElement, 'position', position);
+    this.renderer.setElementStyle(this.el.nativeElement, 'z-index', '99999');
+  }
+
+  private putBack() {
+    if (this.oldZIndex) {
+      this.renderer.setElementStyle(this.el.nativeElement, 'z-index', this.oldZIndex);
+    } else {
+      this.el.nativeElement.style.removeProperty('z-index');
     }
   }
 
@@ -67,23 +104,24 @@ export class AngularDraggableDirective implements OnInit {
 
     this.moving = true;
     this.orignal = this.getPosition(event.clientX, event.clientY);
+    this.pickUp();
   }
 
   @HostListener('document:mouseup')
   onMouseUp() {
-    this.el.nativeElement.style.removeProperty('z-index');
+    this.putBack();
     this.moving = false;
   }
 
   @HostListener('document:mouseleave')
   onMouseLeave() {
+    this.putBack();
     this.moving = false;
   }
 
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event:MouseEvent) {
     if (this.moving && this.allowDrag) {
-      this.el.nativeElement.style.zIndex = "99999";
       this.moveTo(event.clientX, event.clientY);
     }
   }
@@ -91,6 +129,7 @@ export class AngularDraggableDirective implements OnInit {
   // Support Touch Events:
   @HostListener('document:touchend')
   onTouchEnd() {
+    this.putBack();
     this.moving = false;
   }
 
@@ -99,6 +138,7 @@ export class AngularDraggableDirective implements OnInit {
     event.stopPropagation();
     this.moving = true;
     this.orignal = this.getPosition(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
+    this.pickUp();
   }
 
   @HostListener('document:touchmove', ['$event'])

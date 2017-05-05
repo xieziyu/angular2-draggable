@@ -1,6 +1,6 @@
 {
   "name": "angular2-draggable",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "scripts": {
     "build": "ngc -p src"
@@ -23,11 +23,6 @@
   },
   "homepage": "https://github.com/xieziyu/angular2-draggable#readme",
   "main": "./lib/angular-draggable.module.js",
-  "dependencies": {
-    "core-js": "^2.4.1",
-    "rxjs": "^5.0.1",
-    "zone.js": "^0.7.6"
-  },
   "devDependencies": {
     "@angular/compiler-cli": "^2.4.0",
     "typescript": "~2.0.0"

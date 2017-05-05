@@ -31,8 +31,8 @@ export var AngularDraggableDirective = (function () {
         configurable: true
     });
     AngularDraggableDirective.prototype.ngOnInit = function () {
+        this.renderer.setElementStyle(this.el.nativeElement, 'position', 'relative');
         if (this.allowDrag) {
-            this.renderer.setElementStyle(this.el.nativeElement, 'position', 'relative');
             var element = this.handle ? this.handle : this.el.nativeElement;
             this.renderer.setElementClass(element, 'ng-draggable', true);
         }
@@ -54,6 +54,7 @@ export var AngularDraggableDirective = (function () {
         this.orignal = this.getPosition(event.clientX, event.clientY);
     };
     AngularDraggableDirective.prototype.onMouseUp = function () {
+        this.el.nativeElement.style.removeProperty('z-index');
         this.moving = false;
     };
     AngularDraggableDirective.prototype.onMouseLeave = function () {
@@ -61,6 +62,7 @@ export var AngularDraggableDirective = (function () {
     };
     AngularDraggableDirective.prototype.onMouseMove = function (event) {
         if (this.moving && this.allowDrag) {
+            this.el.nativeElement.style.zIndex = "99999";
             this.moveTo(event.clientX, event.clientY);
         }
     };

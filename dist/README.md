@@ -70,4 +70,10 @@ When `ngDraggable` is enabled on some element, `ng-draggable` class is automatic
 
 # Events
 
-To be supported soon.
+Support `started` and `stopped` events. The `nativeElement` of the host would be emitted.
+
++ Simple example:
+  + html:
+  ```html
+  <div ngDraggable (started)="onDragBegin($event)" (stopped)="onDragEnd($event)">Drag me!</div>
+  ```

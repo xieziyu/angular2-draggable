@@ -14,6 +14,9 @@ export class AngularDraggableDirective implements OnInit {
   private oldZIndex: string = '';
   private oldPosition: string = '';
 
+  @Output() started = new EventEmitter<any>();
+  @Output() stopped = new EventEmitter<any>();
+
   @Input() handle: HTMLElement;
 
   @Input()
@@ -83,6 +86,11 @@ export class AngularDraggableDirective implements OnInit {
 
     this.renderer.setElementStyle(this.el.nativeElement, 'position', position);
     this.renderer.setElementStyle(this.el.nativeElement, 'z-index', '99999');
+
+    if (!this.moving) {
+      this.started.emit(this.el.nativeElement);
+      this.moving = true;
+    }
   }
 
   private putBack() {
@@ -90,6 +98,11 @@ export class AngularDraggableDirective implements OnInit {
       this.renderer.setElementStyle(this.el.nativeElement, 'z-index', this.oldZIndex);
     } else {
       this.el.nativeElement.style.removeProperty('z-index');
+    }
+
+    if (this.moving) {
+      this.stopped.emit(this.el.nativeElement);
+      this.moving = false;
     }
   }
 
@@ -102,7 +115,6 @@ export class AngularDraggableDirective implements OnInit {
       return;
     }
 
-    this.moving = true;
     this.orignal = this.getPosition(event.clientX, event.clientY);
     this.pickUp();
   }
@@ -110,13 +122,11 @@ export class AngularDraggableDirective implements OnInit {
   @HostListener('document:mouseup')
   onMouseUp() {
     this.putBack();
-    this.moving = false;
   }
 
   @HostListener('document:mouseleave')
   onMouseLeave() {
     this.putBack();
-    this.moving = false;
   }
 
   @HostListener('document:mousemove', ['$event'])
@@ -130,13 +140,11 @@ export class AngularDraggableDirective implements OnInit {
   @HostListener('document:touchend')
   onTouchEnd() {
     this.putBack();
-    this.moving = false;
   }
 
   @HostListener('touchstart', ['$event'])
   onTouchStart(event: TouchEvent) {
     event.stopPropagation();
-    this.moving = true;
     this.orignal = this.getPosition(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
     this.pickUp();
   }

@@ -1,4 +1,4 @@
-import { ElementRef, Renderer, OnInit } from '@angular/core';
+import { ElementRef, Renderer, OnInit, EventEmitter } from '@angular/core';
 export declare class AngularDraggableDirective implements OnInit {
     private el;
     private renderer;
@@ -7,6 +7,8 @@ export declare class AngularDraggableDirective implements OnInit {
     private orignal;
     private oldZIndex;
     private oldPosition;
+    started: EventEmitter<any>;
+    stopped: EventEmitter<any>;
     handle: HTMLElement;
     ngDraggable: any;
     constructor(el: ElementRef, renderer: Renderer);

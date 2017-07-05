@@ -11,9 +11,35 @@ Angular directive (for version >= 2.x ) that makes the DOM element draggable. Pl
 # Getting Started
 angular2-draggable is an angular (ver >= 2.x) directive that makes the DOM element draggable. (Note that: It's different from drag-and-drop)
 
+# Latest Update
++ 2017.07.05: Publish `UMD` bundle
+
 # Installation
 ```
 npm install angular2-draggable --save
+```
+
+# How to use it with:
++ `SystemJS`: For example: angular `quickstart`. You need to modify `systemjs.config.js` file just like:
+
+```javascript
+{
+  map: {
+    // ...
+
+    // angular2-draggable
+    'angular2-draggable':                   'npm:angular2-draggable',
+  },
+  packages: {
+    // other packages ...
+
+    //angular2-draggable
+    'angular2-draggable': {
+      defaultExtension: 'js',
+      main: 'bundles/angular2-draggable.umd.min.js'
+    }
+  }
+}
 ```
 
 # Usage

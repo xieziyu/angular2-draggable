@@ -11,6 +11,8 @@ export class AngularDraggableDirective implements OnInit {
   private allowDrag: boolean = true;
   private moving: boolean = false;
   private orignal: Position = null;
+  private oldTrans: Position = new Position(0, 0);
+  private tempTrans: Position = new Position(0, 0);
   private oldZIndex: string = '';
   private oldPosition: string = '';
 
@@ -44,22 +46,20 @@ export class AngularDraggableDirective implements OnInit {
     }
   }
 
-  private getPosition(x: number, y: number) {
-    let left = parseInt(this.el.nativeElement.style.left.replace('px',''));
-    let top = parseInt(this.el.nativeElement.style.top.replace('px',''));
-
-    if (window) {
-      left = parseInt(window.getComputedStyle(this.el.nativeElement, null).getPropertyValue("left"));
-      top = parseInt(window.getComputedStyle(this.el.nativeElement, null).getPropertyValue("top"));
-    }
-    
-    return new Position(x - left, y - top);
+  private getPosition(x: number, y: number) {   
+    return new Position(x, y);
   }
 
   private moveTo(x: number, y: number) {
     if (this.orignal) {
-      this.renderer.setElementStyle(this.el.nativeElement, 'left', `${x - this.orignal.x}px`);
-      this.renderer.setElementStyle(this.el.nativeElement, 'top', `${y - this.orignal.y}px`);
+      this.tempTrans.x = x - this.orignal.x;
+      this.tempTrans.y = y - this.orignal.y;
+      let value = `translate(${this.tempTrans.x + this.oldTrans.x}px, ${this.tempTrans.y + this.oldTrans.y}px)`;
+      this.renderer.setElementStyle(this.el.nativeElement, 'transform', value);
+      this.renderer.setElementStyle(this.el.nativeElement, '-webkit-transform', value);
+      this.renderer.setElementStyle(this.el.nativeElement, '-ms-transform', value);
+      this.renderer.setElementStyle(this.el.nativeElement, '-moz-transform', value);
+      this.renderer.setElementStyle(this.el.nativeElement, '-o-transform', value);
     }
   }
 
@@ -103,12 +103,14 @@ export class AngularDraggableDirective implements OnInit {
     if (this.moving) {
       this.stopped.emit(this.el.nativeElement);
       this.moving = false;
+      this.oldTrans.x += this.tempTrans.x;
+      this.oldTrans.y += this.tempTrans.y;
     }
   }
 
   // Support Mouse Events:
   @HostListener('mousedown', ['$event'])
-  onMouseDown(event: MouseEvent) {
+  onMouseDown(event: any) {
     // 1. skip right click;
     // 2. if handle is set, the element can only be moved by handle
     if (event.button == 2 || (this.handle !== undefined && event.target !== this.handle)) {
@@ -130,7 +132,7 @@ export class AngularDraggableDirective implements OnInit {
   }
 
   @HostListener('document:mousemove', ['$event'])
-  onMouseMove(event:MouseEvent) {
+  onMouseMove(event: any) {
     if (this.moving && this.allowDrag) {
       this.moveTo(event.clientX, event.clientY);
     }
@@ -143,14 +145,14 @@ export class AngularDraggableDirective implements OnInit {
   }
 
   @HostListener('touchstart', ['$event'])
-  onTouchStart(event: TouchEvent) {
+  onTouchStart(event: any) {
     event.stopPropagation();
     this.orignal = this.getPosition(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
     this.pickUp();
   }
 
   @HostListener('document:touchmove', ['$event'])
-  onTouchMove(event: TouchEvent) {
+  onTouchMove(event: any) {
     event.stopPropagation();
     if (this.moving && this.allowDrag) {
       this.moveTo(event.changedTouches[0].clientX, event.changedTouches[0].clientY);

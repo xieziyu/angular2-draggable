@@ -1,3 +1,9 @@
+<a name="1.0.5"></a>
+## [1.0.5](https://github.com/xieziyu/angular2-draggable/compare/v1.0.4...v1.0.5) (2017-07-24)
+
+### New
++ Fix cross-browser compatibility issues.
+
 <a name="1.0.4"></a>
 ## [1.0.4](https://github.com/xieziyu/angular2-draggable/compare/v1.0.3...v1.0.4) (2017-07-05)
 

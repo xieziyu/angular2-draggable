@@ -105,6 +105,7 @@ export class AngularDraggableDirective implements OnInit {
       this.moving = false;
       this.oldTrans.x += this.tempTrans.x;
       this.oldTrans.y += this.tempTrans.y;
+      this.tempTrans.x = this.tempTrans.y = 0;
     }
   }
 

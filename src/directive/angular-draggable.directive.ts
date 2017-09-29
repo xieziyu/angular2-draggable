@@ -97,13 +97,13 @@ export class AngularDraggableDirective implements OnInit {
   }
 
   private boundsCheck() {
-    let boundry = this.bounds.getBoundingClientRect();
+    let boundary = this.bounds.getBoundingClientRect();
     let elem = this.el.nativeElement.getBoundingClientRect()
     return {
-      'top': boundry.top < elem.top,
-      'right': boundry.right > elem.right,
-      'bottom': boundry.bottom > elem.bottom,
-      'left': boundry.left < elem.left
+      'top': boundary.top < elem.top,
+      'right': boundary.right > elem.right,
+      'bottom': boundary.bottom > elem.bottom,
+      'left': boundary.left < elem.left
     };
   }
 

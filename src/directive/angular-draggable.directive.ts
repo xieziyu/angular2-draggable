@@ -20,6 +20,7 @@ export class AngularDraggableDirective implements OnInit {
   @Output() stopped = new EventEmitter<any>();
 
   @Input() handle: HTMLElement;
+  @Input() bounds: HTMLElement;
 
   @Input()
   set ngDraggable(setting: any) {

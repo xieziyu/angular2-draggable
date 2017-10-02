@@ -115,7 +115,8 @@ export class AngularDraggableDirective implements OnInit {
     }
 
     if (this.moving) {
-      this.stopped.emit({'element' : this.el.nativeElement, 'bounds' : this.boundsCheck() });
+      this.stopped.emit(this.el.nativeElement);
+      this.edge.emit(this.boundsCheck());
       this.moving = false;
       this.oldTrans.x += this.tempTrans.x;
       this.oldTrans.y += this.tempTrans.y;

@@ -1,3 +1,18 @@
+ ## This version changes original, for personal project. You should use the original, for normal functionality.
+
+- Changes file angular-draggable.directive.js
+
+```javascript
+// this.oldTrans.x += this.tempTrans.x;
+// this.oldTrans.y += this.tempTrans.y;
+this.oldTrans.x = 0;
+this.oldTrans.y = 0;
+this.renderer.setElementStyle(this.el.nativeElement, 'transform', 'translate(0px, 0px)');
+```
+### New functionality:
+When you finish drag and drop, you will return to its original position.
+This functionality, has been created so that when you have left the object (div, icon, etc) in one place and make its effect, the object, return to its place.
+
 # angular2-draggable [![npm version](https://badge.fury.io/js/angular2-draggable.svg)](http://badge.fury.io/js/angular2-draggable) [![npm downloads](https://img.shields.io/npm/dm/angular2-draggable.svg)](https://npmjs.org/angular2-draggable)
 Angular directive (for version >= 2.x ) that makes the DOM element draggable. Please refer to the [demo](https://xieziyu.github.io/#/angular2-draggable/demo) page.
 

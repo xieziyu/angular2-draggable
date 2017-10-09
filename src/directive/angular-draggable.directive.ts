@@ -18,8 +18,10 @@ export class AngularDraggableDirective implements OnInit {
 
   @Output() started = new EventEmitter<any>();
   @Output() stopped = new EventEmitter<any>();
+  @Output() edge = new EventEmitter<any>();
 
   @Input() handle: HTMLElement;
+  @Input() bounds: HTMLElement;
 
   @Input()
   set ngDraggable(setting: any) {
@@ -60,6 +62,7 @@ export class AngularDraggableDirective implements OnInit {
       this.renderer.setElementStyle(this.el.nativeElement, '-ms-transform', value);
       this.renderer.setElementStyle(this.el.nativeElement, '-moz-transform', value);
       this.renderer.setElementStyle(this.el.nativeElement, '-o-transform', value);
+      this.edge.emit(this.boundsCheck());
     }
   }
 
@@ -93,6 +96,17 @@ export class AngularDraggableDirective implements OnInit {
     }
   }
 
+  private boundsCheck() {
+    let boundary = this.bounds.getBoundingClientRect();
+    let elem = this.el.nativeElement.getBoundingClientRect()
+    return {
+      'top': boundary.top < elem.top,
+      'right': boundary.right > elem.right,
+      'bottom': boundary.bottom > elem.bottom,
+      'left': boundary.left < elem.left
+    };
+  }
+
   private putBack() {
     if (this.oldZIndex) {
       this.renderer.setElementStyle(this.el.nativeElement, 'z-index', this.oldZIndex);
@@ -102,6 +116,7 @@ export class AngularDraggableDirective implements OnInit {
 
     if (this.moving) {
       this.stopped.emit(this.el.nativeElement);
+      this.edge.emit(this.boundsCheck());
       this.moving = false;
       this.oldTrans.x += this.tempTrans.x;
       this.oldTrans.y += this.tempTrans.y;

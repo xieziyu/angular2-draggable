@@ -109,7 +109,7 @@ export class AngularDraggableDirective implements OnInit {
 
   private putBack() {
     if (this.oldZIndex) {
-      this.renderer.setElementStyle(this.el.nativeElement, 'z-index', this.oldZIndex);
+      this.renderer.setElementStyle(this.el.nativeElement, 'z-index', 'auto');
     } else {
       this.el.nativeElement.style.removeProperty('z-index');
     }

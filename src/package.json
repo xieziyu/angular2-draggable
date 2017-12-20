@@ -1,9 +1,0 @@
-{
-  "name": "angular2-draggable",
-  "version": "1.0.7",
-  "peerDependencies": {
-    "@angular/common": "*",
-    "@angular/compiler": "*",
-    "@angular/core": "*"
-  }
-}

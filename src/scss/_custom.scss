@@ -1,0 +1,35 @@
+// Here you can add other styles
+.tab-content {
+  pre {
+    max-height: 500px;
+    overflow-y: auto;
+  }
+}
+
+.code-block {
+  pre {
+    height: 250px;
+    overflow-y: auto;
+  }
+}
+
+.code-block-sm {
+  pre {
+    height: 200px;
+    overflow-y: auto;
+  }
+}
+
+.drag-block {
+  width: 200px;
+  height: 200px;
+  background-color: $blue;
+  color: white;
+  padding: 75px 0px;
+  line-height: 50px;
+  text-align: center;
+}
+
+.ng-draggable {
+  cursor: move;
+}

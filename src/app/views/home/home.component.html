@@ -1,0 +1,54 @@
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1>
+      <img src="assets/img/angular.svg" width="64px" height="64px">
+      Angular2-Draggable
+    </h1>
+    <p>
+      <img src="https://badge.fury.io/js/angular2-draggable.svg" alt="version">
+      <img src="https://img.shields.io/npm/dm/angular2-draggable.svg" alt="downloads">
+    </p>
+    <p class="lead text-muted">angular2-draggable is an <strong class="text-danger">Angular</strong>(ver >= 2.x) directive that makes the DOM element draggable</p>
+    <p>
+      <a href="https://xieziyu.github.io/angular2-draggable/api-doc" target="_blank" class="btn btn-outline-success"><i class="fa fa-book"></i> Documents</a>
+      <a href="https://github.com/xieziyu/angular2-draggable" class="btn btn-outline-primary"><i class="fa fa-github"></i> Github</a>
+    </p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <h2><span class="fa fa-caret-right mr-2 text-primary"></span>Installation</h2>
+      <markdown class="code-block-sm">
+        ```bash
+        # if you use npm
+        npm install angular2-draggable --save
+        
+        # or if you use yarn
+        yarn add angular2-draggable
+        ```
+      </markdown>
+    </div>
+    <div class="col-md-6 mb-3">
+      <h2><span class="fa fa-caret-right mr-2 text-primary"></span>Import</h2>
+      <markdown class="code-block-sm">
+        ```typescript
+        import {{'{'}} AngularDraggableModule } from 'angular2-draggable';
+
+        @NgModule({{'{'}}
+          imports: [
+            ...,
+            AngularDraggableModule
+          ],
+        })
+        export class AppModule {{'{'}} }
+        ```
+      </markdown>
+    </div>
+    <div class="col-md-6 mb-3">
+      <h2><span class="fa fa-caret-right mr-2 text-primary"></span>Usage</h2>
+      <markdown class="code-block-sm" [data]="demo_html | language: 'html'"></markdown>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="card card-accent-info">
+  <div class="card-body">
+    <h4 class="card-title">Boundary Check</h4>
+    <div class="mt-4">
+      <tabset>
+        <tab heading="demo">
+          <div class="row">
+            <div class="col-sm-4">
+              <p><button (click)="inBounds = !inBounds" class="btn btn-outline-primary">toggle [inBounds]</button></p>
+            </div>
+            <div class="col-sm-8">
+              <div class="drag-boundary" [ngClass]="{ 'top-b': !edge?.top, 'bottom-b': !edge?.bottom, 'left-b': !edge?.left, 'right-b': !edge?.right }" #myBounds>
+                <p class="label">#myBounds</p>
+                <div ngDraggable class="drag-block" (edge)="checkEdge($event)" [bounds]="myBounds" [inBounds]="inBounds">
+                  <p>Drag me {{ inBounds?'in #myBounds':'' }}</p>
+                  <p>check your console</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </tab>
+        <tab heading="html">
+          <markdown [data]="demo_html | language: 'html'"></markdown>
+        </tab>
+        <tab heading="component">
+          <markdown [data]="demo_ts | language: 'typescript'"></markdown>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,10 @@
-# angular2-draggable [![npm version](https://badge.fury.io/js/angular2-draggable.svg)](http://badge.fury.io/js/angular2-draggable) [![npm downloads](https://img.shields.io/npm/dm/angular2-draggable.svg)](https://npmjs.org/angular2-draggable)
-Angular directive (for version >= 2.x ) that makes the DOM element draggable. Please refer to the [demo](https://xieziyu.github.io/#/angular2-draggable/demo) page.
+# angular2-draggable
+[![npm version](https://badge.fury.io/js/angular2-draggable.svg)](http://badge.fury.io/js/angular2-draggable) [![npm downloads](https://img.shields.io/npm/dm/angular2-draggable.svg)](https://npmjs.org/angular2-draggable)
+
+Angular directive (for version >= 2.x ) that makes the DOM element draggable.
+
++ [Online Demo](https://xieziyu.github.io/angular2-draggable)
++ [Online Docs](https://xieziyu.github.io/angular2-draggable/api-doc)
 
 ## Table of contents 
 1. [Getting Started](#getting-started)
@@ -12,6 +17,13 @@ Angular directive (for version >= 2.x ) that makes the DOM element draggable. Pl
 angular2-draggable is an angular (ver >= 2.x) directive that makes the DOM element draggable. (Note that: It's different from drag-and-drop)
 
 # Latest Update
++ 2017.12.20: 1.1.0-beta.0
+
+  + Provide `[zIndex]` and `[zIndexMoving]` to control z-index property.
+  + Provide `[bounds]`, `(edge)` and `[inBounds]` to do boundary check and limit element staying in the bounds.
+  + Update [demo](https://xieziyu.github.io/angular2-draggable) page.
+
+
 + 2017.09.19: Fix an issue when dragging with touch.
 
 + 2017.08.26: Fix an issue: clicking before dragging leading to unexpected offset ([PR #12](https://github.com/xieziyu/angular2-draggable/pull/12) by [bmartinson13](https://github.com/bmartinson13))
@@ -91,6 +103,14 @@ Please refer to the [demo](https://xieziyu.github.io/#/angular2-draggable/demo) 
 
 + `handle`: HTMLElement. Use template variable to refer to the handle element. Then only the handle element is draggable.
 
++ `zIndex`: string. Use it to set z-index property when element is not moving.
+
++ `zIndexMoving`: string. Use it to set z-index property when element is moving.
+
++ `bounds`: HTMLElemnt. Use it to set the boundary.
+
++ `inBounds`: boolean, default is `false`. Use it make element stay in the bounds.
+
 ## CSS:
 When `ngDraggable` is enabled on some element, `ng-draggable` class is automatically assigned to it. You can use it to customize the pointer style. For example:
 
@@ -102,10 +122,23 @@ When `ngDraggable` is enabled on some element, `ng-draggable` class is automatic
 
 # Events
 
-Support `started` and `stopped` events. The `nativeElement` of the host would be emitted.
+1. Support `started` and `stopped` events. The `nativeElement` of the host would be emitted.
+2. Support `edge` events only when `[bounds]` is set. It would emit the result of the boundary check.
 
 + Simple example:
   + html:
   ```html
   <div ngDraggable (started)="onDragBegin($event)" (stopped)="onDragEnd($event)">Drag me!</div>
   ```
+
+# Demo
+You can clone this repo to your working copy and then launch the demo page in your local machine:
+```bash
+npm install
+npm run demo
+
+# or
+yarn install
+yarn demo
+```
+The demo page server is listening to: http://localhost:4203

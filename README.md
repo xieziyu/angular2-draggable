@@ -1,5 +1,7 @@
 # angular2-draggable
-[![npm version](https://badge.fury.io/js/angular2-draggable.svg)](http://badge.fury.io/js/angular2-draggable) [![npm downloads](https://img.shields.io/npm/dm/angular2-draggable.svg)](https://npmjs.org/angular2-draggable)
+[![npm version](https://badge.fury.io/js/angular2-draggable.svg)](http://badge.fury.io/js/angular2-draggable)
+[![npm downloads](https://img.shields.io/npm/dm/angular2-draggable.svg)](https://npmjs.org/angular2-draggable)
+[![Build Status](https://travis-ci.org/xieziyu/angular2-draggable.svg?branch=master)](https://travis-ci.org/xieziyu/angular2-draggable)
 
 Angular directive (for version >= 2.x ) that makes the DOM element draggable.
 

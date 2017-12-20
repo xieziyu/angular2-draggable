@@ -1,3 +1,9 @@
+## 1.1.0-beta.0 (2017-12-20)
+
+#### New
++ Provide `[zIndex]` and `[zIndexMoving]` to control z-index property.
++ Provide `[bounds]`, `(edge)` and `[inBounds]` to do boundary check and limit element staying in the bounds.
+
 <a name="1.0.7"></a>
 ## [1.0.7](https://github.com/xieziyu/angular2-draggable/compare/v1.0.6...v1.0.7) (2017-09-19)
 

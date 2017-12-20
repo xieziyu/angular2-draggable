@@ -15,13 +15,28 @@ export class AngularDraggableDirective implements OnInit {
   private tempTrans = new Position(0, 0);
   private oldZIndex = '';
   private oldPosition = '';
+  private _zIndex = '';
 
   @Output() started = new EventEmitter<any>();
   @Output() stopped = new EventEmitter<any>();
   @Output() edge = new EventEmitter<any>();
 
+  /** Make the handle HTMLElement draggable */
   @Input() handle: HTMLElement;
+
+  /** Set the bounds HTMLElement */
   @Input() bounds: HTMLElement;
+
+  /** Set z-index when dragging */
+  @Input() zIndexMoving: string;
+
+  /** Set z-index when not dragging */
+  @Input() set zIndex(setting: string) {
+    this.renderer.setElementStyle(this.el.nativeElement, 'z-index', setting);
+    this._zIndex = setting;
+  }
+  /** Whether to limit the element stay in the bounds */
+  @Input() inBounds = false;
 
   @Input()
   set ngDraggable(setting: any) {
@@ -53,16 +68,25 @@ export class AngularDraggableDirective implements OnInit {
 
   private moveTo(x: number, y: number) {
     if (this.orignal) {
+      let prevX = this.tempTrans.x;
+      let prevY = this.tempTrans.y;
       this.tempTrans.x = x - this.orignal.x;
       this.tempTrans.y = y - this.orignal.y;
-      let value = `translate(${this.tempTrans.x + this.oldTrans.x}px, ${this.tempTrans.y + this.oldTrans.y}px)`;
-      this.renderer.setElementStyle(this.el.nativeElement, 'transform', value);
-      this.renderer.setElementStyle(this.el.nativeElement, '-webkit-transform', value);
-      this.renderer.setElementStyle(this.el.nativeElement, '-ms-transform', value);
-      this.renderer.setElementStyle(this.el.nativeElement, '-moz-transform', value);
-      this.renderer.setElementStyle(this.el.nativeElement, '-o-transform', value);
-      this.edge.emit(this.boundsCheck());
+      this.transform();
+
+      if (this.bounds) {
+        this.edge.emit(this.boundsCheck());
+      }
     }
+  }
+
+  private transform() {
+    let value = `translate(${this.tempTrans.x + this.oldTrans.x}px, ${this.tempTrans.y + this.oldTrans.y}px)`;
+    this.renderer.setElementStyle(this.el.nativeElement, 'transform', value);
+    this.renderer.setElementStyle(this.el.nativeElement, '-webkit-transform', value);
+    this.renderer.setElementStyle(this.el.nativeElement, '-ms-transform', value);
+    this.renderer.setElementStyle(this.el.nativeElement, '-moz-transform', value);
+    this.renderer.setElementStyle(this.el.nativeElement, '-o-transform', value);
   }
 
   private pickUp() {
@@ -87,7 +111,9 @@ export class AngularDraggableDirective implements OnInit {
     }
 
     this.renderer.setElementStyle(this.el.nativeElement, 'position', position);
-    this.renderer.setElementStyle(this.el.nativeElement, 'z-index', '99999');
+    if (this.zIndexMoving) {
+      this.renderer.setElementStyle(this.el.nativeElement, 'z-index', this.zIndexMoving);
+    }
 
     if (!this.moving) {
       this.started.emit(this.el.nativeElement);
@@ -96,26 +122,58 @@ export class AngularDraggableDirective implements OnInit {
   }
 
   private boundsCheck() {
-    let boundary = this.bounds.getBoundingClientRect();
-    let elem = this.el.nativeElement.getBoundingClientRect();
-    return {
-      'top': boundary.top < elem.top,
-      'right': boundary.right > elem.right,
-      'bottom': boundary.bottom > elem.bottom,
-      'left': boundary.left < elem.left
-    };
+    if (this.bounds) {
+      let boundary = this.bounds.getBoundingClientRect();
+      let elem = this.el.nativeElement.getBoundingClientRect();
+      let result = {
+        'top': boundary.top < elem.top,
+        'right': boundary.right > elem.right,
+        'bottom': boundary.bottom > elem.bottom,
+        'left': boundary.left < elem.left
+      };
+
+      if (this.inBounds) {
+        if (!result.top) {
+          this.tempTrans.y -= elem.top - boundary.top;
+        }
+
+        if (!result.bottom) {
+          this.tempTrans.y -= elem.bottom - boundary.bottom;
+        }
+
+        if (!result.right) {
+          this.tempTrans.x -= elem.right - boundary.right;
+        }
+
+        if (!result.left) {
+          this.tempTrans.x -= elem.left - boundary.left;
+        }
+
+        this.transform();
+      }
+
+      return result;
+    }
   }
 
   private putBack() {
-    if (this.oldZIndex) {
-      this.renderer.setElementStyle(this.el.nativeElement, 'z-index', this.oldZIndex);
-    } else {
-      this.el.nativeElement.style.removeProperty('z-index');
+    if (this._zIndex) {
+      this.renderer.setElementStyle(this.el.nativeElement, 'z-index', this._zIndex);
+    } else if (this.zIndexMoving) {
+      if (this.oldZIndex) {
+        this.renderer.setElementStyle(this.el.nativeElement, 'z-index', this.oldZIndex);
+      } else {
+        this.el.nativeElement.style.removeProperty('z-index');
+      }
     }
 
     if (this.moving) {
       this.stopped.emit(this.el.nativeElement);
-      this.edge.emit(this.boundsCheck());
+
+      if (this.bounds) {
+        this.edge.emit(this.boundsCheck());
+      }
+
       this.moving = false;
       this.oldTrans.x += this.tempTrans.x;
       this.oldTrans.y += this.tempTrans.y;

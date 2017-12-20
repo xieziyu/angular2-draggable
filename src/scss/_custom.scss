@@ -30,6 +30,57 @@
   text-align: center;
 }
 
+.drag-block-lg {
+  width: 300px;
+  height: 215px;
+  background-color: $red;
+  padding-top: 20px;
+  color: white;
+  text-align: center;
+}
+
+.drag-block-handle {
+  width: 100px;
+  height: 43px;
+  margin-top: -20px;
+  padding-top: 10px;
+  margin-bottom: 10px;
+}
+
 .ng-draggable {
   cursor: move;
+  background-color: $blue !important;
+}
+
+.drag-boundary {
+  width: 400px;
+  height: 400px;
+  overflow: hidden;
+  border: solid 1px $green;
+  position: relative;
+
+  .label {
+    color: white;
+    background-color: $green;
+    width: 100px;
+    text-align: center;
+    right: 0px;
+    position: absolute;
+  }
+}
+
+.top-b {
+  border-top-color: $red !important;
+}
+
+.bottom-b {
+  border-bottom-color: $red !important;
+}
+
+.left-b {
+  border-left-color: $red !important;
+}
+
+.right-b {
+  border-right-color: $red !important;
 }

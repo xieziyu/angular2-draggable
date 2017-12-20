@@ -17,5 +17,20 @@ export const navigation = [
     name: 'Basic Usage',
     url: '/usage/basic',
     icon: 'fa fa-arrows'
+  },
+  {
+    name: 'Options',
+    url: '/usage/options',
+    icon: 'fa fa-cogs'
+  },
+  {
+    name: 'Events',
+    url: '/usage/events',
+    icon: 'fa fa-comment'
+  },
+  {
+    name: 'Boundary Check',
+    url: '/usage/boundary',
+    icon: 'fa fa-square-o'
   }
 ];

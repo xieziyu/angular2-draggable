@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { UsageRoutingModule } from './usage-routing.module';
 import { BasicComponent } from './basic/basic.component';
+import { OptionsComponent } from './options/options.component';
+import { EventsComponent } from './events/events.component';
+import { BoundaryComponent } from './boundary/boundary.component';
 
 @NgModule({
   imports: [
@@ -11,7 +14,10 @@ import { BasicComponent } from './basic/basic.component';
     SharedModule
   ],
   declarations: [
-    BasicComponent
+    BasicComponent,
+    OptionsComponent,
+    EventsComponent,
+    BoundaryComponent
   ]
 })
 export class UsageModule { }

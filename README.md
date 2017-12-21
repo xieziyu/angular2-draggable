@@ -63,7 +63,7 @@ npm install angular2-draggable --save
 ```
 
 # Usage
-Please refer to the [demo](https://xieziyu.github.io/#/angular2-draggable/demo) page.
+Please refer to the [demo](https://xieziyu.github.io/angular2-draggable) page.
 
 1. Firstly, import `AngularDraggableModule` in your app module (or any other proper angular module):
     ```typescript

@@ -38,6 +38,9 @@ export class AngularDraggableDirective implements OnInit {
   /** Whether to limit the element stay in the bounds */
   @Input() inBounds = false;
 
+  /** Whether the element should use it's previous drag position on a new drag event. */
+  @Input() trackPosition = true;
+
   @Input()
   set ngDraggable(setting: any) {
     if (setting !== undefined && setting !== null && setting !== '') {
@@ -175,8 +178,10 @@ export class AngularDraggableDirective implements OnInit {
       }
 
       this.moving = false;
-      this.oldTrans.x += this.tempTrans.x;
-      this.oldTrans.y += this.tempTrans.y;
+      if (this.trackPosition) {
+        this.oldTrans.x += this.tempTrans.x;
+        this.oldTrans.y += this.tempTrans.y;
+      }
       this.tempTrans.x = this.tempTrans.y = 0;
     }
   }

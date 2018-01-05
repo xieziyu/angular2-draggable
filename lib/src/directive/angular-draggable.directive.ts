@@ -213,6 +213,7 @@ export class AngularDraggableDirective implements OnInit {
   onMouseMove(event: any) {
     if (this.moving && this.allowDrag) {
       this.moveTo(event.clientX, event.clientY);
+      return false;
     }
   }
 

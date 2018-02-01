@@ -1,3 +1,10 @@
+## 1.1.0 (2018-02-01)
+
+#### New
++ Provide `[trackPosition]` option: whether to track the element's movement. (PR by [Blackbaud-MikitaYankouski](https://github.com/Blackbaud-MikitaYankouski))
++ Provide `[scale]` option: to fix scaling issue [#31](https://github.com/xieziyu/angular2-draggable/issues/31)
++ Provide `[preventDefaultEvent]` option: whether to prevent default mouse or touch event. (default: true)
+
 ## 1.1.0-beta.0 (2017-12-20)
 
 #### New

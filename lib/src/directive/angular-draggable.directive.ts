@@ -261,6 +261,7 @@ export class AngularDraggableDirective implements OnInit {
 
     if (this.moving && this.allowDrag) {
       this.moveTo(event.clientX, event.clientY);
+      return false;
     }
   }
 

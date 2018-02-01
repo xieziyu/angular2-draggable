@@ -41,6 +41,9 @@ export class AngularDraggableDirective implements OnInit {
   /** Whether the element should use it's previous drag position on a new drag event. */
   @Input() trackPosition = true;
 
+  /** Input css scale transform of element so translations are correct */
+  @Input() scale = 1.00;
+
   @Input()
   set ngDraggable(setting: any) {
     if (setting !== undefined && setting !== null && setting !== '') {
@@ -73,8 +76,8 @@ export class AngularDraggableDirective implements OnInit {
     if (this.orignal) {
       let prevX = this.tempTrans.x;
       let prevY = this.tempTrans.y;
-      this.tempTrans.x = x - this.orignal.x;
-      this.tempTrans.y = y - this.orignal.y;
+      this.tempTrans.x = (x - this.orignal.x) / this.scale;
+      this.tempTrans.y = (y - this.orignal.y) / this.scale;
       this.transform();
 
       if (this.bounds) {
@@ -137,19 +140,19 @@ export class AngularDraggableDirective implements OnInit {
 
       if (this.inBounds) {
         if (!result.top) {
-          this.tempTrans.y -= elem.top - boundary.top;
+          this.tempTrans.y -= (elem.top - boundary.top) / this.scale;
         }
 
         if (!result.bottom) {
-          this.tempTrans.y -= elem.bottom - boundary.bottom;
+          this.tempTrans.y -= (elem.bottom - boundary.bottom) / this.scale;
         }
 
         if (!result.right) {
-          this.tempTrans.x -= elem.right - boundary.right;
+          this.tempTrans.x -= (elem.right - boundary.right) / this.scale;
         }
 
         if (!result.left) {
-          this.tempTrans.x -= elem.left - boundary.left;
+          this.tempTrans.x -= (elem.left - boundary.left) / this.scale;
         }
 
         this.transform();

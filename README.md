@@ -19,6 +19,12 @@ Angular directive (for version >= 2.x ) that makes the DOM element draggable.
 angular2-draggable is an angular (ver >= 2.x) directive that makes the DOM element draggable. (Note that: It's different from drag-and-drop)
 
 # Latest Update
++ 2018.02.01: 1.1.0
+
+  + Provide `[trackPosition]` option: whether to track the element's movement. (PR by [Blackbaud-MikitaYankouski](https://github.com/Blackbaud-MikitaYankouski))
+  + Provide `[scale]` option: to fix scaling issue [#31](https://github.com/xieziyu/angular2-draggable/issues/31)
+  + Provide `[preventDefaultEvent]` option: whether to prevent default mouse or touch event. (default: true)
+
 + 2017.12.20: 1.1.0-beta.0
 
   + Provide `[zIndex]` and `[zIndexMoving]` to control z-index property.

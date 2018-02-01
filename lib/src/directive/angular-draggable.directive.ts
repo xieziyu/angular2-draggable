@@ -42,7 +42,9 @@ export class AngularDraggableDirective implements OnInit {
   @Input() trackPosition = true;
 
   /** Input css scale transform of element so translations are correct */
-  @Input() scale = 1.00;
+  @Input() scale = 1;
+
+  @Input() preventDefaultEvent = true;
 
   @Input()
   set ngDraggable(setting: any) {
@@ -76,8 +78,8 @@ export class AngularDraggableDirective implements OnInit {
     if (this.orignal) {
       let prevX = this.tempTrans.x;
       let prevY = this.tempTrans.y;
-      this.tempTrans.x = (x - this.orignal.x) / this.scale;
-      this.tempTrans.y = (y - this.orignal.y) / this.scale;
+      this.tempTrans.x = x - this.orignal.x;
+      this.tempTrans.y = y - this.orignal.y;
       this.transform();
 
       if (this.bounds) {
@@ -88,6 +90,11 @@ export class AngularDraggableDirective implements OnInit {
 
   private transform() {
     let value = `translate(${this.tempTrans.x + this.oldTrans.x}px, ${this.tempTrans.y + this.oldTrans.y}px)`;
+
+    if (this.scale !== 1) {
+      value += ` scale(${this.scale})`;
+    }
+
     this.renderer.setElementStyle(this.el.nativeElement, 'transform', value);
     this.renderer.setElementStyle(this.el.nativeElement, '-webkit-transform', value);
     this.renderer.setElementStyle(this.el.nativeElement, '-ms-transform', value);
@@ -140,19 +147,19 @@ export class AngularDraggableDirective implements OnInit {
 
       if (this.inBounds) {
         if (!result.top) {
-          this.tempTrans.y -= (elem.top - boundary.top) / this.scale;
+          this.tempTrans.y -= elem.top - boundary.top;
         }
 
         if (!result.bottom) {
-          this.tempTrans.y -= (elem.bottom - boundary.bottom) / this.scale;
+          this.tempTrans.y -= elem.bottom - boundary.bottom;
         }
 
         if (!result.right) {
-          this.tempTrans.x -= (elem.right - boundary.right) / this.scale;
+          this.tempTrans.x -= elem.right - boundary.right;
         }
 
         if (!result.left) {
-          this.tempTrans.x -= (elem.left - boundary.left) / this.scale;
+          this.tempTrans.x -= elem.left - boundary.left;
         }
 
         this.transform();
@@ -192,14 +199,47 @@ export class AngularDraggableDirective implements OnInit {
   // Support Mouse Events:
   @HostListener('mousedown', ['$event'])
   onMouseDown(event: any) {
+    if (this.preventDefaultEvent) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+
     // 1. skip right click;
     // 2. if handle is set, the element can only be moved by handle
-    if (event.button === 2 || (this.handle !== undefined && event.target !== this.handle)) {
+    if (event.button === 2 || (this.handle !== undefined && !this.checkHandleTarget(event.target, this.handle))) {
       return;
     }
 
     this.orignal = this.getPosition(event.clientX, event.clientY);
     this.pickUp();
+  }
+
+  checkHandleTarget(target: Element, element: Element) {
+    // Checks if the target is the element clicked, then checks each child element of element as well
+    // Ignores button clicks
+
+    // Ignore elements of type button
+    if (element.tagName === 'BUTTON') {
+      return false;
+    }
+
+    // If the target was found, return true (handle was found)
+    if (element === target) {
+      return true;
+    }
+
+    // Recursively iterate this elements children
+    for (let child in element.children) {
+      if (element.children.hasOwnProperty(child)) {
+        if (this.checkHandleTarget(target, element.children[child])) {
+          return true;
+        }
+      }
+    }
+
+    // Handle was not found in this lineage
+    // Note: return false is ignore unless it is the parent element
+    return false;
   }
 
   @HostListener('document:mouseup')
@@ -214,6 +254,11 @@ export class AngularDraggableDirective implements OnInit {
 
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event: any) {
+    if (this.preventDefaultEvent) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+
     if (this.moving && this.allowDrag) {
       this.moveTo(event.clientX, event.clientY);
     }
@@ -227,10 +272,12 @@ export class AngularDraggableDirective implements OnInit {
 
   @HostListener('touchstart', ['$event'])
   onTouchStart(event: any) {
-    event.stopPropagation();
-    event.preventDefault();
+    if (this.preventDefaultEvent) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
 
-    if (this.handle !== undefined && event.target !== this.handle) {
+    if (this.handle !== undefined && !this.checkHandleTarget(event.target, this.handle)) {
       return;
     }
 
@@ -240,8 +287,11 @@ export class AngularDraggableDirective implements OnInit {
 
   @HostListener('document:touchmove', ['$event'])
   onTouchMove(event: any) {
-    event.stopPropagation();
-    event.preventDefault();
+    if (this.preventDefaultEvent) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+
     if (this.moving && this.allowDrag) {
       this.moveTo(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
     }

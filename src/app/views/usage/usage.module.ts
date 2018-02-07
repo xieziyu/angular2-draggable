@@ -6,6 +6,7 @@ import { BasicComponent } from './basic/basic.component';
 import { OptionsComponent } from './options/options.component';
 import { EventsComponent } from './events/events.component';
 import { BoundaryComponent } from './boundary/boundary.component';
+import { ApiComponent } from './api/api.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { BoundaryComponent } from './boundary/boundary.component';
     BasicComponent,
     OptionsComponent,
     EventsComponent,
-    BoundaryComponent
+    BoundaryComponent,
+    ApiComponent
   ]
 })
 export class UsageModule { }

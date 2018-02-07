@@ -32,5 +32,10 @@ export const navigation = [
     name: 'Boundary Check',
     url: '/usage/boundary',
     icon: 'fa fa-square-o'
+  },
+  {
+    name: 'API',
+    url: '/usage/api',
+    icon: 'fa fa-code'
   }
 ];

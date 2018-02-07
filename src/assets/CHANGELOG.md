@@ -1,3 +1,18 @@
+## 1.2.0 (2018-02-07)
+
+#### New
++ Provide `resetPosition()` method to reset position.
+
+#### Breaking Changes
++ Use `Renderer2` of angular-core. So we don't support angular version < 4.0.
+
+#### Bugfix
++ `[trackPosition]` was not working as expected.
+
+#### Changes
++ The directive now `exportAs: 'ngDraggable'`.
++ `[preventDefaultEvent]` set default to false.
+
 ## 1.1.0 (2018-02-01)
 
 #### New

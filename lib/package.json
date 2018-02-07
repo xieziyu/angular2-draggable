@@ -1,6 +1,6 @@
 {
   "name": "angular2-draggable",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Angular directive that makes the DOM element draggable",
   "repository": "https://github.com/xieziyu/angular2-draggable.git",
   "author": "Xie, Ziyu <ziyu.xie@foxmail.com>",
@@ -9,10 +9,10 @@
     "email": "xieziyu@foxmail.com"
   },
   "homepage": "https://github.com/xieziyu/angular2-draggable#readme",
-  "keywords": [ "angular", "2", "4", "5", "draggable", "ng"],
+  "keywords": [ "angular", "4", "5", "draggable", "ng"],
   "peerDependencies": {
-    "@angular/common": ">=2.3.0",
-    "@angular/compiler": ">=2.3.0",
-    "@angular/core": ">=2.3.0"
+    "@angular/common": ">=4.0.0",
+    "@angular/compiler": ">=4.0.0",
+    "@angular/core": ">=4.0.0"
   }
 }

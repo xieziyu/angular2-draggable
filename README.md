@@ -3,7 +3,7 @@
 [![npm downloads](https://img.shields.io/npm/dm/angular2-draggable.svg)](https://npmjs.org/angular2-draggable)
 [![Build Status](https://travis-ci.org/xieziyu/angular2-draggable.svg?branch=master)](https://travis-ci.org/xieziyu/angular2-draggable)
 
-Angular directive (for version >= 2.x ) that makes the DOM element draggable.
+Angular directive (for version >= 4.x ) that makes the DOM element draggable.
 
 + [Online Demo](https://xieziyu.github.io/angular2-draggable)
 + [Online Docs](https://xieziyu.github.io/angular2-draggable/api-doc)
@@ -16,9 +16,16 @@ Angular directive (for version >= 2.x ) that makes the DOM element draggable.
 6. [Events](#events)
 
 # Getting Started
-angular2-draggable is an angular (ver >= 2.x) directive that makes the DOM element draggable. (Note that: It's different from drag-and-drop)
+angular2-draggable is an angular (ver >= 4.x) directive that makes the DOM element draggable. (Note that: It's different from drag-and-drop)
 
 # Latest Update
++ 2018.02.07: 1.2.0
+  + **BREAKING CHANGE**: use `Renderer2` of angular-core. So we don't support angular version < 4.0.
+  + Provide: `resetPosition()` method to reset position. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/usage/api) for details.
+  + Bugfix: `[trackPosition]` was not working as expected.
+  + Change: The directive now `exportAs: 'ngDraggable'`. For example we can use `<div ngDraggable #block="ngDraggable"></div>` to assign this directive to a variable.
+  + Change: `[preventDefaultEvent]` set default to false.
+
 + 2018.02.01: 1.1.0
 
   + Provide `[trackPosition]` option: whether to track the element's movement. (PR by [Blackbaud-MikitaYankouski](https://github.com/Blackbaud-MikitaYankouski))

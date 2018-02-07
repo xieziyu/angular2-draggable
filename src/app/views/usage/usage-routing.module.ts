@@ -4,6 +4,7 @@ import { BasicComponent } from './basic/basic.component';
 import { OptionsComponent } from './options/options.component';
 import { EventsComponent } from './events/events.component';
 import { BoundaryComponent } from './boundary/boundary.component';
+import { ApiComponent } from './api/api.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,13 @@ const routes: Routes = [
     component: BoundaryComponent,
     data: {
       title: 'Boundary Check'
+    }
+  },
+  {
+    path: 'api',
+    component: ApiComponent,
+    data: {
+      title: 'API'
     }
   }
 ];

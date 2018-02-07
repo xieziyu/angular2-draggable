@@ -1,11 +1,40 @@
-import { Directive, ElementRef, Renderer, Input, Output, OnInit, HostListener, EventEmitter } from '@angular/core';
+import { Directive, ElementRef, Renderer2, Input, Output, OnInit, HostListener, EventEmitter } from '@angular/core';
 
 class Position {
   constructor(public x: number, public y: number) { }
+
+  static fromEvent(e) {
+    return new Position(e.clientX, e.clientY);
+  }
+
+  add(p: Position) {
+    this.x += p.x;
+    this.y += p.y;
+    return this;
+  }
+
+  subtract(p: Position) {
+    this.x -= p.x;
+    this.y -= p.y;
+    return this;
+  }
+
+  reset() {
+    this.x = 0;
+    this.y = 0;
+    return this;
+  }
+
+  set(p: Position) {
+    this.x = p.x;
+    this.y = p.y;
+    return this;
+  }
 }
 
 @Directive({
-  selector: '[ngDraggable]'
+  selector: '[ngDraggable]',
+  exportAs: 'ngDraggable'
 })
 export class AngularDraggableDirective implements OnInit {
   private allowDrag = true;
@@ -32,7 +61,7 @@ export class AngularDraggableDirective implements OnInit {
 
   /** Set z-index when not dragging */
   @Input() set zIndex(setting: string) {
-    this.renderer.setElementStyle(this.el.nativeElement, 'z-index', setting);
+    this.renderer.setStyle(this.el.nativeElement, 'z-index', setting);
     this._zIndex = setting;
   }
   /** Whether to limit the element stay in the bounds */
@@ -44,7 +73,8 @@ export class AngularDraggableDirective implements OnInit {
   /** Input css scale transform of element so translations are correct */
   @Input() scale = 1;
 
-  @Input() preventDefaultEvent = true;
+  /** Whether to prevent default event */
+  @Input() preventDefaultEvent = false;
 
   @Input()
   set ngDraggable(setting: any) {
@@ -54,32 +84,32 @@ export class AngularDraggableDirective implements OnInit {
       let element = this.handle ? this.handle : this.el.nativeElement;
 
       if (this.allowDrag) {
-        this.renderer.setElementClass(element, 'ng-draggable', true);
+        this.renderer.addClass(element, 'ng-draggable');
       } else {
-        this.renderer.setElementClass(element, 'ng-draggable', false);
+        this.renderer.removeClass(element, 'ng-draggable');
       }
     }
   }
 
-  constructor(private el: ElementRef, private renderer: Renderer) { }
+  constructor(private el: ElementRef, private renderer: Renderer2) { }
 
   ngOnInit() {
     if (this.allowDrag) {
       let element = this.handle ? this.handle : this.el.nativeElement;
-      this.renderer.setElementClass(element, 'ng-draggable', true);
+      this.renderer.addClass(element, 'ng-draggable');
     }
   }
 
-  private getPosition(x: number, y: number) {
-    return new Position(x, y);
+  resetPosition() {
+    this.oldTrans.reset();
+    this.tempTrans.reset();
+    this.transform();
   }
 
-  private moveTo(x: number, y: number) {
+  private moveTo(p: Position) {
     if (this.orignal) {
-      let prevX = this.tempTrans.x;
-      let prevY = this.tempTrans.y;
-      this.tempTrans.x = x - this.orignal.x;
-      this.tempTrans.y = y - this.orignal.y;
+      p.subtract(this.orignal);
+      this.tempTrans.set(p);
       this.transform();
 
       if (this.bounds) {
@@ -95,37 +125,23 @@ export class AngularDraggableDirective implements OnInit {
       value += ` scale(${this.scale})`;
     }
 
-    this.renderer.setElementStyle(this.el.nativeElement, 'transform', value);
-    this.renderer.setElementStyle(this.el.nativeElement, '-webkit-transform', value);
-    this.renderer.setElementStyle(this.el.nativeElement, '-ms-transform', value);
-    this.renderer.setElementStyle(this.el.nativeElement, '-moz-transform', value);
-    this.renderer.setElementStyle(this.el.nativeElement, '-o-transform', value);
+    this.renderer.setStyle(this.el.nativeElement, 'transform', value);
+    this.renderer.setStyle(this.el.nativeElement, '-webkit-transform', value);
+    this.renderer.setStyle(this.el.nativeElement, '-ms-transform', value);
+    this.renderer.setStyle(this.el.nativeElement, '-moz-transform', value);
+    this.renderer.setStyle(this.el.nativeElement, '-o-transform', value);
   }
 
   private pickUp() {
-    // get old z-index and position:
+    // get old z-index:
     this.oldZIndex = this.el.nativeElement.style.zIndex ? this.el.nativeElement.style.zIndex : '';
-    this.oldPosition = this.el.nativeElement.style.position ? this.el.nativeElement.style.position : '';
 
     if (window) {
       this.oldZIndex = window.getComputedStyle(this.el.nativeElement, null).getPropertyValue('z-index');
-      this.oldPosition = window.getComputedStyle(this.el.nativeElement, null).getPropertyValue('position');
     }
 
-    // setup default position:
-    let position = 'relative';
-
-    // check if old position is draggable:
-    if (this.oldPosition && (
-        this.oldPosition === 'absolute' ||
-        this.oldPosition === 'fixed' ||
-        this.oldPosition === 'relative')) {
-      position = this.oldPosition;
-    }
-
-    this.renderer.setElementStyle(this.el.nativeElement, 'position', position);
     if (this.zIndexMoving) {
-      this.renderer.setElementStyle(this.el.nativeElement, 'z-index', this.zIndexMoving);
+      this.renderer.setStyle(this.el.nativeElement, 'z-index', this.zIndexMoving);
     }
 
     if (!this.moving) {
@@ -171,10 +187,10 @@ export class AngularDraggableDirective implements OnInit {
 
   private putBack() {
     if (this._zIndex) {
-      this.renderer.setElementStyle(this.el.nativeElement, 'z-index', this._zIndex);
+      this.renderer.setStyle(this.el.nativeElement, 'z-index', this._zIndex);
     } else if (this.zIndexMoving) {
       if (this.oldZIndex) {
-        this.renderer.setElementStyle(this.el.nativeElement, 'z-index', this.oldZIndex);
+        this.renderer.setStyle(this.el.nativeElement, 'z-index', this.oldZIndex);
       } else {
         this.el.nativeElement.style.removeProperty('z-index');
       }
@@ -189,10 +205,14 @@ export class AngularDraggableDirective implements OnInit {
 
       this.moving = false;
       if (this.trackPosition) {
-        this.oldTrans.x += this.tempTrans.x;
-        this.oldTrans.y += this.tempTrans.y;
+        this.oldTrans.add(this.tempTrans);
       }
-      this.tempTrans.x = this.tempTrans.y = 0;
+
+      this.tempTrans.reset();
+
+      if (!this.trackPosition) {
+        this.transform();
+      }
     }
   }
 
@@ -210,7 +230,7 @@ export class AngularDraggableDirective implements OnInit {
       return;
     }
 
-    this.orignal = this.getPosition(event.clientX, event.clientY);
+    this.orignal = Position.fromEvent(event);
     this.pickUp();
   }
 
@@ -260,7 +280,7 @@ export class AngularDraggableDirective implements OnInit {
     }
 
     if (this.moving && this.allowDrag) {
-      this.moveTo(event.clientX, event.clientY);
+      this.moveTo(Position.fromEvent(event));
     }
   }
 
@@ -281,7 +301,7 @@ export class AngularDraggableDirective implements OnInit {
       return;
     }
 
-    this.orignal = this.getPosition(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
+    this.orignal = Position.fromEvent(event.changedTouches[0]);
     this.pickUp();
   }
 
@@ -293,7 +313,7 @@ export class AngularDraggableDirective implements OnInit {
     }
 
     if (this.moving && this.allowDrag) {
-      this.moveTo(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
+      this.moveTo(Position.fromEvent(event.changedTouches[0]));
     }
   }
 }

@@ -1,3 +1,8 @@
+## 1.2.1 (2018-02-08)
+
+#### Bugfix
++ `[preventDefaultEvent]` should not prevent events of elements outside the handle.
+
 ## 1.2.0 (2018-02-07)
 
 #### New

@@ -219,15 +219,15 @@ export class AngularDraggableDirective implements OnInit {
   // Support Mouse Events:
   @HostListener('mousedown', ['$event'])
   onMouseDown(event: any) {
-    if (this.preventDefaultEvent) {
-      event.stopPropagation();
-      event.preventDefault();
-    }
-
     // 1. skip right click;
     // 2. if handle is set, the element can only be moved by handle
     if (event.button === 2 || (this.handle !== undefined && !this.checkHandleTarget(event.target, this.handle))) {
       return;
+    }
+
+    if (this.preventDefaultEvent) {
+      event.stopPropagation();
+      event.preventDefault();
     }
 
     this.orignal = Position.fromEvent(event);
@@ -274,12 +274,12 @@ export class AngularDraggableDirective implements OnInit {
 
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event: any) {
-    if (this.preventDefaultEvent) {
-      event.stopPropagation();
-      event.preventDefault();
-    }
-
     if (this.moving && this.allowDrag) {
+      if (this.preventDefaultEvent) {
+        event.stopPropagation();
+        event.preventDefault();
+      }
+
       this.moveTo(Position.fromEvent(event));
     }
   }
@@ -292,13 +292,13 @@ export class AngularDraggableDirective implements OnInit {
 
   @HostListener('touchstart', ['$event'])
   onTouchStart(event: any) {
+    if (this.handle !== undefined && !this.checkHandleTarget(event.target, this.handle)) {
+      return;
+    }
+
     if (this.preventDefaultEvent) {
       event.stopPropagation();
       event.preventDefault();
-    }
-
-    if (this.handle !== undefined && !this.checkHandleTarget(event.target, this.handle)) {
-      return;
     }
 
     this.orignal = Position.fromEvent(event.changedTouches[0]);
@@ -307,12 +307,11 @@ export class AngularDraggableDirective implements OnInit {
 
   @HostListener('document:touchmove', ['$event'])
   onTouchMove(event: any) {
-    if (this.preventDefaultEvent) {
-      event.stopPropagation();
-      event.preventDefault();
-    }
-
     if (this.moving && this.allowDrag) {
+      if (this.preventDefaultEvent) {
+        event.stopPropagation();
+        event.preventDefault();
+      }
       this.moveTo(Position.fromEvent(event.changedTouches[0]));
     }
   }

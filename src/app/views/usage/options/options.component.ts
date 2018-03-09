@@ -16,6 +16,7 @@ export class OptionsComponent implements OnInit {
   zIndexMoving;
   preventDefaultEvent = false;
   trackPosition = true;
+  position;
 
   constructor() { }
 

@@ -1,3 +1,8 @@
+## 1.3.0 (2018.03.09)
+
+#### New
++ Provide `[position]` option: to set initial position offset.
+
 ## 1.2.1 (2018-02-08)
 
 #### Bugfix

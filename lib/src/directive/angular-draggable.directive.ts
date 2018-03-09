@@ -1,19 +1,28 @@
-import { Directive, ElementRef, Renderer2, Input, Output, OnInit, HostListener, EventEmitter } from '@angular/core';
+import { Directive, ElementRef, Renderer2, Input, Output, OnInit, HostListener, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 
-class Position {
+export interface IPosition {
+  x: number;
+  y: number;
+}
+
+class Position implements IPosition {
   constructor(public x: number, public y: number) { }
 
   static fromEvent(e) {
     return new Position(e.clientX, e.clientY);
   }
 
-  add(p: Position) {
+  static isIPosition(obj): obj is IPosition {
+    return !!obj && ('x' in obj) && ('y' in obj);
+  }
+
+  add(p: IPosition) {
     this.x += p.x;
     this.y += p.y;
     return this;
   }
 
-  subtract(p: Position) {
+  subtract(p: IPosition) {
     this.x -= p.x;
     this.y -= p.y;
     return this;
@@ -25,7 +34,7 @@ class Position {
     return this;
   }
 
-  set(p: Position) {
+  set(p: IPosition) {
     this.x = p.x;
     this.y = p.y;
     return this;
@@ -36,7 +45,7 @@ class Position {
   selector: '[ngDraggable]',
   exportAs: 'ngDraggable'
 })
-export class AngularDraggableDirective implements OnInit {
+export class AngularDraggableDirective implements OnInit, OnChanges {
   private allowDrag = true;
   private moving = false;
   private orignal: Position = null;
@@ -76,6 +85,9 @@ export class AngularDraggableDirective implements OnInit {
   /** Whether to prevent default event */
   @Input() preventDefaultEvent = false;
 
+  /** Set initial position by offsets */
+  @Input() position: IPosition = { x: 0, y: 0 };
+
   @Input()
   set ngDraggable(setting: any) {
     if (setting !== undefined && setting !== null && setting !== '') {
@@ -98,10 +110,32 @@ export class AngularDraggableDirective implements OnInit {
       let element = this.handle ? this.handle : this.el.nativeElement;
       this.renderer.addClass(element, 'ng-draggable');
     }
+
+    this.resetPosition();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['position'] && !changes['position'].isFirstChange()) {
+      let p = changes['position'].currentValue;
+
+      if (Position.isIPosition(p)) {
+        this.oldTrans.set(p);
+      } else {
+        this.oldTrans.reset();
+      }
+
+      if (!this.moving) {
+        this.transform();
+      }
+    }
   }
 
   resetPosition() {
-    this.oldTrans.reset();
+    if (Position.isIPosition(this.position)) {
+      this.oldTrans.set(this.position);
+    } else {
+      this.oldTrans.reset();
+    }
     this.tempTrans.reset();
     this.transform();
   }

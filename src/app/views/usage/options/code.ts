@@ -2,6 +2,7 @@ export const CODE_HTML = `\
 <div class="row">
   <div class="col-sm-6">
     <p><button (click)="draggable = !draggable" class="btn btn-outline-primary">toggle [ngDraggable]</button></p>
+    <p><button (click)="position = position ? undefined : {x: 50, y: 50}" class="btn btn-outline-primary">set [position]</button></p>
     <p><button (click)="useHandle = !useHandle" class="btn btn-outline-primary">toggle [handle]</button></p>
     <p><button (click)="zIndex = '1000'" class="btn btn-outline-primary">set [zIndex] to 1000</button></p>
     <p><button (click)="zIndexMoving = '99999'" class="btn btn-outline-primary">set [zIndexMoving] to 99999</button></p>
@@ -12,6 +13,7 @@ export const CODE_HTML = `\
     <div *ngIf="useHandle">
       <div
         [ngDraggable]="draggable"
+        [position]="position"
         [zIndex]="zIndex"
         [zIndexMoving]="zIndexMoving"
         [handle]="myHandle"
@@ -21,6 +23,7 @@ export const CODE_HTML = `\
         <div #myHandle class="drag-block-handle"> #myHandle </div>
         <p>[handle]="myHandle"</p>
         <p>[ngDraggable] = {{ draggable }}</p>
+        <p>[position] = {{ position === undefined ? 'undefined' : position | json }}</p>
         <p>[zIndex] = {{ zIndex === undefined ? 'undefined' : zIndex }}</p>
         <p>[zIndexMoving] = {{ zIndexMoving === undefined ? 'undefined' : zIndexMoving }}</p>
         <p>[preventDefaultEvent] = {{ preventDefaultEvent }}</p>
@@ -30,12 +33,14 @@ export const CODE_HTML = `\
     <div *ngIf="!useHandle">
       <div
         [ngDraggable]="draggable"
+        [position]="position"
         [zIndex]="zIndex"
         [zIndexMoving]="zIndexMoving"
         [preventDefaultEvent]="preventDefaultEvent"
         [trackPosition]="trackPosition"
         class="drag-block-lg">
         <p>[ngDraggable] = {{ draggable }}</p>
+        <p>[position] = {{ position === undefined ? 'undefined' : position | json }}</p>
         <p>[zIndex] = {{ zIndex === undefined ? 'undefined' : zIndex }}</p>
         <p>[zIndexMoving] = {{ zIndexMoving === undefined ? 'undefined' : zIndexMoving }}</p>
         <p>[preventDefaultEvent] = {{ preventDefaultEvent }}</p>
@@ -60,6 +65,7 @@ export class OptionsComponent implements OnInit {
   zIndexMoving;
   preventDefaultEvent = false;
   trackPosition = true;
+  position;
 
   constructor() { }
 

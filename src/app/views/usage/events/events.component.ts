@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CODE_HTML, CODE_TS } from './code';
 
 @Component({
   selector: 'app-events',
@@ -6,21 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./events.component.scss']
 })
 export class EventsComponent implements OnInit {
-  demo_html = `\
-<div ngDraggable class="drag-block" (started)="onStart($event)" (stopped)="onStop($event)">
-  <p>Drag me</p>
-  <p>check your console</p>
-</div>`;
+  demo_html = CODE_HTML;
+  demo_ts = CODE_TS;
 
-demo_ts = `\
-import { Component, OnInit } from '@angular/core';
+  movingOffset = { x: 0, y: 0 };
+  endOffset = { x: 0, y: 0 };
 
-@Component({
-  selector: 'app-events',
-  templateUrl: './events.component.html',
-  styleUrls: ['./events.component.scss']
-})
-export class EventsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
@@ -33,18 +25,14 @@ export class EventsComponent implements OnInit {
   onStop(event) {
     console.log('stopped output:', event);
   }
-}`;
 
-  constructor() { }
-
-  ngOnInit() {
+  onMoving(event) {
+    this.movingOffset.x = event.x;
+    this.movingOffset.y = event.y;
   }
 
-  onStart(event) {
-    console.log('started output:', event);
-  }
-
-  onStop(event) {
-    console.log('stopped output:', event);
+  onMoveEnd(event) {
+    this.endOffset.x = event.x;
+    this.endOffset.y = event.y;
   }
 }

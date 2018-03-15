@@ -37,6 +37,11 @@ export const routes: Routes = [
         loadChildren: './views/usage/usage.module#UsageModule',
         data: { title: 'Usage' }
       },
+      {
+        path: 'advance',
+        loadChildren: './views/adv-demo/adv-demo.module#AdvDemoModule',
+        data: { title: 'Advance' }
+      },
     ]
   },
   {

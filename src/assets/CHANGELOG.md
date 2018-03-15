@@ -1,12 +1,24 @@
-## 1.3.0 (2018.03.09)
+## 1.3.1 (2018-03-15)
+
+#### New
++ Provide `(movingOffset)` event emitter: emit position offset when moving
++ Provide `(endOffset)` event emitter: emit position offset when stop moving
+
+---
+
+## 1.3.0 (2018-03-09)
 
 #### New
 + Provide `[position]` option: to set initial position offset.
+
+---
 
 ## 1.2.1 (2018-02-08)
 
 #### Bugfix
 + `[preventDefaultEvent]` should not prevent events of elements outside the handle.
+
+---
 
 ## 1.2.0 (2018-02-07)
 

@@ -54,6 +54,7 @@ export class AngularDraggableDirective implements OnInit, OnChanges {
   private oldZIndex = '';
   private oldPosition = '';
   private _zIndex = '';
+  private needTransform = false;
 
   @Output() started = new EventEmitter<any>();
   @Output() stopped = new EventEmitter<any>();
@@ -88,6 +89,12 @@ export class AngularDraggableDirective implements OnInit, OnChanges {
   /** Set initial position by offsets */
   @Input() position: IPosition = { x: 0, y: 0 };
 
+  /** Emit position offsets when moving */
+  @Output() movingOffset = new EventEmitter<IPosition>();
+
+  /** Emit position offsets when put back */
+  @Output() endOffset = new EventEmitter<IPosition>();
+
   @Input()
   set ngDraggable(setting: any) {
     if (setting !== undefined && setting !== null && setting !== '') {
@@ -118,14 +125,16 @@ export class AngularDraggableDirective implements OnInit, OnChanges {
     if (changes['position'] && !changes['position'].isFirstChange()) {
       let p = changes['position'].currentValue;
 
-      if (Position.isIPosition(p)) {
-        this.oldTrans.set(p);
-      } else {
-        this.oldTrans.reset();
-      }
-
       if (!this.moving) {
+        if (Position.isIPosition(p)) {
+          this.oldTrans.set(p);
+        } else {
+          this.oldTrans.reset();
+        }
+
         this.transform();
+      } else {
+        this.needTransform = true;
       }
     }
   }
@@ -149,6 +158,11 @@ export class AngularDraggableDirective implements OnInit, OnChanges {
       if (this.bounds) {
         this.edge.emit(this.boundsCheck());
       }
+
+      this.movingOffset.emit({
+        x: this.tempTrans.x + this.oldTrans.x,
+        y: this.tempTrans.y + this.oldTrans.y
+      });
     }
   }
 
@@ -233,11 +247,27 @@ export class AngularDraggableDirective implements OnInit, OnChanges {
     if (this.moving) {
       this.stopped.emit(this.el.nativeElement);
 
+      if (this.needTransform) {
+        if (Position.isIPosition(this.position)) {
+          this.oldTrans.set(this.position);
+        } else {
+          this.oldTrans.reset();
+        }
+
+        this.transform();
+        this.needTransform = false;
+      }
+
       if (this.bounds) {
         this.edge.emit(this.boundsCheck());
       }
 
       this.moving = false;
+      this.endOffset.emit({
+        x: this.tempTrans.x + this.oldTrans.x,
+        y: this.tempTrans.y + this.oldTrans.y
+      });
+
       if (this.trackPosition) {
         this.oldTrans.add(this.tempTrans);
       }

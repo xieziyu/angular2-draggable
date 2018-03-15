@@ -19,6 +19,10 @@ Angular directive (for version >= 4.x ) that makes the DOM element draggable.
 angular2-draggable is an angular (ver >= 4.x) directive that makes the DOM element draggable. (Note that: It's different from drag-and-drop)
 
 # Latest Update
++ 2018.03.15: 1.3.1
+  + Provide `(movingOffset)` event emitter: emit position offset when moving
+  + Provide `(endOffset)` event emitter: emit position offset when stop moving
+
 + 2018.03.09: 1.3.0
   + Provide `[position]` option: to set initial position offset.
 

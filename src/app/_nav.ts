@@ -26,7 +26,11 @@ export const navigation = [
   {
     name: 'Events',
     url: '/usage/events',
-    icon: 'fa fa-comment'
+    icon: 'fa fa-comment',
+    badge: {
+      variant: 'success',
+      text: 'new'
+    }
   },
   {
     name: 'Boundary Check',
@@ -37,5 +41,18 @@ export const navigation = [
     name: 'API',
     url: '/usage/api',
     icon: 'fa fa-code'
-  }
+  },
+  {
+    title: true,
+    name: 'Advanced Usage'
+  },
+  {
+    name: 'Swapping',
+    url: '/advance/swap',
+    icon: 'fa fa-refresh',
+    badge: {
+      variant: 'success',
+      text: 'new'
+    }
+  },
 ];

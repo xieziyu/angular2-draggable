@@ -151,11 +151,19 @@ When `ngDraggable` is enabled on some element, `ng-draggable` class is automatic
 
 1. Support `started` and `stopped` events. The `nativeElement` of the host would be emitted.
 2. Support `edge` events only when `[bounds]` is set. It would emit the result of the boundary check.
+3. `(movingOffset)` event emitter: emit position offset when moving
+4. `(endOffset)` event emitter: emit position offset when stop moving
 
 + Simple example:
   + html:
   ```html
-  <div ngDraggable (started)="onDragBegin($event)" (stopped)="onDragEnd($event)">Drag me!</div>
+  <div ngDraggable
+    (started)="onDragBegin($event)"
+    (stopped)="onDragEnd($event)"
+    (movingOffset)="onMoving($event)"
+    (endOffset)="onMoveEnd($event)">
+    Drag me!
+  </div>
   ```
 
 # Demo

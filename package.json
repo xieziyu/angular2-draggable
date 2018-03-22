@@ -30,8 +30,10 @@
     "@angular/platform-browser": "5.1.1",
     "@angular/platform-browser-dynamic": "5.1.1",
     "@angular/router": "5.1.1",
+    "classlist.js": "^1.1.20150312",
     "core-js": "^2.4.1",
     "rxjs": "^5.5.2",
+    "web-animations-js": "^2.3.1",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {

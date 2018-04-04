@@ -66,6 +66,9 @@ export class AngularDraggableDirective implements OnInit, OnChanges {
   /** Set the bounds HTMLElement */
   @Input() bounds: HTMLElement;
 
+  /** List of allowed out of bounds edges **/
+  @Input() outOfBounds = '';
+
   /** Set z-index when dragging */
   @Input() zIndexMoving: string;
 
@@ -203,10 +206,10 @@ export class AngularDraggableDirective implements OnInit, OnChanges {
       let boundary = this.bounds.getBoundingClientRect();
       let elem = this.el.nativeElement.getBoundingClientRect();
       let result = {
-        'top': boundary.top < elem.top,
-        'right': boundary.right > elem.right,
-        'bottom': boundary.bottom > elem.bottom,
-        'left': boundary.left < elem.left
+        'top': this.outOfBounds.indexOf('top') >= 0 ? true : boundary.top < elem.top,
+        'right': this.outOfBounds.indexOf('right') >= 0 ? true : boundary.right > elem.right,
+        'bottom': this.outOfBounds.indexOf('bottom') >= 0 ? true : boundary.bottom > elem.bottom,
+        'left': this.outOfBounds.indexOf('left') >= 0 ? true : boundary.left < elem.left
       };
 
       if (this.inBounds) {

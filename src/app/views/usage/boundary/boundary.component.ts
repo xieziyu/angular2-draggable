@@ -50,7 +50,12 @@ export class BoundaryComponent implements OnInit {
   }
 }`;
   inBounds = true;
-  myOutOfBounds = '';
+  myOutOfBounds = {
+    top: false,
+    right: false,
+    bottom: false,
+    left: false
+  };
   edge = {
     top: true,
     bottom: true,
@@ -69,10 +74,10 @@ export class BoundaryComponent implements OnInit {
   }
 
   outOfBounds(position) {
-    if (this.myOutOfBounds.indexOf(position) >= 0) {
-      this.myOutOfBounds = this.myOutOfBounds.replace(position, '');
+    if (this.myOutOfBounds[position]) {
+      this.myOutOfBounds[position] = false;
     } else {
-      this.myOutOfBounds += position;
+      this.myOutOfBounds[position] = true;
     }
   }
 }

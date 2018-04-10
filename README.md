@@ -19,6 +19,9 @@ Angular directive (for version >= 4.x ) that makes the DOM element draggable.
 angular2-draggable is an angular (ver >= 4.x) directive that makes the DOM element draggable. (Note that: It's different from drag-and-drop)
 
 # Latest Update
++ 2018.04.10: 1.3.2
+  + Provide `[outOfBounds]` option. Set it to allow element get out of bounds from the direction. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/usage/boundary). (PR [#57](https://github.com/xieziyu/angular2-draggable/issues/58) by [waldo2188](https://github.com/waldo2188))
+
 + 2018.03.15: 1.3.1
   + Provide `(movingOffset)` event emitter: emit position offset when moving
   + Provide `(endOffset)` event emitter: emit position offset when stop moving
@@ -135,6 +138,8 @@ Please refer to the [demo](https://xieziyu.github.io/angular2-draggable) page.
 + `bounds`: HTMLElemnt. Use it to set the boundary.
 
 + `inBounds`: boolean, default is `false`. Use it make element stay in the bounds.
+
++ `outOfBounds`: { top: boolean; bottom: boolean; right: boolean; left: boolean }, default are `false`. Set it to allow element get out of bounds from the direction. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/usage/boundary)
 
 + `position`: IPosition: `{ x: number, y: number }`, default is `{ x:0, y:0 }`. Use it to set initial position offset.
 

@@ -1,3 +1,10 @@
+## 1.3.2 (2018-04-10)
+
+#### New
++  Provide `[outOfBounds]` option. Set it to allow element get out of bounds from the direction. (PR [#57](https://github.com/xieziyu/angular2-draggable/issues/58) by [waldo2188](https://github.com/waldo2188))
+
+---
+
 ## 1.3.1 (2018-03-15)
 
 #### New

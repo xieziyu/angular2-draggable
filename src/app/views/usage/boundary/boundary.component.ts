@@ -50,6 +50,12 @@ export class BoundaryComponent implements OnInit {
   }
 }`;
   inBounds = true;
+  myOutOfBounds = {
+    top: false,
+    right: false,
+    bottom: false,
+    left: false
+  };
   edge = {
     top: true,
     bottom: true,
@@ -65,5 +71,13 @@ export class BoundaryComponent implements OnInit {
   checkEdge(event) {
     this.edge = event;
     console.log('edge:', event);
+  }
+
+  outOfBounds(position) {
+    if (this.myOutOfBounds[position]) {
+      this.myOutOfBounds[position] = false;
+    } else {
+      this.myOutOfBounds[position] = true;
+    }
   }
 }

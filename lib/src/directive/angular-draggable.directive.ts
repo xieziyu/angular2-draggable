@@ -8,8 +8,12 @@ export interface IPosition {
 class Position implements IPosition {
   constructor(public x: number, public y: number) { }
 
-  static fromEvent(e) {
-    return new Position(e.clientX, e.clientY);
+  static fromEvent(e: MouseEvent | TouchEvent) {
+    if (e instanceof MouseEvent) {
+      return new Position(e.clientX, e.clientY);
+    } else {
+      return new Position(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
+    }
   }
 
   static isIPosition(obj): obj is IPosition {
@@ -288,24 +292,6 @@ export class AngularDraggableDirective implements OnInit, OnChanges {
     }
   }
 
-  // Support Mouse Events:
-  @HostListener('mousedown', ['$event'])
-  onMouseDown(event: any) {
-    // 1. skip right click;
-    // 2. if handle is set, the element can only be moved by handle
-    if (event.button === 2 || (this.handle !== undefined && !this.checkHandleTarget(event.target, this.handle))) {
-      return;
-    }
-
-    if (this.preventDefaultEvent) {
-      event.stopPropagation();
-      event.preventDefault();
-    }
-
-    this.orignal = Position.fromEvent(event);
-    this.pickUp();
-  }
-
   checkHandleTarget(target: Element, element: Element) {
     // Checks if the target is the element clicked, then checks each child element of element as well
     // Ignores button clicks
@@ -334,37 +320,15 @@ export class AngularDraggableDirective implements OnInit, OnChanges {
     return false;
   }
 
-  @HostListener('document:mouseup')
-  onMouseUp() {
-    this.putBack();
-  }
-
-  @HostListener('document:mouseleave')
-  onMouseLeave() {
-    this.putBack();
-  }
-
-  @HostListener('document:mousemove', ['$event'])
-  onMouseMove(event: any) {
-    if (this.moving && this.allowDrag) {
-      if (this.preventDefaultEvent) {
-        event.stopPropagation();
-        event.preventDefault();
-      }
-
-      this.moveTo(Position.fromEvent(event));
-    }
-  }
-
-  // Support Touch Events:
-  @HostListener('document:touchend')
-  onTouchEnd() {
-    this.putBack();
-  }
-
+  @HostListener('mousedown', ['$event'])
   @HostListener('touchstart', ['$event'])
-  onTouchStart(event: any) {
-    if (this.handle !== undefined && !this.checkHandleTarget(event.target, this.handle)) {
+  onMouseDown(event: MouseEvent | TouchEvent) {
+    // 1. skip right click;
+    if (event instanceof MouseEvent && event.button === 2) {
+      return;
+    }
+    // 2. if handle is set, the element can only be moved by handle
+    if (this.handle !== undefined && !this.checkHandleTarget(event.srcElement, this.handle)) {
       return;
     }
 
@@ -373,18 +337,28 @@ export class AngularDraggableDirective implements OnInit, OnChanges {
       event.preventDefault();
     }
 
-    this.orignal = Position.fromEvent(event.changedTouches[0]);
+    this.orignal = Position.fromEvent(event);
     this.pickUp();
   }
 
+  @HostListener('document:mouseup')
+  @HostListener('document:mouseleave')
+  @HostListener('document:touchend')
+  @HostListener('document:touchcancel')
+  onMouseLeave() {
+    this.putBack();
+  }
+
+  @HostListener('document:mousemove', ['$event'])
   @HostListener('document:touchmove', ['$event'])
-  onTouchMove(event: any) {
+  onMouseMove(event: MouseEvent | TouchEvent) {
     if (this.moving && this.allowDrag) {
       if (this.preventDefaultEvent) {
         event.stopPropagation();
         event.preventDefault();
       }
-      this.moveTo(Position.fromEvent(event.changedTouches[0]));
+
+      this.moveTo(Position.fromEvent(event));
     }
   }
 }

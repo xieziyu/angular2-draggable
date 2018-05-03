@@ -78,6 +78,9 @@ export class AngularDraggableDirective implements OnInit, OnChanges {
     left: false
   };
 
+  /** Round the position to nearest grid */
+  @Input() gridSize = 1;
+
   /** Set z-index when dragging */
   @Input() zIndexMoving: string;
 
@@ -179,7 +182,17 @@ export class AngularDraggableDirective implements OnInit, OnChanges {
   }
 
   private transform() {
-    let value = `translate(${this.tempTrans.x + this.oldTrans.x}px, ${this.tempTrans.y + this.oldTrans.y}px)`;
+
+    let translateX = this.tempTrans.x + this.oldTrans.x;
+    let translateY = this.tempTrans.y + this.oldTrans.y;
+
+    // Snap to grid: by grid size
+    if (this.gridSize > 1) {
+      translateX = Math.round(translateX/this.gridSize) * this.gridSize;
+      translateY = Math.round(translateY/this.gridSize) * this.gridSize;
+    }
+
+    let value = `translate(${translateX}px, ${translateY}px)`;
 
     if (this.scale !== 1) {
       value += ` scale(${this.scale})`;

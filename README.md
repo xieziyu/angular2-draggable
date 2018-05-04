@@ -19,6 +19,10 @@ Angular directive (for version >= 4.x ) that makes the DOM element draggable.
 angular2-draggable is an angular (ver >= 4.x) directive that makes the DOM element draggable. (Note that: It's different from drag-and-drop)
 
 # Latest Update
++ 2018.05.04: 1.4.0
+  + Provide `[gridSize]` option for snapping to grid. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/advance/snap-grid). (PR [#64](https://github.com/xieziyu/angular2-draggable/pull/64) by [PAHADIx](https://github.com/PAHADIx))
+  + Code optimized. (PR [#64](https://github.com/xieziyu/angular2-draggable/pull/60) by [korn3l](https://github.com/korn3l))
+
 + 2018.04.10: 1.3.2
   + Provide `[outOfBounds]` option. Set it to allow element get out of bounds from the direction. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/usage/boundary). (PR [#57](https://github.com/xieziyu/angular2-draggable/issues/58) by [waldo2188](https://github.com/waldo2188))
 
@@ -27,7 +31,7 @@ angular2-draggable is an angular (ver >= 4.x) directive that makes the DOM eleme
   + Provide `(endOffset)` event emitter: emit position offset when stop moving
 
 + 2018.03.09: 1.3.0
-  + Provide `[position]` option: to set initial position offset.
+  + Provide `[position]` option: to set current position offset.
 
 + 2018.02.08: 1.2.1
   + Bugfix: `[preventDefaultEvent]` should not prevent events of elements outside the handle.
@@ -142,6 +146,8 @@ Please refer to the [demo](https://xieziyu.github.io/angular2-draggable) page.
 + `outOfBounds`: { top: boolean; bottom: boolean; right: boolean; left: boolean }, default are `false`. Set it to allow element get out of bounds from the direction. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/usage/boundary)
 
 + `position`: IPosition: `{ x: number, y: number }`, default is `{ x:0, y:0 }`. Use it to set initial position offset.
+
++ `gridSize`: number, default is `1`. Use it for snapping to grid. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/advance/snap-grid).
 
 ## CSS:
 When `ngDraggable` is enabled on some element, `ng-draggable` class is automatically assigned to it. You can use it to customize the pointer style. For example:

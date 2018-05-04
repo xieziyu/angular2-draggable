@@ -21,7 +21,7 @@ angular2-draggable is an angular (ver >= 4.x) directive that makes the DOM eleme
 # Latest Update
 + 2018.05.04: 1.4.0
   + Provide `[gridSize]` option for snapping to grid. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/advance/snap-grid). (PR [#64](https://github.com/xieziyu/angular2-draggable/pull/64) by [PAHADIx](https://github.com/PAHADIx))
-  + Code optimized. (PR [#64](https://github.com/xieziyu/angular2-draggable/pull/60) by [korn3l](https://github.com/korn3l))
+  + Code optimized. (PR [#60](https://github.com/xieziyu/angular2-draggable/pull/60) by [korn3l](https://github.com/korn3l))
 
 + 2018.04.10: 1.3.2
   + Provide `[outOfBounds]` option. Set it to allow element get out of bounds from the direction. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/usage/boundary). (PR [#57](https://github.com/xieziyu/angular2-draggable/issues/58) by [waldo2188](https://github.com/waldo2188))

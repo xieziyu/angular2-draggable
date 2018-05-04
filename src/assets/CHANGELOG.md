@@ -4,7 +4,7 @@
 + Provide `[gridSize]` option for snapping to grid. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/advance/snap-grid). (PR [#64](https://github.com/xieziyu/angular2-draggable/pull/64) by [PAHADIx](https://github.com/PAHADIx))
 
 #### Changes
-+ Code optimized. (PR [#64](https://github.com/xieziyu/angular2-draggable/pull/60) by [korn3l](https://github.com/korn3l))
++ Code optimized. (PR [#60](https://github.com/xieziyu/angular2-draggable/pull/60) by [korn3l](https://github.com/korn3l))
 
 ---
 

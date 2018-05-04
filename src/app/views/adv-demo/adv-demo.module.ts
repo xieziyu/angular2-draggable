@@ -4,6 +4,7 @@ import { SharedModule } from '../shared/shared.module';
 
 import { AdvDemoRoutingModule } from './adv-demo-routing.module';
 import { SwapDemoComponent } from './swap-demo/swap-demo.component';
+import { SnapGridDemoComponent } from './snap-grid-demo/snap-grid-demo.component';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { SwapDemoComponent } from './swap-demo/swap-demo.component';
     SharedModule
   ],
   declarations: [
-    SwapDemoComponent
+    SwapDemoComponent,
+    SnapGridDemoComponent
   ]
 })
 export class AdvDemoModule { }

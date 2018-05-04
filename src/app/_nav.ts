@@ -26,11 +26,7 @@ export const navigation = [
   {
     name: 'Events',
     url: '/usage/events',
-    icon: 'fa fa-comment',
-    badge: {
-      variant: 'success',
-      text: 'new'
-    }
+    icon: 'fa fa-comment'
   },
   {
     name: 'Boundary Check',
@@ -49,7 +45,12 @@ export const navigation = [
   {
     name: 'Swapping',
     url: '/advance/swap',
-    icon: 'fa fa-refresh',
+    icon: 'fa fa-refresh'
+  },
+  {
+    name: 'Snap To Grid',
+    url: '/advance/snap-grid',
+    icon: 'fa fa-th-large',
     badge: {
       variant: 'success',
       text: 'new'

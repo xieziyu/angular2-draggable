@@ -188,8 +188,8 @@ export class AngularDraggableDirective implements OnInit, OnChanges {
 
     // Snap to grid: by grid size
     if (this.gridSize > 1) {
-      translateX = Math.round(translateX/this.gridSize) * this.gridSize;
-      translateY = Math.round(translateY/this.gridSize) * this.gridSize;
+      translateX = Math.round(translateX / this.gridSize) * this.gridSize;
+      translateY = Math.round(translateY / this.gridSize) * this.gridSize;
     }
 
     let value = `translate(${translateX}px, ${translateY}px)`;

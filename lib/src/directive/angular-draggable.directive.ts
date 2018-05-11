@@ -305,7 +305,7 @@ export class AngularDraggableDirective implements OnInit, OnChanges {
     }
   }
 
-  checkHandleTarget(target: Element, element: Element) {
+  checkHandleTarget(target: EventTarget, element: Element) {
     // Checks if the target is the element clicked, then checks each child element of element as well
     // Ignores button clicks
 
@@ -341,7 +341,8 @@ export class AngularDraggableDirective implements OnInit, OnChanges {
       return;
     }
     // 2. if handle is set, the element can only be moved by handle
-    if (this.handle !== undefined && !this.checkHandleTarget(event.srcElement, this.handle)) {
+    let target = event.target || event.srcElement;
+    if (this.handle !== undefined && !this.checkHandleTarget(target, this.handle)) {
       return;
     }
 

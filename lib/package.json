@@ -1,6 +1,6 @@
 {
   "name": "angular2-draggable",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Angular directive that makes the DOM element draggable",
   "repository": "https://github.com/xieziyu/angular2-draggable.git",
   "author": "Xie, Ziyu <ziyu.xie@foxmail.com>",

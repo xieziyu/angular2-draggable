@@ -1,3 +1,10 @@
+## 1.4.1 (2018-05-11)
+
+#### Bugfix
++ Handle Drag is not working in Firefox [#68](https://github.com/xieziyu/angular2-draggable/issues/68).
+
+---
+
 ## 1.4.0 (2018-05-04)
 
 #### New

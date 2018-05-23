@@ -223,7 +223,7 @@ export class AngularDraggableDirective implements OnInit, OnChanges {
     }
   }
 
-  private boundsCheck() {
+  boundsCheck() {
     if (this.bounds) {
       let boundary = this.bounds.getBoundingClientRect();
       let elem = this.el.nativeElement.getBoundingClientRect();

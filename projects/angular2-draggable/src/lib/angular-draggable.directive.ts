@@ -1,4 +1,8 @@
-import { Directive, ElementRef, Renderer2, Input, Output, OnInit, HostListener, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Directive, ElementRef, Renderer2,
+  Input, Output, OnInit, HostListener,
+  EventEmitter, OnChanges, SimpleChanges
+} from '@angular/core';
 
 export interface IPosition {
   x: number;

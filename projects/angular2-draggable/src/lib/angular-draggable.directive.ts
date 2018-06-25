@@ -4,50 +4,7 @@ import {
   EventEmitter, OnChanges, SimpleChanges
 } from '@angular/core';
 
-export interface IPosition {
-  x: number;
-  y: number;
-}
-
-class Position implements IPosition {
-  constructor(public x: number, public y: number) { }
-
-  static fromEvent(e: MouseEvent | TouchEvent) {
-    if (e instanceof MouseEvent) {
-      return new Position(e.clientX, e.clientY);
-    } else {
-      return new Position(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
-    }
-  }
-
-  static isIPosition(obj): obj is IPosition {
-    return !!obj && ('x' in obj) && ('y' in obj);
-  }
-
-  add(p: IPosition) {
-    this.x += p.x;
-    this.y += p.y;
-    return this;
-  }
-
-  subtract(p: IPosition) {
-    this.x -= p.x;
-    this.y -= p.y;
-    return this;
-  }
-
-  reset() {
-    this.x = 0;
-    this.y = 0;
-    return this;
-  }
-
-  set(p: IPosition) {
-    this.x = p.x;
-    this.y = p.y;
-    return this;
-  }
-}
+import { IPosition, Position } from './models/position';
 
 @Directive({
   selector: '[ngDraggable]',

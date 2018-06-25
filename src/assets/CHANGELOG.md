@@ -1,3 +1,9 @@
+## 2.0.0-beta.0 (2018-06-25)
+
+#### New
++ `ngResizable` directive which you can use to make the element resizable.
++ Provide `[rzHandles]` option for which handles can be used for resizing.
+
 ## 1.4.2 (2018-05-23)
 
 #### Changes

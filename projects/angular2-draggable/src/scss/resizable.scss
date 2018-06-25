@@ -1,0 +1,85 @@
+@import 'variables';
+
+.ng-resizable {
+  position: relative;
+}
+
+.ng-resizable-handle {
+  position: absolute;
+  font-size: 0.1px;
+  display: block;
+  -ms-touch-action: none;
+  touch-action: none;
+
+  &.ng-resizable-e {
+    cursor: e-resize;
+    width: $handle-border-size;
+    right: $handle-border-offset;
+    height: 100%;
+    top: 0;
+  }
+
+  &.ng-resizable-w {
+    cursor: w-resize;
+    width: $handle-border-size;
+    left: $handle-border-offset;
+    height: 100%;
+    top: 0;
+  }
+
+  &.ng-resizable-s {
+    cursor: s-resize;
+    height: $handle-border-size;
+    bottom: $handle-border-offset;
+    width: 100%;
+    left: 0;
+  }
+
+  &.ng-resizable-n {
+    cursor: n-resize;
+    height: $handle-border-size;
+    top: $handle-border-offset;
+    width: 100%;
+    left: 0;
+  }
+
+  &.ng-resizable-se {
+    cursor: se-resize;
+    width: $handle-corner-size;
+    height: $handle-corner-size;
+    right: $handle-corner-offset;
+    bottom: $handle-corner-offset;
+  }
+
+  &.ng-resizable-sw {
+    cursor: sw-resize;
+    width: $handle-corner-size;
+    height: $handle-corner-size;
+    left: $handle-corner-offset;
+    bottom: $handle-corner-offset;
+  }
+
+  &.ng-resizable-ne {
+    cursor: ne-resize;
+    width: $handle-corner-size;
+    height: $handle-corner-size;
+    right: $handle-corner-offset;
+    top: $handle-corner-offset;
+  }
+
+  &.ng-resizable-nw {
+    cursor: nw-resize;
+    width: $handle-corner-size;
+    height: $handle-corner-size;
+    left: $handle-corner-offset;
+    top: $handle-corner-offset;
+  }
+}
+
+.ng-resizable-diagonal {
+  width: 0;
+  height: 0;
+  border-bottom: $handle-corner-size solid #aaa;
+  border-left: $handle-corner-size solid transparent;
+}
+

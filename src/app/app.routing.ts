@@ -33,15 +33,25 @@ export const routes: Routes = [
         data: { title: 'CHANGELOG' }
       },
       {
-        path: 'usage',
-        loadChildren: './views/usage/usage.module#UsageModule',
-        data: { title: 'Usage' }
+        path: 'draggable',
+        children: [
+          {
+            path: 'usage',
+            loadChildren: './views/usage/usage.module#UsageModule',
+            data: { title: 'Usage' }
+          },
+          {
+            path: 'advance',
+            loadChildren: './views/adv-demo/adv-demo.module#AdvDemoModule',
+            data: { title: 'Advance' }
+          },
+        ]
       },
       {
-        path: 'advance',
-        loadChildren: './views/adv-demo/adv-demo.module#AdvDemoModule',
-        data: { title: 'Advance' }
-      },
+        path: 'resizable',
+        loadChildren: './views/resizable-demo/resizable-demo.module#ResizableDemoModule',
+        data: { title: 'Resizable' }
+      }
     ]
   },
   {

@@ -10,50 +10,61 @@ export const navigation = [
     icon: 'fa fa-file-text-o',
   },
   {
-    title: true,
-    name: 'Getting Started'
+    name: 'Draggable Demo',
+    icon: 'fa fa-arrows',
+    url: '/draggable',
+    children: [
+      {
+        name: 'Basic Usage',
+        url: '/draggable/usage/basic',
+        icon: 'fa fa-arrows'
+      },
+      {
+        name: 'Options',
+        url: '/draggable/usage/options',
+        icon: 'fa fa-cogs'
+      },
+      {
+        name: 'Events',
+        url: '/draggable/usage/events',
+        icon: 'fa fa-comment'
+      },
+      {
+        name: 'Boundary Check',
+        url: '/draggable/usage/boundary',
+        icon: 'fa fa-square-o'
+      },
+      {
+        name: 'API',
+        url: '/draggable/usage/api',
+        icon: 'fa fa-code'
+      },
+      {
+        name: 'Swapping',
+        url: '/draggable/advance/swap',
+        icon: 'fa fa-refresh'
+      },
+      {
+        name: 'Snap To Grid',
+        url: '/draggable/advance/snap-grid',
+        icon: 'fa fa-th-large',
+      },
+    ]
   },
   {
-    name: 'Basic Usage',
-    url: '/usage/basic',
-    icon: 'fa fa-arrows'
-  },
-  {
-    name: 'Options',
-    url: '/usage/options',
-    icon: 'fa fa-cogs'
-  },
-  {
-    name: 'Events',
-    url: '/usage/events',
-    icon: 'fa fa-comment'
-  },
-  {
-    name: 'Boundary Check',
-    url: '/usage/boundary',
-    icon: 'fa fa-square-o'
-  },
-  {
-    name: 'API',
-    url: '/usage/api',
-    icon: 'fa fa-code'
-  },
-  {
-    title: true,
-    name: 'Advanced Usage'
-  },
-  {
-    name: 'Swapping',
-    url: '/advance/swap',
-    icon: 'fa fa-refresh'
-  },
-  {
-    name: 'Snap To Grid',
-    url: '/advance/snap-grid',
-    icon: 'fa fa-th-large',
-    badge: {
-      variant: 'success',
-      text: 'new'
-    }
-  },
+    name: 'Resizable Demo',
+    icon: 'fa fa-arrows-v',
+    url: '/resizable',
+    children: [
+      {
+        name: 'Default',
+        url: '/resizable/default',
+        icon: 'fa fa-arrows-v',
+        badge: {
+          variant: 'success',
+          text: 'new'
+        }
+      },
+    ]
+  }
 ];

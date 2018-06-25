@@ -10,15 +10,22 @@ Angular directive (for version >= 4.x ) that makes the DOM element draggable.
 
 ## Table of contents 
 1. [Getting Started](#getting-started)
+2. [Latest Update](#latest-update)
 3. [Installation](#installation)
-4. [Usage](#usage)
+4. [Draggable](#draggable)
+4. [Resizable](#resizable)
 5. [API](#api)
 6. [Events](#events)
 
 # Getting Started
-angular2-draggable is an angular (ver >= 4.x) directive that makes the DOM element draggable. (Note that: It's different from drag-and-drop)
+angular2-draggable has angular (ver >= 4.x) directives that make the DOM element draggable and resizable.
++ `ngDraggable`
++ `ngResizable`
 
 # Latest Update
++ 2018.06.25: 2.0.0-beta.0
+  + New: `ngResizable` directive which you can use to make the element resizable! More resizable options are planning. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/resizable/default)
+
 + 2018.05.23: 1.4.2
   + Changes: expose boundsCheck() method.
 
@@ -55,50 +62,12 @@ angular2-draggable is an angular (ver >= 4.x) directive that makes the DOM eleme
   + Provide `[scale]` option: to fix scaling issue [#31](https://github.com/xieziyu/angular2-draggable/issues/31)
   + Provide `[preventDefaultEvent]` option: whether to prevent default mouse or touch event. (default: true)
 
-+ 2017.12.20: 1.1.0-beta.0
-
-  + Provide `[zIndex]` and `[zIndexMoving]` to control z-index property.
-  + Provide `[bounds]`, `(edge)` and `[inBounds]` to do boundary check and limit element staying in the bounds.
-  + Update [demo](https://xieziyu.github.io/angular2-draggable) page.
-
-
-+ 2017.09.19: Fix an issue when dragging with touch.
-
-+ 2017.08.26: Fix an issue: clicking before dragging leading to unexpected offset ([PR #12](https://github.com/xieziyu/angular2-draggable/pull/12) by [bmartinson13](https://github.com/bmartinson13))
-
-+ 2017.07.24: Fix cross-browser compatibility issues.
-
-+ 2017.07.05: Publish `UMD` bundle
-
 # Installation
 ```
 npm install angular2-draggable --save
 ```
 
-# How to use it with:
-+ `SystemJS`: For example: angular `quickstart`. You need to modify `systemjs.config.js` file just like:
-
-```javascript
-{
-  map: {
-    // ...
-
-    // angular2-draggable
-    'angular2-draggable':                   'npm:angular2-draggable',
-  },
-  packages: {
-    // other packages ...
-
-    //angular2-draggable
-    'angular2-draggable': {
-      defaultExtension: 'js',
-      main: 'bundles/angular2-draggable.umd.min.js'
-    }
-  }
-}
-```
-
-# Usage
+# Draggable
 Please refer to the [demo](https://xieziyu.github.io/angular2-draggable) page.
 
 1. Firstly, import `AngularDraggableModule` in your app module (or any other proper angular module):
@@ -133,55 +102,90 @@ Please refer to the [demo](https://xieziyu.github.io/angular2-draggable) page.
       </div>
       ```
 
+# Resizable
+Please refer to the [demo](https://xieziyu.github.io/angular2-draggable/#/resizable/default) page.
+
+Besides of importing `AngularDraggableModule`, you need to import `resizable.min.css` in your project. If you use `angular-cli`, you can add this in `angular.json`:
+
+```diff
+"styles": [
+    ...
++   "node_modules/angular2-draggable/css/resizable.min.css"
+]
+```
+
+Then you can use `ngResizable` directive to make the element resizable:
+```html
+<div ngResizable> I'm now resizable </div>
+
+<div [ngResizable]="false"> Resizable is disabled now </div>
+
+<div ngResizable [rzHandles]="'n,e,s,w,se,sw,ne,nw'"> Each side is resizable </div>
+```
+
+Well you can use both directives concurrently if you wish:
+```html
+<div ngDraggable ngResizable> I'm now draggable and resizable </div>
+```
+
 # API
 
 ## Directive:
-`ngDraggable` directive support following input porperties:
-+ `ngDraggable`: boolean. You can toggle the draggable capability by setting `true`/`false` to `ngDraggable`
++ `ngDraggable` directive support following input porperties:
+    + `ngDraggable`: boolean. You can toggle the draggable capability by setting `true`/`false` to `ngDraggable`
 
-+ `handle`: HTMLElement. Use template variable to refer to the handle element. Then only the handle element is draggable.
+    + `handle`: HTMLElement. Use template variable to refer to the handle element. Then only the handle element is draggable.
 
-+ `zIndex`: string. Use it to set z-index property when element is not moving.
+    + `zIndex`: string. Use it to set z-index property when element is not moving.
 
-+ `zIndexMoving`: string. Use it to set z-index property when element is moving.
+    + `zIndexMoving`: string. Use it to set z-index property when element is moving.
 
-+ `bounds`: HTMLElemnt. Use it to set the boundary.
+    + `bounds`: HTMLElemnt. Use it to set the boundary.
 
-+ `inBounds`: boolean, default is `false`. Use it make element stay in the bounds.
+    + `inBounds`: boolean, default is `false`. Use it make element stay in the bounds.
 
-+ `outOfBounds`: { top: boolean; bottom: boolean; right: boolean; left: boolean }, default are `false`. Set it to allow element get out of bounds from the direction. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/usage/boundary)
+    + `outOfBounds`: { top: boolean; bottom: boolean; right: boolean; left: boolean }, default are `false`. Set it to allow element get out of bounds from the direction. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/usage/boundary)
 
-+ `position`: IPosition: `{ x: number, y: number }`, default is `{ x:0, y:0 }`. Use it to set initial position offset.
+    + `position`: IPosition: `{ x: number, y: number }`, default is `{ x:0, y:0 }`. Use it to set initial position offset.
 
-+ `gridSize`: number, default is `1`. Use it for snapping to grid. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/advance/snap-grid).
+    + `gridSize`: number, default is `1`. Use it for snapping to grid. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/advance/snap-grid).
+
++ `ngResizable` directive support following input porperties:
+    + `ngResizable`: boolean. You can disable the resizable capability by setting it to `false`.
+
+    + `rzHandles`: Default is `"e,s,se"`. Which handles can be used for resizing. Optional types: `"n,e,s,w,se,sw,ne,nw"`.
 
 ## CSS:
-When `ngDraggable` is enabled on some element, `ng-draggable` class is automatically assigned to it. You can use it to customize the pointer style. For example:
++ When `ngDraggable` is enabled on some element, `ng-draggable` class is automatically assigned to it. You can use it to customize the pointer style. For example:
 
-```css
-.ng-draggable {
-  cursor: move;
-}
-```
+    ```css
+    .ng-draggable {
+      cursor: move;
+    }
+    ```
+
++ When `ngResizable` is enabled on some element, `ng-resizable` class is automatically assigned to it. And handle elements will be created with `ng-resizable-handle`. You can customize the handle style.
 
 # Events
++ `ngDraggable` directive:
+    1. Support `started` and `stopped` events. The `nativeElement` of the host would be emitted.
+    2. Support `edge` events only when `[bounds]` is set. It would emit the result of the boundary check.
+    3. `(movingOffset)` event emitter: emit position offset when moving
+    4. `(endOffset)` event emitter: emit position offset when stop moving
 
-1. Support `started` and `stopped` events. The `nativeElement` of the host would be emitted.
-2. Support `edge` events only when `[bounds]` is set. It would emit the result of the boundary check.
-3. `(movingOffset)` event emitter: emit position offset when moving
-4. `(endOffset)` event emitter: emit position offset when stop moving
+    + Simple example:
+      + html:
+      ```html
+      <div ngDraggable
+        (started)="onDragBegin($event)"
+        (stopped)="onDragEnd($event)"
+        (movingOffset)="onMoving($event)"
+        (endOffset)="onMoveEnd($event)">
+        Drag me!
+      </div>
+      ```
 
-+ Simple example:
-  + html:
-  ```html
-  <div ngDraggable
-    (started)="onDragBegin($event)"
-    (stopped)="onDragEnd($event)"
-    (movingOffset)="onMoving($event)"
-    (endOffset)="onMoveEnd($event)">
-    Drag me!
-  </div>
-  ```
++ `ngResizable` directive: on-going
 
 # Demo
 You can clone this repo to your working copy and then launch the demo page in your local machine:

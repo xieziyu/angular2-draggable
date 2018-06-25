@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SwapDemoComponent } from './swap-demo/swap-demo.component';
 import { SnapGridDemoComponent } from './snap-grid-demo/snap-grid-demo.component';
 
+
 const routes: Routes = [
   {
     path: 'swap',
@@ -17,7 +18,7 @@ const routes: Routes = [
     data: {
       title: 'Snap to Grid'
     }
-  },
+  }
 ];
 
 @NgModule({

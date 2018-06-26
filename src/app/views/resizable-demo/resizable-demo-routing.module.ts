@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ResizeDefaultDemoComponent } from './resize-default-demo/resize-default-demo.component';
+import { ResizeEventDemoComponent } from './resize-event-demo/resize-event-demo.component';
 
 
 const routes: Routes = [
@@ -9,6 +10,13 @@ const routes: Routes = [
     component: ResizeDefaultDemoComponent,
     data: {
       title: 'Default Functionality'
+    }
+  },
+  {
+    path: 'events',
+    component: ResizeEventDemoComponent,
+    data: {
+      title: 'Events'
     }
   },
 ];

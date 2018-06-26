@@ -21,4 +21,14 @@ export class Size implements ISize {
       return null;
     }
   }
+
+  static copy(s: Size) {
+    return new Size(0, 0).set(s);
+  }
+
+  set(s: ISize) {
+    this.width = s.width;
+    this.height = s.height;
+    return this;
+  }
 }

@@ -2,26 +2,37 @@ import {
   Directive, ElementRef, Renderer2,
   Input, Output, OnInit, HostListener,
   EventEmitter, OnChanges, SimpleChanges,
-  OnDestroy
+  OnDestroy, AfterViewInit
 } from '@angular/core';
 
 import { ResizeHandle } from './widgets/resize-handle';
 import { ResizeHandleType } from './models/resize-handle-type';
 import { Position } from './models/position';
 import { Size } from './models/size';
+import { IResizeEvent } from './models/resize-event';
 
 @Directive({
   selector: '[ngResizable]',
   exportAs: 'ngResizable'
 })
-export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy {
+export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, AfterViewInit {
   private _resizable = true;
   private _handles: { [key: string]: ResizeHandle } = {};
   private _handleType: string[] = [];
   private _handleResizing: ResizeHandle = null;
   private _origMousePos: Position = null;
+
+  /** Original Size and Position */
   private _origSize: Size = null;
   private _origPos: Position = null;
+
+  /** Current Size and Position */
+  private _currSize: Size = null;
+  private _currPos: Position = null;
+
+  /** Initial Size and Position */
+  private _initSize: Size = null;
+  private _initPos: Position = null;
 
   /** Disables the resizable if set to false. */
   @Input() set ngResizable(v: any) {
@@ -35,10 +46,19 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy {
    * Which handles can be used for resizing.
    * @example
    * [rzHandles] = "'n,e,s,w,se,ne,sw,nw'"
-   * [rzHandles] = { n: 'ng-resizable-n', e: 'ng-resizable-e' }
+   * equals to: [rzHandles] = "'all'"
    *
    * */
   @Input() rzHandles: ResizeHandleType = 'e,s,se';
+
+  /** emitted when start resizing */
+  @Output() rzStart = new EventEmitter<IResizeEvent>();
+
+  /** emitted when start resizing */
+  @Output() rzResizing = new EventEmitter<IResizeEvent>();
+
+  /** emitted when stop resizing */
+  @Output() rzStop = new EventEmitter<IResizeEvent>();
 
   constructor(private el: ElementRef, private renderer: Renderer2) { }
 
@@ -54,6 +74,39 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy {
 
   ngOnDestroy() {
     this.removeHandles();
+  }
+
+  ngAfterViewInit() {
+    const elm = this.el.nativeElement;
+    this._initSize = Size.getCurrent(elm);
+    this._initPos = Position.getCurrent(elm);
+    this._currSize = Size.copy(this._initSize);
+    this._currPos = Position.copy(this._initPos);
+  }
+
+  /** A method to reset size */
+  public resetSize() {
+    this._currSize = Size.copy(this._initSize);
+    this._currPos = Position.copy(this._initPos);
+    this.doResize();
+  }
+
+  /** A method to reset size */
+  public getStatus() {
+    if (!this._currPos || !this._currSize) {
+      return null;
+    }
+
+    return {
+      size: {
+        width: this._currSize.width,
+        height: this._currSize.height
+      },
+      position: {
+        top: this._currPos.y,
+        left: this._currPos.x
+      }
+    };
   }
 
   private updateResizable() {
@@ -78,7 +131,12 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy {
 
     let tmpHandleTypes: string[];
     if (typeof this.rzHandles === 'string') {
-      tmpHandleTypes = this.rzHandles.replace(/ /g, '').toLowerCase().split(',');
+      if (this.rzHandles === 'all') {
+        tmpHandleTypes = ['n', 'e', 's', 'w', 'ne', 'se', 'nw', 'sw'];
+      } else {
+        tmpHandleTypes = this.rzHandles.replace(/ /g, '').toLowerCase().split(',');
+      }
+
       for (let type of tmpHandleTypes) {
         // default handle theme: ng-resizable-$type.
         let handle = this.createHandleByType(type, `ng-resizable-${type}`);
@@ -137,6 +195,8 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy {
       this._origMousePos = Position.fromEvent(event);
       this._origSize = Size.getCurrent(elm);
       this._origPos = Position.getCurrent(elm); // x: left, y: top
+      this._currSize = Size.copy(this._origSize);
+      this._currPos = Position.copy(this._origPos);
       this.startResize(handle);
     }
   }
@@ -159,37 +219,68 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy {
   onMouseMove(event: MouseEvent | TouchEvent) {
     if (this._handleResizing && this._resizable && this._origMousePos && this._origPos && this._origSize) {
       this.resizeTo(Position.fromEvent(event));
+      this.onResizing();
     }
   }
 
-  startResize(handle: ResizeHandle) {
+  private startResize(handle: ResizeHandle) {
     this._handleResizing = handle;
+    this.rzStart.emit(this.getResizingEvent());
   }
 
-  stopResize() {
+  private stopResize() {
+    this.rzStop.emit(this.getResizingEvent());
     this._handleResizing = null;
   }
 
-  resizeTo(p: Position) {
-    const container = this.el.nativeElement;
+  private onResizing() {
+    this.rzResizing.emit(this.getResizingEvent());
+  }
+
+  private getResizingEvent(): IResizeEvent {
+    return {
+      host: this.el.nativeElement,
+      handle: this._handleResizing ? this._handleResizing.el : null,
+      size: {
+        width: this._currSize.width,
+        height: this._currSize.height
+      },
+      position: {
+        top: this._currPos.y,
+        left: this._currPos.x
+      }
+    };
+  }
+
+  private resizeTo(p: Position) {
     p.subtract(this._origMousePos);
 
     if (this._handleResizing.type.match(/n/)) {
       // n, ne, nw
-      this.renderer.setStyle(container, 'height', (this._origSize.height - p.y) + 'px');
-      this.renderer.setStyle(container, 'top', (this._origPos.y + p.y) + 'px');
+      this._currSize.height = this._origSize.height - p.y;
+      this._currPos.y = this._origPos.y + p.y;
     } else if (this._handleResizing.type.match(/s/)) {
       // s, se, sw
-      this.renderer.setStyle(container, 'height', (this._origSize.height + p.y) + 'px');
+      this._currSize.height = this._origSize.height + p.y;
     }
 
     if (this._handleResizing.type.match(/e/)) {
       // e, ne, se
-      this.renderer.setStyle(container, 'width', (this._origSize.width + p.x) + 'px');
+      this._currSize.width = this._origSize.width + p.x;
     } else if (this._handleResizing.type.match(/w/)) {
       // w, nw, sw
-      this.renderer.setStyle(container, 'width', (this._origSize.width - p.x) + 'px');
-      this.renderer.setStyle(container, 'left', (this._origPos.x + p.x) + 'px');
+      this._currSize.width = this._origSize.width - p.x;
+      this._currPos.x = this._origPos.x + p.x;
     }
+
+    this.doResize();
+  }
+
+  private doResize() {
+    const container = this.el.nativeElement;
+    this.renderer.setStyle(container, 'height', this._currSize.height + 'px');
+    this.renderer.setStyle(container, 'width', this._currSize.width + 'px');
+    this.renderer.setStyle(container, 'left', this._currPos.x + 'px');
+    this.renderer.setStyle(container, 'top', this._currPos.y + 'px');
   }
 }

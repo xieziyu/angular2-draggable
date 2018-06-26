@@ -11,7 +11,7 @@ export const navigation = [
   },
   {
     name: 'Draggable Demo',
-    icon: 'fa fa-arrows',
+    icon: 'fa fa-bookmark',
     url: '/draggable',
     children: [
       {
@@ -53,13 +53,22 @@ export const navigation = [
   },
   {
     name: 'Resizable Demo',
-    icon: 'fa fa-arrows-v',
+    icon: 'fa fa-bookmark',
     url: '/resizable',
     children: [
       {
         name: 'Default',
         url: '/resizable/default',
         icon: 'fa fa-arrows-v',
+        badge: {
+          variant: 'success',
+          text: 'new'
+        }
+      },
+      {
+        name: 'Events',
+        url: '/resizable/events',
+        icon: 'fa fa-comment',
         badge: {
           variant: 'success',
           text: 'new'

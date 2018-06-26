@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col" style="min-height: 200px;">
+    <div ngResizable class="resizable-widget"
+      #block="ngResizable"
+      rzHandles="all"
+      (rzStart)="onResizeStart($event)"
+      (rzStop)="onResizeStop($event)"
+      (rzResizing)="onResizing($event)">
+      <h4 class="widget-header">Resizable</h4>
+    </div>
+  </div>
+</div>
+
+<!-- Show Status -->
+<div class="row mt-4">
+  <div class="col">
+    <div>
+      <button class="btn btn-outline-primary" (click)="onReset(block);">Reset Size</button>
+    </div>
+    <hr>
+    <div><strong>State:</strong> {{ state }}</div>
+    <div><strong>Size:</strong> {{ size | json }}</div>
+    <div><strong>Position:</strong> {{ position | json }}</div>
+  </div>
+</div>
+
+<!-- Documents -->
+<div class="row mt-4">
+  <div class="col">
+    <tabset>
+      <tab heading="html">
+        <markdown [data]="demo_html | language: 'html'"></markdown>
+      </tab>
+      <tab heading="component">
+        <markdown [data]="demo_ts | language: 'typescript'"></markdown>
+      </tab>
+    </tabset>
+  </div>
+</div>

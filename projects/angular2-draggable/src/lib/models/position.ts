@@ -34,6 +34,10 @@ export class Position implements IPosition {
     }
   }
 
+  static copy(p: Position) {
+    return new Position(0, 0).set(p);
+  }
+
   add(p: IPosition) {
     this.x += p.x;
     this.y += p.y;

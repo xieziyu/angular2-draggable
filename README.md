@@ -21,6 +21,9 @@ angular2-draggable has angular (ver >= 4.x) directives that make the DOM element
 + `ngResizable`
 
 # Latest Update
++ 2018.06.27: 2.0.0-beta.2
+  + ngResizable: Provide `[rzAspectRatio]`, whether the element should be constrained to a specific aspect ratio.
+
 + 2018.06.26: 2.0.0-beta.1
   + ngResizable: Provide `(rzStart)`, `(rzResizing)`, `(rzStop)` event emitters
   + ngResizable: Provide `resetSize()`, `getStatus()` methods
@@ -137,22 +140,23 @@ Well you can use both directives concurrently if you wish:
 
     | Input | Type | Default | Description |
     | ----- | ---- | ------- | ----------- |
-    | `ngDraggable` | boolean | `true` | You can toggle the draggable capability by setting `true` or `false` |
-    | `handle` | HTMLElement | null | Use template variable to refer to the handle element. Then only the handle element is draggable |
-    | `zIndex` | string | null | Use it to set z-index property when element is not moving |
-    | `zIndexMoving` | string | null | Use it to set z-index property when element is moving |
-    | `bounds` | HTMLElemnt | null | Use it to set the boundary |
-    | `inBounds` | boolean | `false` | Use it make element stay in the bounds |
-    | `outOfBounds` | `{ top: boolean; bottom: boolean; right: boolean; left: boolean }` | `false` | Set it to allow element get out of bounds from the direction. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/usage/boundary) |
-    | `position` | `{ x: number, y: number }` | `{ x:0, y:0 }` | Use it to set position offset |
-    | `gridSize` | number | 1 | Use it for snapping to grid. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/advance/snap-grid) |
+    | ngDraggable | boolean | `true` | You can toggle the draggable capability by setting `true` or `false` |
+    | handle | HTMLElement | null | Use template variable to refer to the handle element. Then only the handle element is draggable |
+    | zIndex | string | null | Use it to set z-index property when element is not moving |
+    | zIndexMoving | string | null | Use it to set z-index property when element is moving |
+    | bounds | HTMLElemnt | null | Use it to set the boundary |
+    | inBounds | boolean | `false` | Use it make element stay in the bounds |
+    | outOfBounds | `{ top: boolean; bottom: boolean; right: boolean; left: boolean }` | `false` | Set it to allow element get out of bounds from the direction. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/usage/boundary) |
+    | position | `{ x: number, y: number }` | `{ x:0, y:0 }` | Use it to set position offset |
+    | gridSize | number | 1 | Use it for snapping to grid. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/advance/snap-grid) |
 
 + `ngResizable` directive support following input porperties:
 
     | Input | Type | Default | Description |
     | ----- | ---- | ------- | ----------- |
-    | `ngResizable` | boolean | `true` | You can toggle the resizable capability by setting `true` or `false` |
-    | `rzHandles` | string | `"e,s,se"` | Which handles can be used for resizing. Optional types in `"n,e,s,w,se,sw,ne,nw"` or `"all"` |
+    | ngResizable | boolean | `true` | You can toggle the resizable capability by setting `true` or `false` |
+    | rzHandles | string | `"e,s,se"` | Which handles can be used for resizing. Optional types in `"n,e,s,w,se,sw,ne,nw"` or `"all"` |
+    | rzAspectRatio | boolean\|number | false | `boolean`: Whether the element should be constrained to a specific aspect ratio. `number`: Force the element to maintain a specific aspect ratio during resizing (width/height) |
 
 ## CSS:
 + When `ngDraggable` is enabled on some element, `ng-draggable` class is automatically assigned to it. You can use it to customize the pointer style. For example:
@@ -170,11 +174,11 @@ Well you can use both directives concurrently if you wish:
 
     | Output | $event | Description |
     | ------ | ------ | ----------- |
-    | `started` | `nativeElement` of host | emitted when start dragging |
-    | `stopped` | `nativeElement` of host | emitted when stop dragging |
-    | `edge` | { top: boolean, right: boolean, bottom: boolean, left: boolean } | emitted after `[bounds]` is set |
-    | `movingOffset` | { x: number, y: number } | emit position offset when moving |
-    | `endOffset` | { x: number, y: number } | emit position offset when stop moving |
+    | started | `nativeElement` of host | emitted when start dragging |
+    | stopped | `nativeElement` of host | emitted when stop dragging |
+    | edge | { top: boolean, right: boolean, bottom: boolean, left: boolean } | emitted after `[bounds]` is set |
+    | movingOffset | { x: number, y: number } | emit position offset when moving |
+    | endOffset | { x: number, y: number } | emit position offset when stop moving |
 
     Simple example:
     ```html
@@ -191,9 +195,9 @@ Well you can use both directives concurrently if you wish:
 
     | Output | $event | description |
     | ------ | ------ | ----------- |
-    | `rzStart` | `IResizeEvent` | emitted when start resizing |
-    | `rzResizing` | `IResizeEvent` | emitted when stop resizing |
-    | `rzStop` | `IResizeEvent` | emitted when resizing |
+    | rzStart | `IResizeEvent` | emitted when start resizing |
+    | rzResizing | `IResizeEvent` | emitted when stop resizing |
+    | rzStop | `IResizeEvent` | emitted when resizing |
 
     ```typescript
     export interface IResizeEvent {

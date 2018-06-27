@@ -5,6 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ResizableDemoRoutingModule } from './resizable-demo-routing.module';
 import { ResizeDefaultDemoComponent } from './resize-default-demo/resize-default-demo.component';
 import { ResizeEventDemoComponent } from './resize-event-demo/resize-event-demo.component';
+import { ResizeAspectRatioDemoComponent } from './resize-aspect-ratio-demo/resize-aspect-ratio-demo.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { ResizeEventDemoComponent } from './resize-event-demo/resize-event-demo.
   ],
   declarations: [
     ResizeDefaultDemoComponent,
-    ResizeEventDemoComponent
+    ResizeEventDemoComponent,
+    ResizeAspectRatioDemoComponent
   ]
 })
 export class ResizableDemoModule { }

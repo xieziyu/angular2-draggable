@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col" style="min-height: 200px;">
+    <div ngResizable class="resizable-widget" [rzAspectRatio]="aspectRatio">
+      <h4 class="widget-header">Resizable</h4>
+    </div>
+  </div>
+</div>
+
+<!-- Controls -->
+<div class="row mt-4">
+  <div class="col">
+    <div>
+      <button class="btn btn-outline-primary" (click)="aspectRatio = !aspectRatio">Toggle Aspect Ratio</button>
+    </div>
+  </div>
+</div>
+
+<!-- Documents -->
+<div class="row mt-4">
+  <div class="col">
+    <tabset>
+      <tab heading="html">
+        <markdown [data]="demo_html | language: 'html'"></markdown>
+      </tab>
+      <tab heading="component">
+        <markdown [data]="demo_ts | language: 'typescript'"></markdown>
+      </tab>
+    </tabset>
+  </div>
+</div>

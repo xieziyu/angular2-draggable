@@ -1,3 +1,8 @@
+## 2.0.0-beta.2 (2018-06-27)
+
+#### New
++ ngResizable: Provide `[rzAspectRatio]`, whether the element should be constrained to a specific aspect ratio.
+
 ## 2.0.0-beta.1 (2018-06-26)
 
 #### New

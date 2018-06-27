@@ -59,16 +59,17 @@ export const navigation = [
       {
         name: 'Default',
         url: '/resizable/default',
-        icon: 'fa fa-arrows-v',
-        badge: {
-          variant: 'success',
-          text: 'new'
-        }
+        icon: 'fa fa-arrows-v'
       },
       {
         name: 'Events',
         url: '/resizable/events',
-        icon: 'fa fa-comment',
+        icon: 'fa fa-comment'
+      },
+      {
+        name: 'Aspect Ratio',
+        url: '/resizable/aspect-ratio',
+        icon: 'fa fa-square-o',
         badge: {
           variant: 'success',
           text: 'new'

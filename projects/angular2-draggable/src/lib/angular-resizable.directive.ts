@@ -20,6 +20,8 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
   private _handles: { [key: string]: ResizeHandle } = {};
   private _handleType: string[] = [];
   private _handleResizing: ResizeHandle = null;
+
+  private _aspectRatio = 0;
   private _origMousePos: Position = null;
 
   /** Original Size and Position */
@@ -51,6 +53,14 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
    * */
   @Input() rzHandles: ResizeHandleType = 'e,s,se';
 
+  /**
+   * Whether the element should be constrained to a specific aspect ratio.
+   *  Multiple types supported:
+   *  boolean: When set to true, the element will maintain its original aspect ratio.
+   *  number: Force the element to maintain a specific aspect ratio during resizing.
+   */
+  @Input() rzAspectRatio: boolean|number = false;
+
   /** emitted when start resizing */
   @Output() rzStart = new EventEmitter<IResizeEvent>();
 
@@ -65,6 +75,10 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['rzHandles'] && !changes['rzHandles'].isFirstChange()) {
       this.updateResizable();
+    }
+
+    if (changes['rzAspectRatio'] && !changes['rzAspectRatio'].isFirstChange()) {
+      this.updateAspectRatio();
     }
   }
 
@@ -82,6 +96,7 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
     this._initPos = Position.getCurrent(elm);
     this._currSize = Size.copy(this._initSize);
     this._currPos = Position.copy(this._initPos);
+    this.updateAspectRatio();
   }
 
   /** A method to reset size */
@@ -120,6 +135,20 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
     if (this._resizable) {
       this.renderer.addClass(element, 'ng-resizable');
       this.createHandles();
+    }
+  }
+
+  /** Use it to update aspect */
+  private updateAspectRatio() {
+    if (typeof this.rzAspectRatio === 'boolean') {
+      if (this.rzAspectRatio && this._currSize.height) {
+        this._aspectRatio = (this._currSize.width / this._currSize.height);
+      } else {
+        this._aspectRatio = 0;
+      }
+    } else {
+      let r = Number(this.rzAspectRatio);
+      this._aspectRatio = isNaN(r) ? 0 : r;
     }
   }
 
@@ -259,18 +288,30 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
       // n, ne, nw
       this._currSize.height = this._origSize.height - p.y;
       this._currPos.y = this._origPos.y + p.y;
+
+      // aspect ratio
+      this.adjustByRatio('h');
     } else if (this._handleResizing.type.match(/s/)) {
       // s, se, sw
       this._currSize.height = this._origSize.height + p.y;
+
+      // aspect ratio
+      this.adjustByRatio('h');
     }
 
     if (this._handleResizing.type.match(/e/)) {
       // e, ne, se
       this._currSize.width = this._origSize.width + p.x;
+
+      // aspect ratio
+      this.adjustByRatio('w');
     } else if (this._handleResizing.type.match(/w/)) {
       // w, nw, sw
       this._currSize.width = this._origSize.width - p.x;
       this._currPos.x = this._origPos.x + p.x;
+
+      // aspect ratio
+      this.adjustByRatio('w');
     }
 
     this.doResize();
@@ -282,5 +323,15 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
     this.renderer.setStyle(container, 'width', this._currSize.width + 'px');
     this.renderer.setStyle(container, 'left', this._currPos.x + 'px');
     this.renderer.setStyle(container, 'top', this._currPos.y + 'px');
+  }
+
+  private adjustByRatio(d: string) {
+    if (this._aspectRatio) {
+      if (d === 'w') {
+        this._currSize.height = this._currSize.width / this._aspectRatio;
+      } else {
+        this._currSize.width = this._aspectRatio * this._currSize.height;
+      }
+    }
   }
 }

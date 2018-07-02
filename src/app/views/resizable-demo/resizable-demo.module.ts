@@ -6,6 +6,7 @@ import { ResizableDemoRoutingModule } from './resizable-demo-routing.module';
 import { ResizeDefaultDemoComponent } from './resize-default-demo/resize-default-demo.component';
 import { ResizeEventDemoComponent } from './resize-event-demo/resize-event-demo.component';
 import { ResizeAspectRatioDemoComponent } from './resize-aspect-ratio-demo/resize-aspect-ratio-demo.component';
+import { ResizeContainmentDemoComponent } from './resize-containment-demo/resize-containment-demo.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { ResizeAspectRatioDemoComponent } from './resize-aspect-ratio-demo/resiz
   declarations: [
     ResizeDefaultDemoComponent,
     ResizeEventDemoComponent,
-    ResizeAspectRatioDemoComponent
+    ResizeAspectRatioDemoComponent,
+    ResizeContainmentDemoComponent
   ]
 })
 export class ResizableDemoModule { }

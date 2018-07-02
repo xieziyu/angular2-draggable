@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ResizeDefaultDemoComponent } from './resize-default-demo/resize-default-demo.component';
 import { ResizeEventDemoComponent } from './resize-event-demo/resize-event-demo.component';
 import { ResizeAspectRatioDemoComponent } from './resize-aspect-ratio-demo/resize-aspect-ratio-demo.component';
+import { ResizeContainmentDemoComponent } from './resize-containment-demo/resize-containment-demo.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,13 @@ const routes: Routes = [
       title: 'Aspect Ratio'
     }
   },
+  {
+    path: 'containment',
+    component: ResizeContainmentDemoComponent,
+    data: {
+      title: 'Containment'
+    }
+  }
 ];
 
 @NgModule({

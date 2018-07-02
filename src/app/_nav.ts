@@ -75,6 +75,15 @@ export const navigation = [
           text: 'new'
         }
       },
+      {
+        name: 'Containment',
+        url: '/resizable/containment',
+        icon: 'fa fa-window-close',
+        badge: {
+          variant: 'success',
+          text: 'new'
+        }
+      },
     ]
   }
 ];

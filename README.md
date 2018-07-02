@@ -16,13 +16,18 @@
 6. [Events](#events)
 
 # Getting Started
-angular2-draggable has angular (ver >= 4.x) directives that make the DOM element draggable and resizable.
+angular2-draggable has angular directives that make the DOM element draggable and resizable.
 + `ngDraggable`
+    + v2.x requires Angular 6
+    + v1.4.2 requires Angular 4
+
 + `ngResizable`
+    + provided since v2.0, requires Angular 6
 
 # Latest Update
-+ 2018.06.27: 2.0.0-beta.2
-  + ngResizable: Provide `[rzAspectRatio]`, whether the element should be constrained to a specific aspect ratio.
++ 2018.07.02: 2.0.0-beta.2
+  + ngResizable: Provide `[rzAspectRatio]`, whether the element should be constrained to a specific aspect ratio. [demo](https://xieziyu.github.io/angular2-draggable/#/resizable/aspect-ratio)
+  + ngResizable: Provide `[rzContainment]`, constrains resizing to within the bounds of the specified element or region. [demo](https://xieziyu.github.io/angular2-draggable/#/resizable/containment)
 
 + 2018.06.26: 2.0.0-beta.1
   + ngResizable: Provide `(rzStart)`, `(rzResizing)`, `(rzStop)` event emitters
@@ -157,6 +162,7 @@ Well you can use both directives concurrently if you wish:
     | ngResizable | boolean | `true` | You can toggle the resizable capability by setting `true` or `false` |
     | rzHandles | string | `"e,s,se"` | Which handles can be used for resizing. Optional types in `"n,e,s,w,se,sw,ne,nw"` or `"all"` |
     | rzAspectRatio | boolean\|number | false | `boolean`: Whether the element should be constrained to a specific aspect ratio. `number`: Force the element to maintain a specific aspect ratio during resizing (width/height) |
+    | rzContainment | Selector\|string\|Element | null | Constrains resizing to within the bounds of the specified element or region. It accepts an HTMLElement, `'parent'` or a valid CSS selector string such as '#id' |
 
 ## CSS:
 + When `ngDraggable` is enabled on some element, `ng-draggable` class is automatically assigned to it. You can use it to customize the pointer style. For example:

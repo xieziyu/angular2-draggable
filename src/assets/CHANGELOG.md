@@ -2,6 +2,7 @@
 
 #### New
 + ngResizable: Provide `[rzAspectRatio]`, whether the element should be constrained to a specific aspect ratio.
++ ngResizable: Provide `[rzContainment]`, constrains resizing to within the bounds of the specified element or region.
 
 ## 2.0.0-beta.1 (2018-06-26)
 

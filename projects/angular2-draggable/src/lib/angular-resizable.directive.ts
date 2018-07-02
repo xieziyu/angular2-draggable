@@ -20,8 +20,8 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
   private _handles: { [key: string]: ResizeHandle } = {};
   private _handleType: string[] = [];
   private _handleResizing: ResizeHandle = null;
-
   private _aspectRatio = 0;
+  private _containment: HTMLElement = null;
   private _origMousePos: Position = null;
 
   /** Original Size and Position */
@@ -35,6 +35,8 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
   /** Initial Size and Position */
   private _initSize: Size = null;
   private _initPos: Position = null;
+
+  private _bounding: any = null;
 
   /** Disables the resizable if set to false. */
   @Input() set ngResizable(v: any) {
@@ -59,7 +61,17 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
    *  boolean: When set to true, the element will maintain its original aspect ratio.
    *  number: Force the element to maintain a specific aspect ratio during resizing.
    */
-  @Input() rzAspectRatio: boolean|number = false;
+  @Input() rzAspectRatio: boolean | number = false;
+
+  /**
+   * Constrains resizing to within the bounds of the specified element or region.
+   *  Multiple types supported:
+   *  Selector: The resizable element will be contained to the bounding box of the first element found by the selector.
+   *            If no element is found, no containment will be set.
+   *  Element: The resizable element will be contained to the bounding box of this element.
+   *  String: Possible values: "parent".
+   */
+  @Input() rzContainment: string | HTMLElement = null;
 
   /** emitted when start resizing */
   @Output() rzStart = new EventEmitter<IResizeEvent>();
@@ -70,7 +82,7 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
   /** emitted when stop resizing */
   @Output() rzStop = new EventEmitter<IResizeEvent>();
 
-  constructor(private el: ElementRef, private renderer: Renderer2) { }
+  constructor(private el: ElementRef<HTMLElement>, private renderer: Renderer2) { }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['rzHandles'] && !changes['rzHandles'].isFirstChange()) {
@@ -80,6 +92,10 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
     if (changes['rzAspectRatio'] && !changes['rzAspectRatio'].isFirstChange()) {
       this.updateAspectRatio();
     }
+
+    if (changes['rzContainment'] && !changes['rzContainment'].isFirstChange()) {
+      this.updateContainment();
+    }
   }
 
   ngOnInit() {
@@ -88,6 +104,7 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
 
   ngOnDestroy() {
     this.removeHandles();
+    this._containment = null;
   }
 
   ngAfterViewInit() {
@@ -97,6 +114,7 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
     this._currSize = Size.copy(this._initSize);
     this._currPos = Position.copy(this._initPos);
     this.updateAspectRatio();
+    this.updateContainment();
   }
 
   /** A method to reset size */
@@ -106,7 +124,7 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
     this.doResize();
   }
 
-  /** A method to reset size */
+  /** A method to get current status */
   public getStatus() {
     if (!this._currPos || !this._currSize) {
       return null;
@@ -149,6 +167,24 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
     } else {
       let r = Number(this.rzAspectRatio);
       this._aspectRatio = isNaN(r) ? 0 : r;
+    }
+  }
+
+  /** Use it to update containment */
+  private updateContainment() {
+    if (!this.rzContainment) {
+      this._containment = null;
+      return;
+    }
+
+    if (typeof this.rzContainment === 'string') {
+      if (this.rzContainment === 'parent') {
+        this._containment = this.el.nativeElement.parentElement;
+      } else {
+        this._containment = document.querySelector<HTMLElement>(this.rzContainment);
+      }
+    } else {
+      this._containment = this.rzContainment;
     }
   }
 
@@ -226,6 +262,9 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
       this._origPos = Position.getCurrent(elm); // x: left, y: top
       this._currSize = Size.copy(this._origSize);
       this._currPos = Position.copy(this._origPos);
+      if (this._containment) {
+        this.getBounding();
+      }
       this.startResize(handle);
     }
   }
@@ -240,6 +279,9 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
       this._origMousePos = null;
       this._origSize = null;
       this._origPos = null;
+      if (this._containment) {
+        this.resetBounding();
+      }
     }
   }
 
@@ -286,8 +328,21 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
 
     if (this._handleResizing.type.match(/n/)) {
       // n, ne, nw
-      this._currSize.height = this._origSize.height - p.y;
       this._currPos.y = this._origPos.y + p.y;
+      this._currSize.height = this._origSize.height - p.y;
+
+      // check bounds
+      if (this._containment) {
+        if (this._currPos.y < 0) {
+          this._currPos.y = 0;
+          this._currSize.height = this._origSize.height + this._origPos.y;
+        }
+      }
+
+      if (this._currSize.height < 1) {
+        this._currSize.height = 1;
+        this._currPos.y = this._origPos.y + (this._origSize.height - 1);
+      }
 
       // aspect ratio
       this.adjustByRatio('h');
@@ -310,10 +365,24 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
       this._currSize.width = this._origSize.width - p.x;
       this._currPos.x = this._origPos.x + p.x;
 
+      // check bounds
+      if (this._containment) {
+        if (this._currPos.x < 0) {
+          this._currPos.x = 0;
+          this._currSize.width = this._origSize.width + this._origPos.x;
+        }
+      }
+
+      if (this._currSize.width < 1) {
+        this._currSize.width = 1;
+        this._currPos.x = this._origPos.x + (this._origSize.width - 1);
+      }
+
       // aspect ratio
       this.adjustByRatio('w');
     }
 
+    this.checkBounds();
     this.doResize();
   }
 
@@ -333,5 +402,47 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
         this._currSize.width = this._aspectRatio * this._currSize.height;
       }
     }
+  }
+
+  private checkBounds() {
+    if (this._containment) {
+      const container = this._containment;
+      const maxWidth = this._bounding.width - this._bounding.pr - this.el.nativeElement.offsetLeft;
+      const maxHeight = this._bounding.height - this._bounding.pb - this.el.nativeElement.offsetTop;
+
+      if (this._currSize.width > maxWidth) {
+        this._currSize.width = maxWidth;
+      }
+
+      if (this._currSize.height > maxHeight) {
+        this._currSize.height = maxHeight;
+      }
+    }
+  }
+
+  private getBounding() {
+    const el = this._containment;
+    const computed = window.getComputedStyle(el);
+    if (computed) {
+      let p = computed.getPropertyValue('position');
+
+      this._bounding = {};
+      this._bounding.width = el.clientWidth;
+      this._bounding.height = el.clientHeight;
+      this._bounding.pr = parseInt(computed.getPropertyValue('padding-right'), 10);
+      this._bounding.pb = parseInt(computed.getPropertyValue('padding-bottom'), 10);
+      this._bounding.position = computed.getPropertyValue('position');
+
+      if (p === 'static') {
+        this.renderer.setStyle(el, 'position', 'relative');
+      }
+    }
+  }
+
+  private resetBounding() {
+    if (this._bounding && this._bounding.position === 'static') {
+      this.renderer.setStyle(this._containment, 'position', 'relative');
+    }
+    this._bounding = null;
   }
 }

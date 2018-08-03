@@ -205,8 +205,8 @@ Well you can use both directives concurrently if you wish:
     | Output | $event | description |
     | ------ | ------ | ----------- |
     | rzStart | `IResizeEvent` | emitted when start resizing |
-    | rzResizing | `IResizeEvent` | emitted when stop resizing |
-    | rzStop | `IResizeEvent` | emitted when resizing |
+    | rzResizing | `IResizeEvent` | emitted when resizing |
+    | rzStop | `IResizeEvent` | emitted when stop resizing |
 
     ```typescript
     export interface IResizeEvent {

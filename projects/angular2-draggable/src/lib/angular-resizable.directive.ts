@@ -5,6 +5,7 @@ import {
   OnDestroy, AfterViewInit
 } from '@angular/core';
 
+import { HelperBlock } from './widgets/helper-block';
 import { ResizeHandle } from './widgets/resize-handle';
 import { ResizeHandleType } from './models/resize-handle-type';
 import { Position } from './models/position';
@@ -37,6 +38,12 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
   private _initPos: Position = null;
 
   private _bounding: any = null;
+
+  /**
+   * Bugfix: iFrames, and context unrelated elements block all events, and are unusable
+   * https://github.com/xieziyu/angular2-draggable/issues/84
+   */
+  private _helperBlock: HelperBlock = null;
 
   /** Disables the resizable if set to false. */
   @Input() set ngResizable(v: any) {
@@ -82,7 +89,9 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
   /** emitted when stop resizing */
   @Output() rzStop = new EventEmitter<IResizeEvent>();
 
-  constructor(private el: ElementRef<HTMLElement>, private renderer: Renderer2) { }
+  constructor(private el: ElementRef<HTMLElement>, private renderer: Renderer2) {
+    this._helperBlock = new HelperBlock(el.nativeElement, renderer);
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['rzHandles'] && !changes['rzHandles'].isFirstChange()) {
@@ -105,6 +114,8 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
   ngOnDestroy() {
     this.removeHandles();
     this._containment = null;
+    this._helperBlock.dispose();
+    this._helperBlock = null;
   }
 
   ngAfterViewInit() {
@@ -295,11 +306,15 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
   }
 
   private startResize(handle: ResizeHandle) {
+    // Add a transparent helper div:
+    this._helperBlock.add();
     this._handleResizing = handle;
     this.rzStart.emit(this.getResizingEvent());
   }
 
   private stopResize() {
+    // Remove the helper div:
+    this._helperBlock.remove();
     this.rzStop.emit(this.getResizingEvent());
     this._handleResizing = null;
   }

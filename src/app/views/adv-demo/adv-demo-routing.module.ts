@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SwapDemoComponent } from './swap-demo/swap-demo.component';
 import { SnapGridDemoComponent } from './snap-grid-demo/snap-grid-demo.component';
+import { IframeDemoComponent } from './iframe-demo/iframe-demo.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,13 @@ const routes: Routes = [
     component: SnapGridDemoComponent,
     data: {
       title: 'Snap to Grid'
+    }
+  },
+  {
+    path: 'iframe',
+    component: IframeDemoComponent,
+    data: {
+      title: 'iframe'
     }
   }
 ];

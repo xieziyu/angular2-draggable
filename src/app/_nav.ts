@@ -48,7 +48,7 @@ export const navigation = [
         name: 'Snap To Grid',
         url: '/draggable/advance/snap-grid',
         icon: 'fa fa-th-large',
-      },
+      }
     ]
   },
   {
@@ -69,21 +69,29 @@ export const navigation = [
       {
         name: 'Aspect Ratio',
         url: '/resizable/aspect-ratio',
-        icon: 'fa fa-square-o',
-        badge: {
-          variant: 'success',
-          text: 'new'
-        }
+        icon: 'fa fa-square-o'
       },
       {
         name: 'Containment',
         url: '/resizable/containment',
-        icon: 'fa fa-window-close',
+        icon: 'fa fa-window-close'
+      },
+    ]
+  },
+  {
+    name: 'Advanced Demo',
+    icon: 'fa fa-bookmark',
+    url: '/draggable',
+    children: [
+      {
+        name: 'iframe',
+        url: '/draggable/advance/iframe',
+        icon: 'fa fa-window-maximize',
         badge: {
           variant: 'success',
           text: 'new'
         }
-      },
+      }
     ]
   }
 ];

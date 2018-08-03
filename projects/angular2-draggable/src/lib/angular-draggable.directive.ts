@@ -1,25 +1,31 @@
 import {
   Directive, ElementRef, Renderer2,
   Input, Output, OnInit, HostListener,
-  EventEmitter, OnChanges, SimpleChanges
+  EventEmitter, OnChanges, SimpleChanges, OnDestroy
 } from '@angular/core';
 
 import { IPosition, Position } from './models/position';
+import { HelperBlock } from './widgets/helper-block';
 
 @Directive({
   selector: '[ngDraggable]',
   exportAs: 'ngDraggable'
 })
-export class AngularDraggableDirective implements OnInit, OnChanges {
+export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges {
   private allowDrag = true;
   private moving = false;
   private orignal: Position = null;
   private oldTrans = new Position(0, 0);
   private tempTrans = new Position(0, 0);
   private oldZIndex = '';
-  private oldPosition = '';
   private _zIndex = '';
   private needTransform = false;
+
+  /**
+   * Bugfix: iFrames, and context unrelated elements block all events, and are unusable
+   * https://github.com/xieziyu/angular2-draggable/issues/84
+   */
+  private _helperBlock: HelperBlock = null;
 
   @Output() started = new EventEmitter<any>();
   @Output() stopped = new EventEmitter<any>();
@@ -86,7 +92,9 @@ export class AngularDraggableDirective implements OnInit, OnChanges {
     }
   }
 
-  constructor(private el: ElementRef, private renderer: Renderer2) { }
+  constructor(private el: ElementRef, private renderer: Renderer2) {
+    this._helperBlock = new HelperBlock(el.nativeElement, renderer);
+  }
 
   ngOnInit() {
     if (this.allowDrag) {
@@ -95,6 +103,16 @@ export class AngularDraggableDirective implements OnInit, OnChanges {
     }
 
     this.resetPosition();
+  }
+
+  ngOnDestroy() {
+    this.bounds = null;
+    this.handle = null;
+    this.orignal = null;
+    this.oldTrans = null;
+    this.tempTrans = null;
+    this._helperBlock.dispose();
+    this._helperBlock = null;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -181,6 +199,9 @@ export class AngularDraggableDirective implements OnInit, OnChanges {
     if (!this.moving) {
       this.started.emit(this.el.nativeElement);
       this.moving = true;
+
+      // Add a transparent helper div:
+      this._helperBlock.add();
     }
   }
 
@@ -232,6 +253,9 @@ export class AngularDraggableDirective implements OnInit, OnChanges {
 
     if (this.moving) {
       this.stopped.emit(this.el.nativeElement);
+
+      // Remove the helper div:
+      this._helperBlock.remove();
 
       if (this.needTransform) {
         if (Position.isIPosition(this.position)) {

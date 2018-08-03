@@ -1,4 +1,9 @@
-## 2.0.0-beta.2 (2018-06-27)
+## 2.0.0 (2018-08-03)
+
+#### Bugfix
++ Fix [issue #84](https://github.com/xieziyu/angular2-draggable/issues/84): iFrames, and context unrelated elements block all events, and are unusable
+
+## 2.0.0-beta.2 (2018-07-02)
 
 #### New
 + ngResizable: Provide `[rzAspectRatio]`, whether the element should be constrained to a specific aspect ratio.

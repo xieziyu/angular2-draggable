@@ -25,6 +25,9 @@ angular2-draggable has angular directives that make the DOM element draggable an
     + provided since v2.0, requires Angular 6
 
 # Latest Update
++ 2018.08.03: 2.0.0
+  + Fix [issue #84](https://github.com/xieziyu/angular2-draggable/issues/84): iFrames, and context unrelated elements block all events, and are unusable
+
 + 2018.07.02: 2.0.0-beta.2
   + ngResizable: Provide `[rzAspectRatio]`, whether the element should be constrained to a specific aspect ratio. [demo](https://xieziyu.github.io/angular2-draggable/#/resizable/aspect-ratio)
   + ngResizable: Provide `[rzContainment]`, constrains resizing to within the bounds of the specified element or region. [demo](https://xieziyu.github.io/angular2-draggable/#/resizable/containment)

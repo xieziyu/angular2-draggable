@@ -2,6 +2,7 @@ import { Renderer2 } from '@angular/core';
 
 export class HelperBlock {
   protected _helper: Element;
+  private _added = false;
 
   constructor(
     protected parent: Element,
@@ -22,19 +23,22 @@ export class HelperBlock {
 
   add() {
     // append div to parent
-    if (this.parent) {
+    if (this.parent && !this._added) {
       this.parent.appendChild(this._helper);
+      this._added = true;
     }
   }
 
   remove() {
-    if (this.parent) {
+    if (this.parent && this._added) {
       this.parent.removeChild(this._helper);
+      this._added = false;
     }
   }
 
   dispose() {
     this._helper = null;
+    this._added = false;
   }
 
   get el() {

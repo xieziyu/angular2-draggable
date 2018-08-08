@@ -1,3 +1,8 @@
+## 2.0.1 (2018-08-08)
+
+#### Bugfix
++ click events are blocked. [#87](https://github.com/xieziyu/angular2-draggable/issues/87), [#84](https://github.com/xieziyu/angular2-draggable/issues/84)
+
 ## 2.0.0 (2018-08-03)
 
 #### Bugfix

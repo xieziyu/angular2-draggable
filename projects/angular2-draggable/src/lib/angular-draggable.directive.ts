@@ -199,9 +199,6 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges {
     if (!this.moving) {
       this.started.emit(this.el.nativeElement);
       this.moving = true;
-
-      // Add a transparent helper div:
-      this._helperBlock.add();
     }
   }
 
@@ -357,6 +354,8 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges {
         event.preventDefault();
       }
 
+      // Add a transparent helper div:
+      this._helperBlock.add();
       this.moveTo(Position.fromEvent(event));
     }
   }

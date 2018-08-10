@@ -39,6 +39,7 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
 
   private _bounding: any = null;
 
+  private _minSize: { width: number, height: number } = null;
   /**
    * Bugfix: iFrames, and context unrelated elements block all events, and are unusable
    * https://github.com/xieziyu/angular2-draggable/issues/84
@@ -80,6 +81,9 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
    */
   @Input() rzContainment: string | HTMLElement = null;
 
+  @Input() rzMinWidth: number = null;
+  @Input() rzMinHeight: number = null;
+
   /** emitted when start resizing */
   @Output() rzStart = new EventEmitter<IResizeEvent>();
 
@@ -105,6 +109,11 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
     if (changes['rzContainment'] && !changes['rzContainment'].isFirstChange()) {
       this.updateContainment();
     }
+
+    if ((changes['rzMinWidth'] && !changes['rzMinWidth'].isFirstChange()) ||
+      (changes['rzMinHeight'] && !changes['rzMinHeight'].isFirstChange()))  {
+      this.updateMinSize();
+    }
   }
 
   ngOnInit() {
@@ -126,6 +135,7 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
     this._currPos = Position.copy(this._initPos);
     this.updateAspectRatio();
     this.updateContainment();
+    this.updateMinSize();
   }
 
   /** A method to reset size */
@@ -197,6 +207,18 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
     } else {
       this._containment = this.rzContainment;
     }
+  }
+
+  /** Use it to update minimum sizes */
+  private updateMinSize() {
+    console.log(this.rzMinWidth);
+    console.log(this.rzMinHeight);
+    if (!this.rzMinWidth || !this.rzMinHeight) {
+      this._minSize = null;
+      return;
+    }
+
+    this._minSize = {'width': this.rzMinWidth, 'height': this.rzMinHeight};
   }
 
   /** Use it to create handle divs */
@@ -398,6 +420,7 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
     }
 
     this.checkBounds();
+    this.checkMinSize();
     this.doResize();
   }
 
@@ -431,6 +454,21 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
 
       if (this._currSize.height > maxHeight) {
         this._currSize.height = maxHeight;
+      }
+    }
+  }
+
+  private checkMinSize() {
+    if (this._minSize) {
+      const minWidth = this._minSize['width'];
+      const minHeight = this._minSize['height'];
+
+      if (this._currSize.width < minWidth) {
+        this._currSize.width = minWidth;
+      }
+
+      if (this._currSize.height < minHeight) {
+        this._currSize.height = minHeight;
       }
     }
   }

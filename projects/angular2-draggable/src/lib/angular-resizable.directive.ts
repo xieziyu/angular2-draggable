@@ -8,7 +8,7 @@ import {
 import { HelperBlock } from './widgets/helper-block';
 import { ResizeHandle } from './widgets/resize-handle';
 import { ResizeHandleType } from './models/resize-handle-type';
-import { Position } from './models/position';
+import { Position, IPosition } from './models/position';
 import { Size } from './models/size';
 import { IResizeEvent } from './models/resize-event';
 
@@ -36,6 +36,9 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
   /** Initial Size and Position */
   private _initSize: Size = null;
   private _initPos: Position = null;
+
+  /** Snap to gird */
+  private _gridSize: IPosition = null;
 
   private _bounding: any = null;
 
@@ -79,6 +82,12 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
    *  String: Possible values: "parent".
    */
   @Input() rzContainment: string | HTMLElement = null;
+
+  /**
+   * Snaps the resizing element to a grid, every x and y pixels.
+   * A number for both width and height or an array values like [ x, y ]
+   */
+  @Input() rzGrid: number | number[] = null;
 
   /** emitted when start resizing */
   @Output() rzStart = new EventEmitter<IResizeEvent>();
@@ -276,6 +285,7 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
       if (this._containment) {
         this.getBounding();
       }
+      this.getGridSize();
       this.startResize(handle);
     }
   }
@@ -341,10 +351,13 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
   private resizeTo(p: Position) {
     p.subtract(this._origMousePos);
 
+    const tmpX = Math.round(p.x / this._gridSize.x) * this._gridSize.x;
+    const tmpY = Math.round(p.y / this._gridSize.y) * this._gridSize.y;
+
     if (this._handleResizing.type.match(/n/)) {
       // n, ne, nw
-      this._currPos.y = this._origPos.y + p.y;
-      this._currSize.height = this._origSize.height - p.y;
+      this._currPos.y = this._origPos.y + tmpY;
+      this._currSize.height = this._origSize.height - tmpY;
 
       // check bounds
       if (this._containment) {
@@ -363,7 +376,7 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
       this.adjustByRatio('h');
     } else if (this._handleResizing.type.match(/s/)) {
       // s, se, sw
-      this._currSize.height = this._origSize.height + p.y;
+      this._currSize.height = this._origSize.height + tmpY;
 
       // aspect ratio
       this.adjustByRatio('h');
@@ -371,14 +384,14 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
 
     if (this._handleResizing.type.match(/e/)) {
       // e, ne, se
-      this._currSize.width = this._origSize.width + p.x;
+      this._currSize.width = this._origSize.width + tmpX;
 
       // aspect ratio
       this.adjustByRatio('w');
     } else if (this._handleResizing.type.match(/w/)) {
       // w, nw, sw
-      this._currSize.width = this._origSize.width - p.x;
-      this._currPos.x = this._origPos.x + p.x;
+      this._currSize.width = this._origSize.width - tmpX;
+      this._currPos.x = this._origPos.x + tmpX;
 
       // check bounds
       if (this._containment) {
@@ -421,7 +434,6 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
 
   private checkBounds() {
     if (this._containment) {
-      const container = this._containment;
       const maxWidth = this._bounding.width - this._bounding.pr - this.el.nativeElement.offsetLeft;
       const maxHeight = this._bounding.height - this._bounding.pb - this.el.nativeElement.offsetTop;
 
@@ -459,5 +471,17 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
       this.renderer.setStyle(this._containment, 'position', 'relative');
     }
     this._bounding = null;
+  }
+
+  private getGridSize() {
+    if (this.rzGrid) {
+      if (typeof this.rzGrid === 'number') {
+        this._gridSize = { x: this.rzGrid, y: this.rzGrid };
+      } else if (Array.isArray(this.rzGrid)) {
+        this._gridSize = { x: this.rzGrid[0], y: this.rzGrid[1] };
+      } else {
+        this._gridSize = { x: 1, y: 1 };
+      }
+    }
   }
 }

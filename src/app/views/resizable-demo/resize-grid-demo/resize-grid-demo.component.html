@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-6" style="min-height: 200px;">
+    <div ngResizable [rzGrid]="50" class="resizable-widget">
+      <h4 class="widget-header">Resizable</h4>
+      <div>[rzGrid]=50</div>
+    </div>
+  </div>
+  <div class="col-6" style="min-height: 200px;">
+    <div ngResizable [rzGrid]="[100, 50]" class="resizable-widget">
+      <h4 class="widget-header">Resizable</h4>
+      <div>[rzGrid]=[100, 50]</div>
+    </div>
+  </div>
+</div>
+
+<!-- Documents -->
+<div class="row mt-4">
+  <div class="col">
+    <tabset>
+      <tab heading="html">
+        <markdown [data]="demo_html | language: 'html'"></markdown>
+      </tab>
+      <tab heading="component">
+        <markdown [data]="demo_ts | language: 'typescript'"></markdown>
+      </tab>
+    </tabset>
+  </div>
+</div>

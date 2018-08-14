@@ -69,7 +69,20 @@ export const navigation = [
       {
         name: 'Snap To Grid',
         url: '/resizable/grid',
-        icon: 'fa fa-th-large'
+        icon: 'fa fa-th-large',
+        badge: {
+          variant: 'success',
+          text: 'new'
+        }
+      },
+      {
+        name: 'Min / Max Size',
+        url: '/resizable/min-max',
+        icon: 'fa fa-window-minimize',
+        badge: {
+          variant: 'success',
+          text: 'new'
+        }
       },
     ]
   },
@@ -91,11 +104,7 @@ export const navigation = [
       {
         name: 'iframe',
         url: '/advance/iframe',
-        icon: 'fa fa-window-maximize',
-        badge: {
-          variant: 'success',
-          text: 'new'
-        }
+        icon: 'fa fa-window-maximize'
       }
     ]
   }

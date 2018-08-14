@@ -89,6 +89,18 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
    */
   @Input() rzGrid: number | number[] = null;
 
+  /** The minimum width the resizable should be allowed to resize to. */
+  @Input() rzMinWidth: number = null;
+
+  /** The minimum height the resizable should be allowed to resize to. */
+  @Input() rzMinHeight: number = null;
+
+  /** The maximum width the resizable should be allowed to resize to. */
+  @Input() rzMaxWidth: number = null;
+
+  /** The maximum height the resizable should be allowed to resize to. */
+  @Input() rzMaxHeight: number = null;
+
   /** emitted when start resizing */
   @Output() rzStart = new EventEmitter<IResizeEvent>();
 
@@ -411,6 +423,7 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
     }
 
     this.checkBounds();
+    this.checkSize();
     this.doResize();
   }
 
@@ -447,6 +460,24 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
     }
   }
 
+  private checkSize() {
+    if (this.rzMaxWidth && this._currSize.width > this.rzMaxWidth) {
+      this._currSize.width = this.rzMaxWidth;
+    }
+
+    if (this.rzMinWidth && this._currSize.width < this.rzMinWidth) {
+      this._currSize.width = this.rzMinWidth;
+    }
+
+    if (this.rzMaxHeight && this._currSize.height > this.rzMaxHeight) {
+      this._currSize.height = this.rzMaxHeight;
+    }
+
+    if (this.rzMinHeight && this._currSize.height < this.rzMinHeight) {
+      this._currSize.height = this.rzMinHeight;
+    }
+  }
+
   private getBounding() {
     const el = this._containment;
     const computed = window.getComputedStyle(el);
@@ -474,13 +505,14 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
   }
 
   private getGridSize() {
+    // set default value:
+    this._gridSize = { x: 1, y: 1 };
+
     if (this.rzGrid) {
       if (typeof this.rzGrid === 'number') {
         this._gridSize = { x: this.rzGrid, y: this.rzGrid };
       } else if (Array.isArray(this.rzGrid)) {
         this._gridSize = { x: this.rzGrid[0], y: this.rzGrid[1] };
-      } else {
-        this._gridSize = { x: 1, y: 1 };
       }
     }
   }

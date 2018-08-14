@@ -5,6 +5,7 @@ import { ResizeEventDemoComponent } from './resize-event-demo/resize-event-demo.
 import { ResizeAspectRatioDemoComponent } from './resize-aspect-ratio-demo/resize-aspect-ratio-demo.component';
 import { ResizeContainmentDemoComponent } from './resize-containment-demo/resize-containment-demo.component';
 import { ResizeGridDemoComponent } from './resize-grid-demo/resize-grid-demo.component';
+import { ResizeMinMaxDemoComponent } from './resize-min-max-demo/resize-min-max-demo.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,13 @@ const routes: Routes = [
     component: ResizeGridDemoComponent,
     data: {
       title: 'Snap to grid'
+    }
+  },
+  {
+    path: 'min-max',
+    component: ResizeMinMaxDemoComponent,
+    data: {
+      title: 'Minimum & maximum size'
     }
   }
 ];

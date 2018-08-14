@@ -18,13 +18,17 @@
 # Getting Started
 angular2-draggable has angular directives that make the DOM element draggable and resizable.
 + `ngDraggable`
-    + v2.x requires Angular 6
-    + v1.4.2 requires Angular 4
+    + v2.x requires Angular >= 6
+    + v1.4.2 requires Angular >= 4 && < 6
 
 + `ngResizable`
-    + provided since v2.0, requires Angular 6
+    + provided since v2.0, requires Angular >= 6
 
 # Latest Update
++ 2018.08.08: 2.1.0
+  + ngResizable: Provide `[rzGrid]`. Snaps the resizing element to a grid.
+  + ngResizable: Provide `[rzMinWidth]`, `[rzMaxWidth]`, `[rzMinHeight]`, `[rzMaxHeight]`. The minimum/maximum width/height the resizable should be allowed to resize to.
+
 + 2018.08.08: 2.0.1
   + Bugfix: click events are blocked. [#87](https://github.com/xieziyu/angular2-draggable/issues/87), [#84](https://github.com/xieziyu/angular2-draggable/issues/84)
 
@@ -170,6 +174,10 @@ Well you can use both directives concurrently if you wish:
     | rzAspectRatio | boolean \| number | `false` | `boolean`: Whether the element should be constrained to a specific aspect ratio. `number`: Force the element to maintain a specific aspect ratio during resizing (width/height) |
     | rzContainment | Selector \| string \| Element | null | Constrains resizing to within the bounds of the specified element or region. It accepts an HTMLElement, `'parent'` or a valid CSS selector string such as '#id' |
     | rzGrid | number \| number[] | 1 | Snaps the resizing element to a grid, every x and y pixels. Array values: `[x, y]`|
+    | rzMinWidth | number | 1 | The minimum width the resizable should be allowed to resize to. |
+    | rzMaxWidth | number | 1 | The maximum width the resizable should be allowed to resize to. |
+    | rzMinHeight | number | 1 | The minimum height the resizable should be allowed to resize to. |
+    | rzMaxHeight | number | 1 | The maximum height the resizable should be allowed to resize to. |
 
 ## CSS:
 + When `ngDraggable` is enabled on some element, `ng-draggable` class is automatically assigned to it. You can use it to customize the pointer style. For example:

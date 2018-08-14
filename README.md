@@ -25,7 +25,7 @@ angular2-draggable has angular directives that make the DOM element draggable an
     + provided since v2.0, requires Angular >= 6
 
 # Latest Update
-+ 2018.08.08: 2.1.0
++ 2018.08.14: 2.1.0
   + ngResizable: Provide `[rzGrid]`. Snaps the resizing element to a grid.
   + ngResizable: Provide `[rzMinWidth]`, `[rzMaxWidth]`, `[rzMinHeight]`, `[rzMaxHeight]`. The minimum/maximum width/height the resizable should be allowed to resize to.
 

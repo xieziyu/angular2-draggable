@@ -1,8 +1,12 @@
-## 2.1.0 (2018-08-14)
+## 2.1.1 (2018-08-14)
 
 #### New
 + ngResizable: Provide `[rzGrid]`. Snaps the resizing element to a grid.
 + ngResizable: Provide `[rzMinWidth]`, `[rzMaxWidth]`, `[rzMinHeight]`, `[rzMaxHeight]`. The minimum/maximum width/height the resizable should be allowed to resize to.
+
+#### Bugfix
++ ngResizable: resizing from w, nw or n with a min/max size moves the window if it goes below/above the min/max size. [#94](https://github.com/xieziyu/angular2-draggable/issues/94)
+
 ---
 
 ## 2.0.1 (2018-08-08)

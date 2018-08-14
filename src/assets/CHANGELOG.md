@@ -1,12 +1,23 @@
+## 2.1.0 (2018-08-14)
+
+#### New
++ ngResizable: Provide `[rzGrid]`. Snaps the resizing element to a grid.
++ ngResizable: Provide `[rzMinWidth]`, `[rzMaxWidth]`, `[rzMinHeight]`, `[rzMaxHeight]`. The minimum/maximum width/height the resizable should be allowed to resize to.
+---
+
 ## 2.0.1 (2018-08-08)
 
 #### Bugfix
 + click events are blocked. [#87](https://github.com/xieziyu/angular2-draggable/issues/87), [#84](https://github.com/xieziyu/angular2-draggable/issues/84)
 
+---
+
 ## 2.0.0 (2018-08-03)
 
 #### Bugfix
 + Fix [issue #84](https://github.com/xieziyu/angular2-draggable/issues/84): iFrames, and context unrelated elements block all events, and are unusable
+
+---
 
 ## 2.0.0-beta.2 (2018-07-02)
 
@@ -14,11 +25,15 @@
 + ngResizable: Provide `[rzAspectRatio]`, whether the element should be constrained to a specific aspect ratio.
 + ngResizable: Provide `[rzContainment]`, constrains resizing to within the bounds of the specified element or region.
 
+---
+
 ## 2.0.0-beta.1 (2018-06-26)
 
 #### New
 + ngResizable: Provide `(rzStart)`, `(rzResizing)`, `(rzStop)` event emitters
 + ngResizable: Provide `resetSize()`, `getStatus()` methods
+
+---
 
 ## 2.0.0-beta.0 (2018-06-25)
 

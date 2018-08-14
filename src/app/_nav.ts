@@ -38,16 +38,6 @@ export const navigation = [
         name: 'API',
         url: '/draggable/usage/api',
         icon: 'fa fa-code'
-      },
-      {
-        name: 'Swapping',
-        url: '/draggable/advance/swap',
-        icon: 'fa fa-refresh'
-      },
-      {
-        name: 'Snap To Grid',
-        url: '/draggable/advance/snap-grid',
-        icon: 'fa fa-th-large',
       }
     ]
   },
@@ -76,21 +66,45 @@ export const navigation = [
         url: '/resizable/containment',
         icon: 'fa fa-window-close'
       },
+      {
+        name: 'Snap To Grid',
+        url: '/resizable/grid',
+        icon: 'fa fa-th-large',
+        badge: {
+          variant: 'success',
+          text: 'new'
+        }
+      },
+      {
+        name: 'Min / Max Size',
+        url: '/resizable/min-max',
+        icon: 'fa fa-window-minimize',
+        badge: {
+          variant: 'success',
+          text: 'new'
+        }
+      },
     ]
   },
   {
     name: 'Advanced Demo',
     icon: 'fa fa-bookmark',
-    url: '/draggable',
+    url: '/advance',
     children: [
       {
+        name: 'Swapping',
+        url: '/advance/swap',
+        icon: 'fa fa-refresh'
+      },
+      {
+        name: 'Snap To Grid',
+        url: '/advance/snap-grid',
+        icon: 'fa fa-th-large',
+      },
+      {
         name: 'iframe',
-        url: '/draggable/advance/iframe',
-        icon: 'fa fa-window-maximize',
-        badge: {
-          variant: 'success',
-          text: 'new'
-        }
+        url: '/advance/iframe',
+        icon: 'fa fa-window-maximize'
       }
     ]
   }

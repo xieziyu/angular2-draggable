@@ -7,6 +7,8 @@ import { ResizeDefaultDemoComponent } from './resize-default-demo/resize-default
 import { ResizeEventDemoComponent } from './resize-event-demo/resize-event-demo.component';
 import { ResizeAspectRatioDemoComponent } from './resize-aspect-ratio-demo/resize-aspect-ratio-demo.component';
 import { ResizeContainmentDemoComponent } from './resize-containment-demo/resize-containment-demo.component';
+import { ResizeGridDemoComponent } from './resize-grid-demo/resize-grid-demo.component';
+import { ResizeMinMaxDemoComponent } from './resize-min-max-demo/resize-min-max-demo.component';
 
 @NgModule({
   imports: [
@@ -18,7 +20,9 @@ import { ResizeContainmentDemoComponent } from './resize-containment-demo/resize
     ResizeDefaultDemoComponent,
     ResizeEventDemoComponent,
     ResizeAspectRatioDemoComponent,
-    ResizeContainmentDemoComponent
+    ResizeContainmentDemoComponent,
+    ResizeGridDemoComponent,
+    ResizeMinMaxDemoComponent
   ]
 })
 export class ResizableDemoModule { }

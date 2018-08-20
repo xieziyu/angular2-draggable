@@ -1,7 +1,9 @@
 # angular2-draggable
-[![npm version](https://badge.fury.io/js/angular2-draggable.svg)](http://badge.fury.io/js/angular2-draggable)
-[![npm downloads](https://img.shields.io/npm/dm/angular2-draggable.svg)](https://npmjs.org/angular2-draggable)
-[![Build Status](https://travis-ci.org/xieziyu/angular2-draggable.svg?branch=master)](https://travis-ci.org/xieziyu/angular2-draggable)
+
+<!-- Badges section here. -->
+[![npm](https://img.shields.io/npm/v/angular2-draggable.svg)][npm-badge-url]
+[![npm](https://img.shields.io/npm/dm/angular2-draggable.svg)][npm-badge-url]
+[![Build Status](https://travis-ci.org/xieziyu/angular2-draggable.svg?branch=master)][ci-url]
 
 + [Online Demo](https://xieziyu.github.io/angular2-draggable)
 + [Online Docs](https://xieziyu.github.io/angular2-draggable/api-doc)
@@ -25,9 +27,12 @@ angular2-draggable has angular directives that make the DOM element draggable an
     + provided since v2.0, requires Angular >= 6
 
 # Latest Update
++ 2018.08.20: 2.1.2
+  + **ngDraggable**: fix [issue #97](https://github.com/xieziyu/angular2-draggable/issues/97): Item is produced with div partially out of bounds.
+
 + 2018.08.14: 2.1.1
-  + ngResizable: Provide `[rzGrid]`. Snaps the resizing element to a grid.
-  + ngResizable: Provide `[rzMinWidth]`, `[rzMaxWidth]`, `[rzMinHeight]`, `[rzMaxHeight]`. The minimum/maximum width/height the resizable should be allowed to resize to.
+  + **ngResizable**: Provide `[rzGrid]`. Snaps the resizing element to a grid.
+  + **ngResizable**: Provide `[rzMinWidth]`, `[rzMaxWidth]`, `[rzMinHeight]`, `[rzMaxHeight]`. The minimum/maximum width/height the resizable should be allowed to resize to.
   + Bugfix: resizing from w, nw or n with a min/max size moves the window if it goes below/above the min/max size. [#94](https://github.com/xieziyu/angular2-draggable/issues/94)
 
 + 2018.08.08: 2.0.1
@@ -37,51 +42,15 @@ angular2-draggable has angular directives that make the DOM element draggable an
   + Fix [issue #84](https://github.com/xieziyu/angular2-draggable/issues/84): iFrames, and context unrelated elements block all events, and are unusable
 
 + 2018.07.02: 2.0.0-beta.2
-  + ngResizable: Provide `[rzAspectRatio]`, whether the element should be constrained to a specific aspect ratio. [demo](https://xieziyu.github.io/angular2-draggable/#/resizable/aspect-ratio)
-  + ngResizable: Provide `[rzContainment]`, constrains resizing to within the bounds of the specified element or region. [demo](https://xieziyu.github.io/angular2-draggable/#/resizable/containment)
+  + **ngResizable**: Provide `[rzAspectRatio]`, whether the element should be constrained to a specific aspect ratio. [demo](https://xieziyu.github.io/angular2-draggable/#/resizable/aspect-ratio)
+  + **ngResizable**: Provide `[rzContainment]`, constrains resizing to within the bounds of the specified element or region. [demo](https://xieziyu.github.io/angular2-draggable/#/resizable/containment)
 
 + 2018.06.26: 2.0.0-beta.1
-  + ngResizable: Provide `(rzStart)`, `(rzResizing)`, `(rzStop)` event emitters
-  + ngResizable: Provide `resetSize()`, `getStatus()` methods
+  + **ngResizable**: Provide `(rzStart)`, `(rzResizing)`, `(rzStop)` event emitters
+  + **ngResizable**: Provide `resetSize()`, `getStatus()` methods
 
 + 2018.06.25: 2.0.0-beta.0
   + New: `ngResizable` directive which you can use to make the element resizable! More resizable options are planning. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/resizable/default)
-
-+ 2018.05.23: 1.4.2
-  + Changes: expose boundsCheck() method.
-
-+ 2018.05.11: 1.4.1
-  + Bugfix: Handle Drag is not working in Firefox [#68](https://github.com/xieziyu/angular2-draggable/issues/68).
-
-+ 2018.05.04: 1.4.0
-  + Provide `[gridSize]` option for snapping to grid. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/advance/snap-grid). (PR [#64](https://github.com/xieziyu/angular2-draggable/pull/64) by [PAHADIx](https://github.com/PAHADIx))
-  + Code optimized. (PR [#60](https://github.com/xieziyu/angular2-draggable/pull/60) by [korn3l](https://github.com/korn3l))
-
-+ 2018.04.10: 1.3.2
-  + Provide `[outOfBounds]` option. Set it to allow element get out of bounds from the direction. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/usage/boundary). (PR [#57](https://github.com/xieziyu/angular2-draggable/issues/58) by [waldo2188](https://github.com/waldo2188))
-
-+ 2018.03.15: 1.3.1
-  + Provide `(movingOffset)` event emitter: emit position offset when moving
-  + Provide `(endOffset)` event emitter: emit position offset when stop moving
-
-+ 2018.03.09: 1.3.0
-  + Provide `[position]` option: to set current position offset.
-
-+ 2018.02.08: 1.2.1
-  + Bugfix: `[preventDefaultEvent]` should not prevent events of elements outside the handle.
-
-+ 2018.02.07: 1.2.0
-  + **BREAKING CHANGE**: use `Renderer2` of angular-core. So we don't support angular version < 4.0.
-  + Provide: `resetPosition()` method to reset position. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/usage/api) for details.
-  + Bugfix: `[trackPosition]` was not working as expected.
-  + Change: The directive now `exportAs: 'ngDraggable'`. For example we can use `<div ngDraggable #block="ngDraggable"></div>` to assign this directive to a variable.
-  + Change: `[preventDefaultEvent]` set default to false.
-
-+ 2018.02.01: 1.1.0
-
-  + Provide `[trackPosition]` option: whether to track the element's movement. (PR by [Blackbaud-MikitaYankouski](https://github.com/Blackbaud-MikitaYankouski))
-  + Provide `[scale]` option: to fix scaling issue [#31](https://github.com/xieziyu/angular2-draggable/issues/31)
-  + Provide `[preventDefaultEvent]` option: whether to prevent default mouse or touch event. (default: true)
 
 # Installation
 ```
@@ -257,3 +226,7 @@ yarn install
 yarn demo
 ```
 The demo page server is listening to: http://localhost:4203
+
+
+[npm-badge-url]: https://www.npmjs.com/package/angular2-draggable
+[ci-url]: https://travis-ci.org/xieziyu/angular2-draggable

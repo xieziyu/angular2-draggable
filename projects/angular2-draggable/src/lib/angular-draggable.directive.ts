@@ -1,7 +1,7 @@
 import {
   Directive, ElementRef, Renderer2,
   Input, Output, OnInit, HostListener,
-  EventEmitter, OnChanges, SimpleChanges, OnDestroy
+  EventEmitter, OnChanges, SimpleChanges, OnDestroy, AfterViewInit
 } from '@angular/core';
 
 import { IPosition, Position } from './models/position';
@@ -11,7 +11,7 @@ import { HelperBlock } from './widgets/helper-block';
   selector: '[ngDraggable]',
   exportAs: 'ngDraggable'
 })
-export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges {
+export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, AfterViewInit {
   private allowDrag = true;
   private moving = false;
   private orignal: Position = null;
@@ -130,6 +130,14 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges {
       } else {
         this.needTransform = true;
       }
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.inBounds) {
+      this.boundsCheck();
+      this.oldTrans.add(this.tempTrans);
+      this.tempTrans.reset();
     }
   }
 

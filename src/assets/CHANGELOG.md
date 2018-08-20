@@ -1,11 +1,18 @@
+## 2.1.2 (2018-08-20)
+
+#### Bugfix
++ **ngDraggable**: Item is produced with div partially out of bounds. [#97](https://github.com/xieziyu/angular2-draggable/issues/97)
+
+---
+
 ## 2.1.1 (2018-08-14)
 
 #### New
-+ ngResizable: Provide `[rzGrid]`. Snaps the resizing element to a grid.
-+ ngResizable: Provide `[rzMinWidth]`, `[rzMaxWidth]`, `[rzMinHeight]`, `[rzMaxHeight]`. The minimum/maximum width/height the resizable should be allowed to resize to.
++ **ngResizable**: Provide `[rzGrid]`. Snaps the resizing element to a grid.
++ **ngResizable**: Provide `[rzMinWidth]`, `[rzMaxWidth]`, `[rzMinHeight]`, `[rzMaxHeight]`. The minimum/maximum width/height the resizable should be allowed to resize to.
 
 #### Bugfix
-+ ngResizable: resizing from w, nw or n with a min/max size moves the window if it goes below/above the min/max size. [#94](https://github.com/xieziyu/angular2-draggable/issues/94)
++ **ngResizable**: resizing from w, nw or n with a min/max size moves the window if it goes below/above the min/max size. [#94](https://github.com/xieziyu/angular2-draggable/issues/94)
 
 ---
 
@@ -26,16 +33,16 @@
 ## 2.0.0-beta.2 (2018-07-02)
 
 #### New
-+ ngResizable: Provide `[rzAspectRatio]`, whether the element should be constrained to a specific aspect ratio.
-+ ngResizable: Provide `[rzContainment]`, constrains resizing to within the bounds of the specified element or region.
++ **ngResizable**: Provide `[rzAspectRatio]`, whether the element should be constrained to a specific aspect ratio.
++ **ngResizable**: Provide `[rzContainment]`, constrains resizing to within the bounds of the specified element or region.
 
 ---
 
 ## 2.0.0-beta.1 (2018-06-26)
 
 #### New
-+ ngResizable: Provide `(rzStart)`, `(rzResizing)`, `(rzStop)` event emitters
-+ ngResizable: Provide `resetSize()`, `getStatus()` methods
++ **ngResizable**: Provide `(rzStart)`, `(rzResizing)`, `(rzStop)` event emitters
++ **ngResizable**: Provide `resetSize()`, `getStatus()` methods
 
 ---
 

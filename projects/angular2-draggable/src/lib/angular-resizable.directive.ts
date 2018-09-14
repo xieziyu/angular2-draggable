@@ -423,17 +423,17 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
 
   private checkBounds() {
     if (this._containment) {
-      const maxWidth = this._bounding.width - this._bounding.pr - this.el.nativeElement.offsetLeft;
-      const maxHeight = this._bounding.height - this._bounding.pb - this.el.nativeElement.offsetTop;
+      const maxWidth = this._bounding.width - this._bounding.pr - this.el.nativeElement.offsetLeft - this._bounding.translateX;
+      const maxHeight = this._bounding.height - this._bounding.pb - this.el.nativeElement.offsetTop - this._bounding.translateY;
 
-      if (this._direction.n && this._currPos.y < 0) {
-        this._currPos.y = 0;
-        this._currSize.height = this._origSize.height + this._origPos.y;
+      if (this._direction.n && (this._currPos.y + this._bounding.translateY) < 0) {
+        this._currPos.y = -this._bounding.translateY;
+        this._currSize.height = this._origSize.height + this._origPos.y + this._bounding.translateY;
       }
 
-      if (this._direction.w && this._currPos.x < 0) {
-        this._currPos.x = 0;
-        this._currSize.width = this._origSize.width + this._origPos.x;
+      if (this._direction.w && (this._currPos.x + this._bounding.translateX) < 0) {
+        this._currPos.x = -this._bounding.translateX;
+        this._currSize.width = this._origSize.width + this._origPos.x + this._bounding.translateX;
       }
 
       if (this._currSize.width > maxWidth) {
@@ -489,11 +489,23 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
     if (computed) {
       let p = computed.getPropertyValue('position');
 
+      const nativeEl = window.getComputedStyle(this.el.nativeElement);
+      let transforms = nativeEl.getPropertyValue('transform').replace(/[^-\d,]/g, '').split(',');
+
       this._bounding = {};
       this._bounding.width = el.clientWidth;
       this._bounding.height = el.clientHeight;
       this._bounding.pr = parseInt(computed.getPropertyValue('padding-right'), 10);
       this._bounding.pb = parseInt(computed.getPropertyValue('padding-bottom'), 10);
+
+      if (transforms.length >= 6) {
+        this._bounding.translateX = parseInt(transforms[4], 10);
+        this._bounding.translateY = parseInt(transforms[5], 10);
+      } else {
+        this._bounding.translateX = 0;
+        this._bounding.translateY = 0;
+      }
+
       this._bounding.position = computed.getPropertyValue('position');
 
       if (p === 'static') {

@@ -1,3 +1,10 @@
+## 2.1.3 (2018-09-14)
+
+#### Bugfix
++ **ngResizable**: Resize bounds on a draggable element inside a containment is off. [#100](https://github.com/xieziyu/angular2-draggable/issues/100)
+
+---
+
 ## 2.1.2 (2018-08-20)
 
 #### Bugfix

@@ -27,6 +27,9 @@ angular2-draggable has angular directives that make the DOM element draggable an
     + provided since v2.0, requires Angular >= 6
 
 # Latest Update
++ 2018.09.14: 2.1.3
+  + **ngResizable**: fix [issue #100](https://github.com/xieziyu/angular2-draggable/issues/100): Resize bounds on a draggable element inside a containment is off
+
 + 2018.08.20: 2.1.2
   + **ngDraggable**: fix [issue #97](https://github.com/xieziyu/angular2-draggable/issues/97): Item is produced with div partially out of bounds.
 
@@ -134,6 +137,7 @@ Well you can use both directives concurrently if you wish:
     | outOfBounds | `{ top: boolean; bottom: boolean; right: boolean; left: boolean }` | `false` | Set it to allow element get out of bounds from the direction. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/usage/boundary) |
     | position | `{ x: number, y: number }` | `{ x:0, y:0 }` | Use it to set position offset |
     | gridSize | number | 1 | Use it for snapping to grid. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/advance/snap-grid) |
+    | preventDefaultEvent | boolean | `false` | Whether to prevent default mouse event |
 
 + `ngResizable` directive support following input porperties:
 

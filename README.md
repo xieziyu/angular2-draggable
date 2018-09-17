@@ -27,7 +27,9 @@ angular2-draggable has angular directives that make the DOM element draggable an
     + provided since v2.0, requires Angular >= 6
 
 # Latest Update
-+ 2018.09.14: 2.1.3
+
++ 2018.09.17: 2.1.4
+  + Fix a build issue.
   + **ngResizable**: fix [issue #100](https://github.com/xieziyu/angular2-draggable/issues/100): Resize bounds on a draggable element inside a containment is off
 
 + 2018.08.20: 2.1.2

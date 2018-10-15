@@ -1,3 +1,10 @@
+## 2.1.5 (2018-10-15)
+
+#### Bugfix
++ **ngDraggable**: EndOffset event not working properly with SnapToGrid. [#114](https://github.com/xieziyu/angular2-draggable/issues/114)
+
+---
+
 ## 2.1.4 (2018-09-17)
 
 #### Bugfix

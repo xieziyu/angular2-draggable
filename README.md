@@ -28,6 +28,9 @@ angular2-draggable has angular directives that make the DOM element draggable an
 
 # Latest Update
 
++ 2018.10.15: 2.1.5
+  + **ngDraggable**: fix [issue #114](https://github.com/xieziyu/angular2-draggable/issues/114): EndOffset event not working properly with SnapToGrid
+
 + 2018.09.17: 2.1.4
   + Fix a build issue.
   + **ngResizable**: fix [issue #100](https://github.com/xieziyu/angular2-draggable/issues/100): Resize bounds on a draggable element inside a containment is off

@@ -17,6 +17,7 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
   private orignal: Position = null;
   private oldTrans = new Position(0, 0);
   private tempTrans = new Position(0, 0);
+  private currTrans = new Position(0, 0);
   private oldZIndex = '';
   private _zIndex = '';
   private needTransform = false;
@@ -111,6 +112,7 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
     this.orignal = null;
     this.oldTrans = null;
     this.tempTrans = null;
+    this.currTrans = null;
     this._helperBlock.dispose();
     this._helperBlock = null;
   }
@@ -161,10 +163,7 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
         this.edge.emit(this.boundsCheck());
       }
 
-      this.movingOffset.emit({
-        x: this.tempTrans.x + this.oldTrans.x,
-        y: this.tempTrans.y + this.oldTrans.y
-      });
+      this.movingOffset.emit(this.currTrans.value);
     }
   }
 
@@ -190,6 +189,10 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
     this.renderer.setStyle(this.el.nativeElement, '-ms-transform', value);
     this.renderer.setStyle(this.el.nativeElement, '-moz-transform', value);
     this.renderer.setStyle(this.el.nativeElement, '-o-transform', value);
+
+    // save current position
+    this.currTrans.x = translateX;
+    this.currTrans.y = translateY;
   }
 
   private pickUp() {
@@ -245,6 +248,11 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
     }
   }
 
+  /** Get current offset */
+  getCurrentOffset() {
+    return this.currTrans.value;
+  }
+
   private putBack() {
     if (this._zIndex) {
       this.renderer.setStyle(this.el.nativeElement, 'z-index', this._zIndex);
@@ -278,10 +286,7 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
       }
 
       this.moving = false;
-      this.endOffset.emit({
-        x: this.tempTrans.x + this.oldTrans.x,
-        y: this.tempTrans.y + this.oldTrans.y
-      });
+      this.endOffset.emit(this.currTrans.value);
 
       if (this.trackPosition) {
         this.oldTrans.add(this.tempTrans);

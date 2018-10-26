@@ -1,3 +1,10 @@
+## 2.1.6 (2018-10-26)
+
+#### Bugfix
++ **ngResizable**: rzResizing IE event issue. [#115](https://github.com/xieziyu/angular2-draggable/issues/115)
+
+---
+
 ## 2.1.5 (2018-10-15)
 
 #### Bugfix

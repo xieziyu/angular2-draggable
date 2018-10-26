@@ -24,8 +24,10 @@ export class Position implements IPosition {
     if (window) {
       const computed = window.getComputedStyle(el);
       if (computed) {
-        pos.x = parseInt(computed.getPropertyValue('left'), 10);
-        pos.y = parseInt(computed.getPropertyValue('top'), 10);
+        let x = parseInt(computed.getPropertyValue('left'), 10);
+        let y = parseInt(computed.getPropertyValue('top'), 10);
+        pos.x = isNaN(x) ? 0 : x;
+        pos.y = isNaN(y) ? 0 : y;
       }
       return pos;
     } else {

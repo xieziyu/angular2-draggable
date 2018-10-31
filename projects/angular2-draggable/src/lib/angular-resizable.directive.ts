@@ -405,8 +405,12 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
 
   private doResize() {
     const container = this.el.nativeElement;
-    this.renderer.setStyle(container, 'height', this._currSize.height + 'px');
-    this.renderer.setStyle(container, 'width', this._currSize.width + 'px');
+    if (this._direction.n || this._direction.s || this._aspectRatio) {
+      this.renderer.setStyle(container, 'height', this._currSize.height + 'px');
+    }
+    if (this._direction.w || this._direction.e || this._aspectRatio) {
+      this.renderer.setStyle(container, 'width', this._currSize.width + 'px');
+    }
     this.renderer.setStyle(container, 'left', this._currPos.x + 'px');
     this.renderer.setStyle(container, 'top', this._currPos.y + 'px');
   }

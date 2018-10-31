@@ -1,3 +1,10 @@
+## 2.1.7 (2018-10-31)
+
+#### Bugfix
++ **ngResizable**: ngResizable Locks Height When rzHandles Includes Only e, w. [#116](https://github.com/xieziyu/angular2-draggable/issues/116) (Thanks to [Yamazaki93](https://github.com/Yamazaki93))
+
+---
+
 ## 2.1.6 (2018-10-26)
 
 #### Bugfix

@@ -102,6 +102,9 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
   /** The maximum height the resizable should be allowed to resize to. */
   @Input() rzMaxHeight: number = null;
 
+  /** Whether to prevent default event */
+  @Input() preventDefaultEvent = false;
+
   /** emitted when start resizing */
   @Output() rzStart = new EventEmitter<IResizeEvent>();
 
@@ -284,9 +287,11 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
       return;
     }
 
-    // prevent default events
-    event.stopPropagation();
-    event.preventDefault();
+    if (this.preventDefaultEvent) {
+      // prevent default events
+      event.stopPropagation();
+      event.preventDefault();
+    }
 
     if (!this._handleResizing) {
       this._origMousePos = Position.fromEvent(event);

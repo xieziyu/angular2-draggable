@@ -103,7 +103,7 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
   @Input() rzMaxHeight: number = null;
 
   /** Whether to prevent default event */
-  @Input() preventDefaultEvent = false;
+  @Input() preventDefaultEvent = true;
 
   /** emitted when start resizing */
   @Output() rzStart = new EventEmitter<IResizeEvent>();

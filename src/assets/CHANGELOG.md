@@ -1,3 +1,10 @@
+## 2.1.8 (2018-11-11)
+
+#### New
++ **ngResizable**: add [preventDefaultEvent] flag to ngResizable mousedown ([by mecp](https://github.com/mecp) - [PR #119](https://github.com/xieziyu/angular2-draggable/pull/119))
+
+---
+
 ## 2.1.7 (2018-10-31)
 
 #### Bugfix

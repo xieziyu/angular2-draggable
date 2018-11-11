@@ -27,6 +27,9 @@ angular2-draggable has angular directives that make the DOM element draggable an
     + provided since v2.0, requires Angular >= 6
 
 # Latest Update
++ 2018.11.11: 2.1.8
+  + **ngResizable**: add [preventDefaultEvent] flag to ngResizable mousedown ([by mecp](https://github.com/mecp) - [PR #119](https://github.com/xieziyu/angular2-draggable/pull/119))
+
 + 2018.10.31: 2.1.7
   + **ngResizable**: fix [issue #116](https://github.com/xieziyu/angular2-draggable/issues/116): ngResizable Locks Height When rzHandles Includes Only e, w. (Thanks to [Yamazaki93](https://github.com/Yamazaki93))
 
@@ -147,6 +150,7 @@ Well you can use both directives concurrently if you wish:
     | rzMaxWidth | number | 1 | The maximum width the resizable should be allowed to resize to. |
     | rzMinHeight | number | 1 | The minimum height the resizable should be allowed to resize to. |
     | rzMaxHeight | number | 1 | The maximum height the resizable should be allowed to resize to. |
+    | preventDefaultEvent | boolean | `false` | Whether to prevent default mouse event. |
 
 ## CSS:
 + When `ngDraggable` is enabled on some element, `ng-draggable` class is automatically assigned to it. You can use it to customize the pointer style. For example:

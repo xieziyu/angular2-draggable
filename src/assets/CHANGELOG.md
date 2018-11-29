@@ -1,3 +1,10 @@
+## 2.1.9 (2018-11-29)
+
+#### Bugfix
++ **ngDraggable**: [#31]((https://github.com/xieziyu/angular2-draggable/issues/31)) Problems when scale transform applied to parent. ([by rathodsanjay](https://github.com/rathodsanjay) - [PR #123](https://github.com/xieziyu/angular2-draggable/pull/123))
+
+---
+
 ## 2.1.8 (2018-11-11)
 
 #### New
@@ -8,7 +15,7 @@
 ## 2.1.7 (2018-10-31)
 
 #### Bugfix
-+ **ngResizable**: ngResizable Locks Height When rzHandles Includes Only e, w. [#116](https://github.com/xieziyu/angular2-draggable/issues/116) (Thanks to [Yamazaki93](https://github.com/Yamazaki93))
++ **ngResizable**: [#116](https://github.com/xieziyu/angular2-draggable/issues/116) ngResizable Locks Height When rzHandles Includes Only e, w. (Thanks to [Yamazaki93](https://github.com/Yamazaki93))
 
 ---
 

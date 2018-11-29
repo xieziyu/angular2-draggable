@@ -27,6 +27,9 @@ angular2-draggable has angular directives that make the DOM element draggable an
     + provided since v2.0, requires Angular >= 6
 
 # Latest Update
++ 2018.11.29: 2.1.9
+  + **ngDraggable**: fix [issue #31](https://github.com/xieziyu/angular2-draggable/issues/31): Problems when scale transform applied to parent. ([by rathodsanjay](https://github.com/rathodsanjay) - [PR #123](https://github.com/xieziyu/angular2-draggable/pull/123))
+
 + 2018.11.11: 2.1.8
   + **ngResizable**: add [preventDefaultEvent] flag to ngResizable mousedown ([by mecp](https://github.com/mecp) - [PR #119](https://github.com/xieziyu/angular2-draggable/pull/119))
 

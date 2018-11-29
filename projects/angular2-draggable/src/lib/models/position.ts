@@ -36,7 +36,7 @@ export class Position implements IPosition {
     }
   }
 
-  static copy(p: Position) {
+  static copy(p: IPosition) {
     return new Position(0, 0).set(p);
   }
 

@@ -28,6 +28,11 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
    */
   private _helperBlock: HelperBlock = null;
 
+  /**
+   * Flag to indicate whether the element is dragged once after being initialised
+   */
+  private isDragged = false;
+
   @Output() started = new EventEmitter<any>();
   @Output() stopped = new EventEmitter<any>();
   @Output() edge = new EventEmitter<any>();
@@ -102,7 +107,6 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
       let element = this.handle ? this.handle : this.el.nativeElement;
       this.renderer.addClass(element, 'ng-draggable');
     }
-
     this.resetPosition();
   }
 
@@ -132,6 +136,11 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
       } else {
         this.needTransform = true;
       }
+    }
+
+    if (changes['scale'] && !changes['scale'].isFirstChange()) {
+      this.oldTrans.x = this.currTrans.x * this.scale;
+      this.oldTrans.y = this.currTrans.y * this.scale;
     }
   }
 
@@ -178,11 +187,22 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
       translateY = Math.round(translateY / this.gridSize) * this.gridSize;
     }
 
-    let value = `translate(${translateX}px, ${translateY}px)`;
-
-    if (this.scale !== 1) {
-      value += ` scale(${this.scale})`;
+    // done to prevent the element from bouncing off when
+    // the parent element is scaled and element is dragged for first time
+    if (this.tempTrans.x !== 0 || this.tempTrans.y !== 0) {
+      if (this.isDragged === false) {
+        this.oldTrans.x = this.currTrans.x * this.scale;
+        this.oldTrans.y = this.currTrans.y * this.scale;
+      }
+      this.isDragged = true;
     }
+
+    if (this.scale && this.scale !== 0 && this.isDragged) {
+      translateX = translateX / this.scale;
+      translateY = translateY / this.scale;
+    }
+
+    let value = `translate(${translateX}px, ${translateY}px)`;
 
     this.renderer.setStyle(this.el.nativeElement, 'transform', value);
     this.renderer.setStyle(this.el.nativeElement, '-webkit-transform', value);

@@ -1,7 +1,7 @@
 ## 2.1.9 (2018-11-29)
 
 #### Bugfix
-+ **ngDraggable**: [#31]((https://github.com/xieziyu/angular2-draggable/issues/31)) Problems when scale transform applied to parent. ([by rathodsanjay](https://github.com/rathodsanjay) - [PR #123](https://github.com/xieziyu/angular2-draggable/pull/123))
++ **ngDraggable**: [#31](https://github.com/xieziyu/angular2-draggable/issues/31) Problems when scale transform applied to parent. ([by rathodsanjay](https://github.com/rathodsanjay) - [PR #123](https://github.com/xieziyu/angular2-draggable/pull/123))
 
 ---
 

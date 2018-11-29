@@ -31,7 +31,7 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
   /**
    * Flag to indicate whether the element is dragged once after being initialised
    */
-  private isDragged: boolean = false;
+  private isDragged = false;
 
   @Output() started = new EventEmitter<any>();
   @Output() stopped = new EventEmitter<any>();
@@ -139,10 +139,8 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
     }
 
     if (changes['scale'] && !changes['scale'].isFirstChange()) {
-      let temp = this.currTrans.value;
-      temp.x = temp.x * this.scale;
-      temp.y = temp.y * this.scale;
-      this.oldTrans.set(new Position(temp.x, temp.y));
+      this.oldTrans.x = this.currTrans.x * this.scale;
+      this.oldTrans.y = this.currTrans.y * this.scale;
     }
   }
 
@@ -189,14 +187,12 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
       translateY = Math.round(translateY / this.gridSize) * this.gridSize;
     }
 
-    // done to prevent the element from bouncing off when 
+    // done to prevent the element from bouncing off when
     // the parent element is scaled and element is dragged for first time
     if (this.tempTrans.x !== 0 || this.tempTrans.y !== 0) {
       if (this.isDragged === false) {
-        let temp = this.currTrans.value;
-        temp.x = temp.x * this.scale;
-        temp.y = temp.y * this.scale;
-        this.oldTrans.set(new Position(temp.x, temp.y));
+        this.oldTrans.x = this.currTrans.x * this.scale;
+        this.oldTrans.y = this.currTrans.y * this.scale;
       }
       this.isDragged = true;
     }

@@ -138,7 +138,7 @@ Well you can use both directives concurrently if you wish:
     | gridSize | number | 1 | Use it for snapping to grid. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/advance/snap-grid) |
     | preventDefaultEvent | boolean | `false` | Whether to prevent default mouse event |
     | scale | number | 1 | Set it when parent element has CSS transform scale |
-    | lockAxis | `'x' | 'y'` | null | Restrict dragging to a specific axis by locking another one |
+    | lockAxis | `'x' \| 'y'` | null | Restrict dragging to a specific axis by locking another one |
   
 + `ngResizable` directive support following input porperties:
 

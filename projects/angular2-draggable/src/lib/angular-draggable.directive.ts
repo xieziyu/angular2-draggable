@@ -80,6 +80,9 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
   /** Set initial position by offsets */
   @Input() position: IPosition = { x: 0, y: 0 };
 
+  /** Lock axis: 'x' or 'y' */
+  @Input() lockAxis: string = null;
+
   /** Emit position offsets when moving */
   @Output() movingOffset = new EventEmitter<IPosition>();
 
@@ -188,9 +191,16 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
   }
 
   private transform() {
-
     let translateX = this.tempTrans.x + this.oldTrans.x;
     let translateY = this.tempTrans.y + this.oldTrans.y;
+
+    if (this.lockAxis === 'x') {
+      translateX = this.oldTrans.x;
+      this.tempTrans.x = 0;
+    } else if (this.lockAxis === 'y') {
+      translateY = this.oldTrans.y;
+      this.tempTrans.y = 0;
+    }
 
     // Snap to grid: by grid size
     if (this.gridSize > 1) {

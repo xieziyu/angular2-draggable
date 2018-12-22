@@ -31,6 +31,7 @@ angular2-draggable has angular directives that make the DOM element draggable an
   + **ngDraggable**:
     + Performance update. Fix [issue #112](https://github.com/xieziyu/angular2-draggable/issues/112): Control change detection with HostListener events.
     + Fix [issue #128](https://github.com/xieziyu/angular2-draggable/issues/128): Multiple phone draggables at the same time.
+    + New `[lockAxis]` input.
   + **ngResizable**:
     + Fix [issue #132](https://github.com/xieziyu/angular2-draggable/issues/132): Aspect ratio feature exits Y-Axis boundary on resize.
 
@@ -137,7 +138,8 @@ Well you can use both directives concurrently if you wish:
     | gridSize | number | 1 | Use it for snapping to grid. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/advance/snap-grid) |
     | preventDefaultEvent | boolean | `false` | Whether to prevent default mouse event |
     | scale | number | 1 | Set it when parent element has CSS transform scale |
-
+    | lockAxis | `'x' | 'y'` | null | Restrict dragging to a specific axis by locking another one |
+  
 + `ngResizable` directive support following input porperties:
 
     | Input | Type | Default | Description |

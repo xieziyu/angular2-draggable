@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { AppComponent } from './app.component';
@@ -68,6 +69,7 @@ import { MarkdownModule } from 'ngx-markdown';
 import { HomeComponent } from './views/home/home.component';
 import { ChangelogsComponent } from './views/changelogs/changelogs.component';
 
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -75,7 +77,10 @@ import { ChangelogsComponent } from './views/changelogs/changelogs.component';
     FormsModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    MarkdownModule.forRoot()
+    MarkdownModule.forRoot({
+      loader: HttpClient
+    }),
+    HttpClientModule
   ],
   declarations: [
     AppComponent,

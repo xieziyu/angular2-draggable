@@ -17,6 +17,7 @@ export class OptionsComponent implements OnInit {
   preventDefaultEvent = false;
   trackPosition = true;
   position;
+  lockAxis;
 
   constructor() { }
 

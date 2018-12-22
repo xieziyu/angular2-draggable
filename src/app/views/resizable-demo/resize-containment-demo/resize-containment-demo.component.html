@@ -3,7 +3,7 @@
     <div id="container" class="widget-container">
       <h4 class="widget-header">Containment</h4>
       <!-- rzContainment could be a CSS selector string, 'parent' or an Element object -->
-      <div ngResizable class="resizable-widget" rzContainment="#container" rzHandles="all">
+      <div ngResizable [rzAspectRatio]="true" class="resizable-widget" rzContainment="#container" rzHandles="all">
         <h4 class="widget-header">Resizable</h4>
       </div>
     </div>

@@ -4,6 +4,7 @@ import {
   EventEmitter, OnChanges, SimpleChanges, OnDestroy, AfterViewInit
 } from '@angular/core';
 
+import { Subscription, fromEvent } from 'rxjs';
 import { IPosition, Position } from './models/position';
 import { HelperBlock } from './widgets/helper-block';
 
@@ -21,6 +22,8 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
   private oldZIndex = '';
   private _zIndex = '';
   private needTransform = false;
+
+  private draggingSub: Subscription = null;
 
   /**
    * Bugfix: iFrames, and context unrelated elements block all events, and are unusable
@@ -77,6 +80,9 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
   /** Set initial position by offsets */
   @Input() position: IPosition = { x: 0, y: 0 };
 
+  /** Lock axis: 'x' or 'y' */
+  @Input() lockAxis: string = null;
+
   /** Emit position offsets when moving */
   @Output() movingOffset = new EventEmitter<IPosition>();
 
@@ -88,7 +94,7 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
     if (setting !== undefined && setting !== null && setting !== '') {
       this.allowDrag = !!setting;
 
-      let element = this.handle ? this.handle : this.el.nativeElement;
+      let element = this.getDragEl();
 
       if (this.allowDrag) {
         this.renderer.addClass(element, 'ng-draggable');
@@ -104,7 +110,7 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
 
   ngOnInit() {
     if (this.allowDrag) {
-      let element = this.handle ? this.handle : this.el.nativeElement;
+      let element = this.getDragEl();
       this.renderer.addClass(element, 'ng-draggable');
     }
     this.resetPosition();
@@ -119,6 +125,10 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
     this.currTrans = null;
     this._helperBlock.dispose();
     this._helperBlock = null;
+
+    if (this.draggingSub) {
+      this.draggingSub.unsubscribe();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -152,6 +162,10 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
     }
   }
 
+  private getDragEl() {
+    return this.handle ? this.handle : this.el.nativeElement;
+  }
+
   resetPosition() {
     if (Position.isIPosition(this.position)) {
       this.oldTrans.set(this.position);
@@ -177,9 +191,16 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
   }
 
   private transform() {
-
     let translateX = this.tempTrans.x + this.oldTrans.x;
     let translateY = this.tempTrans.y + this.oldTrans.y;
+
+    if (this.lockAxis === 'x') {
+      translateX = this.oldTrans.x;
+      this.tempTrans.x = 0;
+    } else if (this.lockAxis === 'y') {
+      translateY = this.oldTrans.y;
+      this.tempTrans.y = 0;
+    }
 
     // Snap to grid: by grid size
     if (this.gridSize > 1) {
@@ -230,7 +251,28 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
     if (!this.moving) {
       this.started.emit(this.el.nativeElement);
       this.moving = true;
+
+      /**
+       * Fix performance issue:
+       * https://github.com/xieziyu/angular2-draggable/issues/112
+       */
+      this.subscribeEvents();
     }
+  }
+
+  private subscribeEvents() {
+    this.draggingSub = fromEvent(document, 'mousemove', { passive: false }).subscribe(event => this.onMouseMove(event as MouseEvent));
+    this.draggingSub.add(fromEvent(document, 'touchmove', { passive: false }).subscribe(event => this.onMouseMove(event as TouchEvent)));
+    this.draggingSub.add(fromEvent(document, 'mouseup', { passive: false }).subscribe(() => this.putBack()));
+    this.draggingSub.add(fromEvent(document, 'mouseleave', { passive: false }).subscribe(() => this.putBack()));
+    this.draggingSub.add(fromEvent(document, 'touchend', { passive: false }).subscribe(() => this.putBack()));
+    this.draggingSub.add(fromEvent(document, 'touchcancel', { passive: false }).subscribe(() => this.putBack()));
+
+  }
+
+  private unsubscribeEvents() {
+    this.draggingSub.unsubscribe();
+    this.draggingSub = null;
   }
 
   boundsCheck() {
@@ -317,6 +359,12 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
       if (!this.trackPosition) {
         this.transform();
       }
+
+      /**
+       * Fix performance issue:
+       * https://github.com/xieziyu/angular2-draggable/issues/112
+       */
+      this.unsubscribeEvents();
     }
   }
 
@@ -366,20 +414,10 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
       event.preventDefault();
     }
 
-    this.orignal = Position.fromEvent(event);
+    this.orignal = Position.fromEvent(event, this.getDragEl());
     this.pickUp();
   }
 
-  @HostListener('document:mouseup')
-  @HostListener('document:mouseleave')
-  @HostListener('document:touchend')
-  @HostListener('document:touchcancel')
-  onMouseLeave() {
-    this.putBack();
-  }
-
-  @HostListener('document:mousemove', ['$event'])
-  @HostListener('document:touchmove', ['$event'])
   onMouseMove(event: MouseEvent | TouchEvent) {
     if (this.moving && this.allowDrag) {
       if (this.preventDefaultEvent) {
@@ -389,7 +427,7 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
 
       // Add a transparent helper div:
       this._helperBlock.add();
-      this.moveTo(Position.fromEvent(event));
+      this.moveTo(Position.fromEvent(event, this.getDragEl()));
     }
   }
 }

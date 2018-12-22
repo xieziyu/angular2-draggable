@@ -4,7 +4,7 @@ import {
   EventEmitter, OnChanges, SimpleChanges, OnDestroy, AfterViewInit
 } from '@angular/core';
 
-import { Subscription, fromEvent, fromEventPattern } from 'rxjs';
+import { Subscription, fromEvent } from 'rxjs';
 import { IPosition, Position } from './models/position';
 import { HelperBlock } from './widgets/helper-block';
 
@@ -256,6 +256,8 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
     this.draggingSub.add(fromEvent(document, 'mouseup', { passive: false }).subscribe(() => this.putBack()));
     this.draggingSub.add(fromEvent(document, 'mouseleave', { passive: false }).subscribe(() => this.putBack()));
     this.draggingSub.add(fromEvent(document, 'touchend', { passive: false }).subscribe(() => this.putBack()));
+    this.draggingSub.add(fromEvent(document, 'touchcancel', { passive: false }).subscribe(() => this.putBack()));
+
   }
 
   private unsubscribeEvents() {

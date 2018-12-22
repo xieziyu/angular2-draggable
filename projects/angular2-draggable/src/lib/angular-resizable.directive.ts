@@ -1,10 +1,10 @@
 import {
   Directive, ElementRef, Renderer2,
-  Input, Output, OnInit, HostListener,
-  EventEmitter, OnChanges, SimpleChanges,
+  Input, Output, OnInit, EventEmitter, OnChanges, SimpleChanges,
   OnDestroy, AfterViewInit
 } from '@angular/core';
 
+import { Subscription, fromEvent } from 'rxjs';
 import { HelperBlock } from './widgets/helper-block';
 import { ResizeHandle } from './widgets/resize-handle';
 import { ResizeHandleType } from './models/resize-handle-type';
@@ -48,6 +48,8 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
    * https://github.com/xieziyu/angular2-draggable/issues/84
    */
   private _helperBlock: HelperBlock = null;
+
+  private draggingSub: Subscription = null;
 
   /** Disables the resizable if set to false. */
   @Input() set ngResizable(v: any) {
@@ -296,22 +298,33 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
     if (!this._handleResizing) {
       this._origMousePos = Position.fromEvent(event);
       this.startResize(handle);
+
+      this.subscribeEvents();
     }
   }
 
-  @HostListener('document:mouseup')
-  @HostListener('document:mouseleave')
-  @HostListener('document:touchend')
-  @HostListener('document:touchcancel')
+  private subscribeEvents() {
+    this.draggingSub = fromEvent(document, 'mousemove', { passive: false }).subscribe(event => this.onMouseMove(event as MouseEvent));
+    this.draggingSub.add(fromEvent(document, 'touchmove', { passive: false }).subscribe(event => this.onMouseMove(event as TouchEvent)));
+    this.draggingSub.add(fromEvent(document, 'mouseup', { passive: false }).subscribe(() => this.onMouseLeave()));
+    this.draggingSub.add(fromEvent(document, 'mouseleave', { passive: false }).subscribe(() => this.onMouseLeave()));
+    this.draggingSub.add(fromEvent(document, 'touchend', { passive: false }).subscribe(() => this.onMouseLeave()));
+    this.draggingSub.add(fromEvent(document, 'touchcancel', { passive: false }).subscribe(() => this.onMouseLeave()));
+  }
+
+  private unsubscribeEvents() {
+    this.draggingSub.unsubscribe();
+    this.draggingSub = null;
+  }
+
   onMouseLeave() {
     if (this._handleResizing) {
       this.stopResize();
       this._origMousePos = null;
+      this.unsubscribeEvents();
     }
   }
 
-  @HostListener('document:mousemove', ['$event'])
-  @HostListener('document:touchmove', ['$event'])
   onMouseMove(event: MouseEvent | TouchEvent) {
     if (this._handleResizing && this._resizable && this._origMousePos && this._origPos && this._origSize) {
       this.resizeTo(Position.fromEvent(event));

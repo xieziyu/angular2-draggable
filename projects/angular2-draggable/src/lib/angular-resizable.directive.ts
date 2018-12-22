@@ -447,8 +447,10 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
     if (this._containment) {
       const maxWidth = this._bounding.width - this._bounding.pr - this.el.nativeElement.offsetLeft - this._bounding.translateX;
       const maxHeight = this._bounding.height - this._bounding.pb - this.el.nativeElement.offsetTop - this._bounding.translateY;
+      const minHeight = !this.rzMinHeight ? 1 : this.rzMinHeight;
+      const minWidth = !this.rzMinWidth ? 1 : this.rzMinWidth;
 
-      if (this._direction.n && (this._currPos.y + this._bounding.translateY) < 0) {
+      if (this._direction.n && (this._currPos.y + this._bounding.translateY < 0)) {
         this._currPos.y = -this._bounding.translateY;
         this._currSize.height = this._origSize.height + this._origPos.y + this._bounding.translateY;
       }
@@ -464,6 +466,28 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
 
       if (this._currSize.height > maxHeight) {
         this._currSize.height = maxHeight;
+      }
+
+      /**
+       * Fix Issue: Additional check for aspect ratio
+       * https://github.com/xieziyu/angular2-draggable/issues/132
+       */
+      if (this._aspectRatio) {
+        if ((this._currSize.width / this._aspectRatio) > maxHeight) {
+          this._currSize.width = maxHeight * this._aspectRatio;
+
+          if (this._direction.w) {
+            this._currPos.x = this._origPos.x;
+          }
+        }
+
+        if ((this._currSize.height * this._aspectRatio) > maxWidth) {
+          this._currSize.height = maxWidth / this._aspectRatio;
+
+          if (this._direction.n) {
+            this._currPos.y = this._origPos.y;
+          }
+        }
       }
     }
   }

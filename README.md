@@ -28,9 +28,11 @@ angular2-draggable has angular directives that make the DOM element draggable an
 
 # Latest Update
 + 2018.12.22: 2.2.0
-  + **ngDraggable**: 
+  + **ngDraggable**:
     + Performance update. Fix [issue #112](https://github.com/xieziyu/angular2-draggable/issues/112): Control change detection with HostListener events.
     + Fix [issue #128](https://github.com/xieziyu/angular2-draggable/issues/128): Multiple phone draggables at the same time.
+  + **ngResizable**:
+    + Fix [issue #132](https://github.com/xieziyu/angular2-draggable/issues/132): Aspect ratio feature exits Y-Axis boundary on resize.
 
 + 2018.11.29: 2.1.9
   + **ngDraggable**: fix [issue #31](https://github.com/xieziyu/angular2-draggable/issues/31): Problems when scale transform applied to parent. ([by rathodsanjay](https://github.com/rathodsanjay) - [PR #123](https://github.com/xieziyu/angular2-draggable/pull/123))

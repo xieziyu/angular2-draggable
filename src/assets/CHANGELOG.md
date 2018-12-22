@@ -1,8 +1,11 @@
 ## 2.2.0 (2018-12-22)
 
 #### Bugfix
-+ **ngDraggable**: Performance update. Fix [issue #112](https://github.com/xieziyu/angular2-draggable/issues/112): Control change detection with HostListener events.
-
++ **ngDraggable**:
+    + Performance update. Fix [issue #112](https://github.com/xieziyu/angular2-draggable/issues/112): Control change detection with HostListener events.
+    + Fix [issue #128](https://github.com/xieziyu/angular2-draggable/issues/128): Multiple phone draggables at the same time.
++ **ngResizable**:
+    + Fix [issue #132](https://github.com/xieziyu/angular2-draggable/issues/132): Aspect ratio feature exits Y-Axis boundary on resize.
 ---
 
 ## 2.1.9 (2018-11-29)

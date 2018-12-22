@@ -1,3 +1,10 @@
+## 2.2.0 (2018-12-22)
+
+#### Bugfix
++ **ngDraggable**: Performance update. Fix [issue #112](https://github.com/xieziyu/angular2-draggable/issues/112): Control change detection with HostListener events.
+
+---
+
 ## 2.1.9 (2018-11-29)
 
 #### Bugfix

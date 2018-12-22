@@ -27,6 +27,10 @@ angular2-draggable has angular directives that make the DOM element draggable an
     + provided since v2.0, requires Angular >= 6
 
 # Latest Update
++ 2018.12.22: 2.2.0
+  + **ngDraggable**: Performance update. Fix [issue #112](https://github.com/xieziyu/angular2-draggable/issues/112): Control change detection with HostListener events.
+  
+
 + 2018.11.29: 2.1.9
   + **ngDraggable**: fix [issue #31](https://github.com/xieziyu/angular2-draggable/issues/31): Problems when scale transform applied to parent. ([by rathodsanjay](https://github.com/rathodsanjay) - [PR #123](https://github.com/xieziyu/angular2-draggable/pull/123))
 
@@ -45,16 +49,6 @@ angular2-draggable has angular directives that make the DOM element draggable an
 + 2018.08.03: 2.0.0
   + Fix [issue #84](https://github.com/xieziyu/angular2-draggable/issues/84): iFrames, and context unrelated elements block all events, and are unusable
 
-+ 2018.07.02: 2.0.0-beta.2
-  + **ngResizable**: Provide `[rzAspectRatio]`, whether the element should be constrained to a specific aspect ratio. [demo](https://xieziyu.github.io/angular2-draggable/#/resizable/aspect-ratio)
-  + **ngResizable**: Provide `[rzContainment]`, constrains resizing to within the bounds of the specified element or region. [demo](https://xieziyu.github.io/angular2-draggable/#/resizable/containment)
-
-+ 2018.06.26: 2.0.0-beta.1
-  + **ngResizable**: Provide `(rzStart)`, `(rzResizing)`, `(rzStop)` event emitters
-  + **ngResizable**: Provide `resetSize()`, `getStatus()` methods
-
-+ 2018.06.25: 2.0.0-beta.0
-  + New: `ngResizable` directive which you can use to make the element resizable! More resizable options are planning. Refer to [demo](https://xieziyu.github.io/angular2-draggable/#/resizable/default)
 
 # Installation
 ```

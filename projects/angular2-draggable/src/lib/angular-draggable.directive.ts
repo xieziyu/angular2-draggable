@@ -4,6 +4,7 @@ import {
   EventEmitter, OnChanges, SimpleChanges, OnDestroy, AfterViewInit
 } from '@angular/core';
 
+import { Subscription, fromEvent } from 'rxjs';
 import { IPosition, Position } from './models/position';
 import { HelperBlock } from './widgets/helper-block';
 
@@ -21,6 +22,8 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
   private oldZIndex = '';
   private _zIndex = '';
   private needTransform = false;
+
+  private draggingSub: Subscription = null;
 
   /**
    * Bugfix: iFrames, and context unrelated elements block all events, and are unusable
@@ -119,6 +122,10 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
     this.currTrans = null;
     this._helperBlock.dispose();
     this._helperBlock = null;
+
+    if (this.draggingSub) {
+      this.draggingSub.unsubscribe();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -230,7 +237,26 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
     if (!this.moving) {
       this.started.emit(this.el.nativeElement);
       this.moving = true;
+
+      /**
+       * Fix performance issue:
+       * https://github.com/xieziyu/angular2-draggable/issues/112
+       */
+      this.subscribeEvents();
     }
+  }
+
+  private subscribeEvents() {
+    this.draggingSub = fromEvent(document, 'mousemove').subscribe(event => this.onMouseMove(event as MouseEvent));
+    this.draggingSub.add(fromEvent(document, 'touchmove').subscribe(event => this.onMouseMove(event as TouchEvent)));
+    this.draggingSub.add(fromEvent(document, 'mouseup').subscribe(() => this.putBack()));
+    this.draggingSub.add(fromEvent(document, 'mouseleave').subscribe(() => this.putBack()));
+    this.draggingSub.add(fromEvent(document, 'touchend').subscribe(() => this.putBack()));
+  }
+
+  private unsubscribeEvents() {
+    this.draggingSub.unsubscribe();
+    this.draggingSub = null;
   }
 
   boundsCheck() {
@@ -317,6 +343,12 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
       if (!this.trackPosition) {
         this.transform();
       }
+
+      /**
+       * Fix performance issue:
+       * https://github.com/xieziyu/angular2-draggable/issues/112
+       */
+      this.unsubscribeEvents();
     }
   }
 
@@ -370,16 +402,6 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
     this.pickUp();
   }
 
-  @HostListener('document:mouseup')
-  @HostListener('document:mouseleave')
-  @HostListener('document:touchend')
-  @HostListener('document:touchcancel')
-  onMouseLeave() {
-    this.putBack();
-  }
-
-  @HostListener('document:mousemove', ['$event'])
-  @HostListener('document:touchmove', ['$event'])
   onMouseMove(event: MouseEvent | TouchEvent) {
     if (this.moving && this.allowDrag) {
       if (this.preventDefaultEvent) {

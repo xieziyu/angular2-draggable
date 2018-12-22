@@ -4,7 +4,7 @@ import {
   EventEmitter, OnChanges, SimpleChanges, OnDestroy, AfterViewInit
 } from '@angular/core';
 
-import { Subscription, fromEvent } from 'rxjs';
+import { Subscription, fromEvent, fromEventPattern } from 'rxjs';
 import { IPosition, Position } from './models/position';
 import { HelperBlock } from './widgets/helper-block';
 
@@ -91,7 +91,7 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
     if (setting !== undefined && setting !== null && setting !== '') {
       this.allowDrag = !!setting;
 
-      let element = this.handle ? this.handle : this.el.nativeElement;
+      let element = this.getDragEl();
 
       if (this.allowDrag) {
         this.renderer.addClass(element, 'ng-draggable');
@@ -107,7 +107,7 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
 
   ngOnInit() {
     if (this.allowDrag) {
-      let element = this.handle ? this.handle : this.el.nativeElement;
+      let element = this.getDragEl();
       this.renderer.addClass(element, 'ng-draggable');
     }
     this.resetPosition();
@@ -157,6 +157,10 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
       this.oldTrans.add(this.tempTrans);
       this.tempTrans.reset();
     }
+  }
+
+  private getDragEl() {
+    return this.handle ? this.handle : this.el.nativeElement;
   }
 
   resetPosition() {
@@ -247,11 +251,11 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
   }
 
   private subscribeEvents() {
-    this.draggingSub = fromEvent(document, 'mousemove').subscribe(event => this.onMouseMove(event as MouseEvent));
-    this.draggingSub.add(fromEvent(document, 'touchmove').subscribe(event => this.onMouseMove(event as TouchEvent)));
-    this.draggingSub.add(fromEvent(document, 'mouseup').subscribe(() => this.putBack()));
-    this.draggingSub.add(fromEvent(document, 'mouseleave').subscribe(() => this.putBack()));
-    this.draggingSub.add(fromEvent(document, 'touchend').subscribe(() => this.putBack()));
+    this.draggingSub = fromEvent(document, 'mousemove', { passive: false }).subscribe(event => this.onMouseMove(event as MouseEvent));
+    this.draggingSub.add(fromEvent(document, 'touchmove', { passive: false }).subscribe(event => this.onMouseMove(event as TouchEvent)));
+    this.draggingSub.add(fromEvent(document, 'mouseup', { passive: false }).subscribe(() => this.putBack()));
+    this.draggingSub.add(fromEvent(document, 'mouseleave', { passive: false }).subscribe(() => this.putBack()));
+    this.draggingSub.add(fromEvent(document, 'touchend', { passive: false }).subscribe(() => this.putBack()));
   }
 
   private unsubscribeEvents() {
@@ -398,7 +402,7 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
       event.preventDefault();
     }
 
-    this.orignal = Position.fromEvent(event);
+    this.orignal = Position.fromEvent(event, this.getDragEl());
     this.pickUp();
   }
 
@@ -411,7 +415,7 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
 
       // Add a transparent helper div:
       this._helperBlock.add();
-      this.moveTo(Position.fromEvent(event));
+      this.moveTo(Position.fromEvent(event, this.getDragEl()));
     }
   }
 }

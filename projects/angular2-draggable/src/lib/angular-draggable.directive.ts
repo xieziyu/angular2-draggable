@@ -148,7 +148,7 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
       }
     }
 
-    if (changes['scale'] && !changes['scale'].isFirstChange()) {
+    if (this.isDragged && changes['scale'] && !changes['scale'].isFirstChange()) {
       this.oldTrans.x = this.currTrans.x * this.scale;
       this.oldTrans.y = this.currTrans.y * this.scale;
     }

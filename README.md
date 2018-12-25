@@ -27,6 +27,9 @@ angular2-draggable has angular directives that make the DOM element draggable an
     + provided since v2.0, requires Angular >= 6
 
 # Latest Update
++ 2018.12.25: 2.2.1:
+  + **ngDraggable**: Fixed flickering of the component on initial drag while scale is applied to the parent. ([by rathodsanjay](https://github.com/rathodsanjay) - [PR #134](https://github.com/xieziyu/angular2-draggable/pull/123))
+
 + 2018.12.22: 2.2.0
   + **ngDraggable**:
     + Performance update. Fix [issue #112](https://github.com/xieziyu/angular2-draggable/issues/112): Control change detection with HostListener events.

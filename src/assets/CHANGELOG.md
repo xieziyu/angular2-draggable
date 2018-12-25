@@ -1,3 +1,10 @@
+## 2.2.1 (2018-12-25)
+
+#### Bugfix
++ **ngDraggable**: Fixed flickering of the component on initial drag while scale is applied to the parent. ([by rathodsanjay](https://github.com/rathodsanjay) - [PR #134](https://github.com/xieziyu/angular2-draggable/pull/123))
+
+---
+
 ## 2.2.0 (2018-12-22)
 
 #### New
@@ -10,6 +17,7 @@
 + **ngResizable**:
     + fix [issue #132](https://github.com/xieziyu/angular2-draggable/issues/132): Aspect ratio feature exits Y-Axis boundary on resize.
     + Performance updated.
+
 ---
 
 ## 2.1.9 (2018-11-29)

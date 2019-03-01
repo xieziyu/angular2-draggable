@@ -1,3 +1,8 @@
+## 2.2.2 (2019-03-01)
+
+#### Bugfix
++ **ngDraggable**: Fixed ngDraggable toggle bug. ([by agnitos](https://github.com/agnitos)) - [PR #145](https://github.com/xieziyu/angular2-draggable/pull/145)
+
 ## 2.2.1 (2018-12-25)
 
 #### Bugfix

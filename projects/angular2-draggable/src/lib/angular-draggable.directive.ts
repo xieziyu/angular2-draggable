@@ -99,6 +99,7 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
       if (this.allowDrag) {
         this.renderer.addClass(element, 'ng-draggable');
       } else {
+        this.putBack();
         this.renderer.removeClass(element, 'ng-draggable');
       }
     }
@@ -406,6 +407,11 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
     // 2. if handle is set, the element can only be moved by handle
     let target = event.target || event.srcElement;
     if (this.handle !== undefined && !this.checkHandleTarget(target, this.handle)) {
+      return;
+    }
+
+    // 3. if allow drag is set to false, ignore the mousedown
+    if (this.allowDrag === false) {
       return;
     }
 

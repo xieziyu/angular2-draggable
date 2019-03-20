@@ -192,6 +192,16 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
   }
 
   private transform() {
+    // done to prevent the element from bouncing off when
+    // the parent element is scaled and element is dragged for first time
+    if (this.tempTrans.x !== 0 || this.tempTrans.y !== 0) {
+      if (this.isDragged === false) {
+        this.oldTrans.x = this.currTrans.x * this.scale;
+        this.oldTrans.y = this.currTrans.y * this.scale;
+      }
+      this.isDragged = true;
+    }
+
     let translateX = this.tempTrans.x + this.oldTrans.x;
     let translateY = this.tempTrans.y + this.oldTrans.y;
 
@@ -207,16 +217,6 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
     if (this.gridSize > 1) {
       translateX = Math.round(translateX / this.gridSize) * this.gridSize;
       translateY = Math.round(translateY / this.gridSize) * this.gridSize;
-    }
-
-    // done to prevent the element from bouncing off when
-    // the parent element is scaled and element is dragged for first time
-    if (this.tempTrans.x !== 0 || this.tempTrans.y !== 0) {
-      if (this.isDragged === false) {
-        this.oldTrans.x = this.currTrans.x * this.scale;
-        this.oldTrans.y = this.currTrans.y * this.scale;
-      }
-      this.isDragged = true;
     }
 
     if (this.scale && this.scale !== 0 && this.isDragged) {

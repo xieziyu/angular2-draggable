@@ -1,3 +1,12 @@
+## 2.2.3 (2019-04-18)
+
+#### Bugfix
++ **ngDraggable**: 
+    + Fix draggable position bouncing when draggable is scaled and position is set ([by agnitos](https://github.com/agnitos)) - [PR #150](https://github.com/xieziyu/angular2-draggable/pull/150)
+    + Fix translate in draggable.directive ([by Volker505](https://github.com/Volker505)) - [PR #151](https://github.com/xieziyu/angular2-draggable/pull/151)
+    + Fix issue with dragging window inside iframe for IE ([by fdabrowski](https://github.com/fdabrowski)) - [PR #154](https://github.com/xieziyu/angular2-draggable/pull/154)
+    + Fix Element move when resizing using the NW and NE handles and aspect ratio is enabled ([by dioseltorre](https://github.com/dioseltorre)) - [PR #156](https://github.com/xieziyu/angular2-draggable/pull/156)
+
 ## 2.2.2 (2019-03-01)
 
 #### Bugfix

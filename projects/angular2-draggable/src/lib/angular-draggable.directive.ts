@@ -31,11 +31,6 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
    */
   private _helperBlock: HelperBlock = null;
 
-  /**
-   * Flag to indicate whether the element is dragged once after being initialised
-   */
-  private isDragged = false;
-
   @Output() started = new EventEmitter<any>();
   @Output() stopped = new EventEmitter<any>();
   @Output() edge = new EventEmitter<any>();
@@ -148,11 +143,6 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
         this.needTransform = true;
       }
     }
-
-    if (this.isDragged && changes['scale'] && !changes['scale'].isFirstChange()) {
-      this.oldTrans.x = this.currTrans.x * this.scale;
-      this.oldTrans.y = this.currTrans.y * this.scale;
-    }
   }
 
   ngAfterViewInit() {
@@ -181,6 +171,7 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
     if (this.orignal) {
       p.subtract(this.orignal);
       this.tempTrans.set(p);
+      this.tempTrans.divide(this.scale);
       this.transform();
 
       if (this.bounds) {
@@ -207,21 +198,6 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
     if (this.gridSize > 1) {
       translateX = Math.round(translateX / this.gridSize) * this.gridSize;
       translateY = Math.round(translateY / this.gridSize) * this.gridSize;
-    }
-
-    // done to prevent the element from bouncing off when
-    // the parent element is scaled and element is dragged for first time
-    if (this.tempTrans.x !== 0 || this.tempTrans.y !== 0) {
-      if (this.isDragged === false) {
-        this.oldTrans.x = this.currTrans.x * this.scale;
-        this.oldTrans.y = this.currTrans.y * this.scale;
-      }
-      this.isDragged = true;
-    }
-
-    if (this.scale && this.scale !== 0 && this.isDragged) {
-      translateX = translateX / this.scale;
-      translateY = translateY / this.scale;
     }
 
     let value = `translate(${ Math.round(translateX) }px, ${ Math.round(translateY) }px)`;
@@ -265,10 +241,13 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
     this.draggingSub = fromEvent(document, 'mousemove', { passive: false }).subscribe(event => this.onMouseMove(event as MouseEvent));
     this.draggingSub.add(fromEvent(document, 'touchmove', { passive: false }).subscribe(event => this.onMouseMove(event as TouchEvent)));
     this.draggingSub.add(fromEvent(document, 'mouseup', { passive: false }).subscribe(() => this.putBack()));
-    this.draggingSub.add(fromEvent(document, 'mouseleave', { passive: false }).subscribe(() => this.putBack()));
+    // checking if browser is IE or Edge - https://github.com/xieziyu/angular2-draggable/issues/153
+    let isIEOrEdge = /msie\s|trident\//i.test(window.navigator.userAgent);
+    if (!isIEOrEdge) {
+      this.draggingSub.add(fromEvent(document, 'mouseleave', {passive: false}).subscribe(() => this.putBack()));
+    }
     this.draggingSub.add(fromEvent(document, 'touchend', { passive: false }).subscribe(() => this.putBack()));
     this.draggingSub.add(fromEvent(document, 'touchcancel', { passive: false }).subscribe(() => this.putBack()));
-
   }
 
   private unsubscribeEvents() {
@@ -289,19 +268,19 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
 
       if (this.inBounds) {
         if (!result.top) {
-          this.tempTrans.y -= elem.top - boundary.top;
+          this.tempTrans.y -= (elem.top - boundary.top) / this.scale;
         }
 
         if (!result.bottom) {
-          this.tempTrans.y -= elem.bottom - boundary.bottom;
+          this.tempTrans.y -= (elem.bottom - boundary.bottom) / this.scale;
         }
 
         if (!result.right) {
-          this.tempTrans.x -= elem.right - boundary.right;
+          this.tempTrans.x -= (elem.right - boundary.right) / this.scale;
         }
 
         if (!result.left) {
-          this.tempTrans.x -= elem.left - boundary.left;
+          this.tempTrans.x -= (elem.left - boundary.left) / this.scale;
         }
 
         this.transform();

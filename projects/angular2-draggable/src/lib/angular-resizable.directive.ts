@@ -436,9 +436,21 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
   private adjustByRatio() {
     if (this._aspectRatio) {
       if (this._direction.e || this._direction.w) {
-        this._currSize.height = this._currSize.width / this._aspectRatio;
+        const newHeight = this._currSize.width / this._aspectRatio;
+
+        if (this._direction.n) {
+          this._currPos.y += this._currSize.height - newHeight;
+        }
+
+        this._currSize.height = newHeight;
       } else {
-        this._currSize.width = this._aspectRatio * this._currSize.height;
+        const newWidth = this._aspectRatio * this._currSize.height;
+
+        if (this._direction.n) {
+          this._currPos.x += this._currSize.width - newWidth;
+        }
+
+        this._currSize.width = newWidth;
       }
     }
   }

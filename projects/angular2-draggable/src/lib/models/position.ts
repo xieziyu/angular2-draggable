@@ -68,6 +68,16 @@ export class Position implements IPosition {
     return this;
   }
 
+  multiply(n: number) {
+    this.x *= n;
+    this.y *= n;
+  }
+
+  divide(n: number) {
+    this.x /= n;
+    this.y /= n;
+  }
+
   reset() {
     this.x = 0;
     this.y = 0;

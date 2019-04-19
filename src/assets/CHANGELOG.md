@@ -1,3 +1,8 @@
+## 2.2.4 (2019-04-19)
+
+#### Bugfix
++ **ngResizable**: Fix [issue #157](https://github.com/xieziyu/angular2-draggable/issues/157): calling resetSize() method cause exception
+
 ## 2.2.3 (2019-04-18)
 
 #### Bugfix

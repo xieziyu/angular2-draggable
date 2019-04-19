@@ -27,6 +27,9 @@ angular2-draggable has angular directives that make the DOM element draggable an
     + provided since v2.0, requires Angular >= 6
 
 # Latest Update
++ 2019.04.19: 2.2.4:
+  + **ngResizable**:
+    + Fix [issue #157](https://github.com/xieziyu/angular2-draggable/issues/157): calling resetSize() method cause exception
 + 2019.04.18: 2.2.3:
   + **ngDraggable**: 
     + Fix draggable position bouncing when draggable is scaled and position is set ([by agnitos](https://github.com/agnitos)) - [PR #150](https://github.com/xieziyu/angular2-draggable/pull/150)
@@ -61,9 +64,6 @@ angular2-draggable has angular directives that make the DOM element draggable an
 
 + 2018.10.15: 2.1.5
   + **ngDraggable**: fix [issue #114](https://github.com/xieziyu/angular2-draggable/issues/114): EndOffset event not working properly with SnapToGrid
-
-+ 2018.08.03: 2.0.0
-  + Fix [issue #84](https://github.com/xieziyu/angular2-draggable/issues/84): iFrames, and context unrelated elements block all events, and are unusable
 
 
 # Installation

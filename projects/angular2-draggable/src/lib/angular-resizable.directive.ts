@@ -378,7 +378,8 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
       position: {
         top: this._currPos.y,
         left: this._currPos.x
-      }
+      },
+      direction: this._direction
     };
   }
 

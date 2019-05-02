@@ -8,4 +8,10 @@ export interface IResizeEvent {
     top: number;
     left: number;
   };
+  direction: {
+    n: boolean;
+    s: boolean;
+    w: boolean;
+    e: boolean;
+  };
 }

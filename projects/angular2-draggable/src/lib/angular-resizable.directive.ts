@@ -390,6 +390,30 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
       w: !!this._handleResizing.type.match(/w/),
       e: !!this._handleResizing.type.match(/e/)
     };
+
+    // if aspect ration should be preserved:
+    if (this.rzAspectRatio) {
+
+      // if north then west (unless ne)
+      if (this._direction.n && !this._direction.e) {
+        this._direction.w = true;
+      }
+
+      // if south then east (unless sw)
+      if (this._direction.s && !this._direction.w) {
+        this._direction.e = true;
+      }
+
+      // if east then south (unless ne)
+      if (this._direction.e && !this._direction.n) {
+        this._direction.s = true;
+      }
+
+      // if west then south (unless nw)
+      if (this._direction.w && !this._direction.n) {
+        this._direction.s = true;
+      }
+    }
   }
 
   private resizeTo(p: Position) {

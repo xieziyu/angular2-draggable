@@ -22,6 +22,7 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
   private _handleType: string[] = [];
   private _handleResizing: ResizeHandle = null;
   private _direction: { 'n': boolean, 's': boolean, 'w': boolean, 'e': boolean } = null;
+  private _directionChanged: { 'n': boolean, 's': boolean, 'w': boolean, 'e': boolean } = null;
   private _aspectRatio = 0;
   private _containment: HTMLElement = null;
   private _origMousePos: Position = null;
@@ -379,7 +380,7 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
         top: this._currPos.y,
         left: this._currPos.x
       },
-      direction: this._direction
+      direction: { ...this._directionChanged },
     };
   }
 
@@ -391,27 +392,29 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
       e: !!this._handleResizing.type.match(/e/)
     };
 
+    this._directionChanged = { ...this._direction };
+
     // if aspect ration should be preserved:
     if (this.rzAspectRatio) {
 
       // if north then west (unless ne)
-      if (this._direction.n && !this._direction.e) {
-        this._direction.w = true;
+      if (this._directionChanged.n && !this._directionChanged.e) {
+        this._directionChanged.w = true;
       }
 
       // if south then east (unless sw)
-      if (this._direction.s && !this._direction.w) {
-        this._direction.e = true;
+      if (this._directionChanged.s && !this._directionChanged.w) {
+        this._directionChanged.e = true;
       }
 
       // if east then south (unless ne)
-      if (this._direction.e && !this._direction.n) {
-        this._direction.s = true;
+      if (this._directionChanged.e && !this._directionChanged.n) {
+        this._directionChanged.s = true;
       }
 
       // if west then south (unless nw)
-      if (this._direction.w && !this._direction.n) {
-        this._direction.s = true;
+      if (this._directionChanged.w && !this._directionChanged.n) {
+        this._directionChanged.s = true;
       }
     }
   }
@@ -484,8 +487,6 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
     if (this._containment) {
       const maxWidth = this._bounding.width - this._bounding.pr - this.el.nativeElement.offsetLeft - this._bounding.translateX;
       const maxHeight = this._bounding.height - this._bounding.pb - this.el.nativeElement.offsetTop - this._bounding.translateY;
-      const minHeight = !this.rzMinHeight ? 1 : this.rzMinHeight;
-      const minWidth = !this.rzMinWidth ? 1 : this.rzMinWidth;
 
       if (this._direction.n && (this._currPos.y + this._bounding.translateY < 0)) {
         this._currPos.y = -this._bounding.translateY;

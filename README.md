@@ -27,6 +27,14 @@ angular2-draggable has angular directives that make the DOM element draggable an
     + provided since v2.0, requires Angular >= 6
 
 # Latest Update
++ 2019.05.14: 2.3.0:
+  + **ngResizable**:
+    + Fix [issue #157](https://github.com/xieziyu/angular2-draggable/issues/159): Problem resizing with containment
+    + Add `direction` property in `IResizeEvent`. 
+
+  + **ngDraggable**: 
+    + Add CSS class `ng-dragging` when dragging.
+
 + 2019.04.19: 2.2.4:
   + **ngResizable**:
     + Fix [issue #157](https://github.com/xieziyu/angular2-draggable/issues/157): calling resetSize() method cause exception
@@ -168,11 +176,15 @@ Well you can use both directives concurrently if you wish:
     | preventDefaultEvent | boolean | `false` | Whether to prevent default mouse event. |
 
 ## CSS:
-+ When `ngDraggable` is enabled on some element, `ng-draggable` class is automatically assigned to it. You can use it to customize the pointer style. For example:
++ When `ngDraggable` is enabled on some element, `ng-draggable` and `ng-dragging` class is automatically toggled on it. You can use it to customize the pointer style. For example:
 
     ```css
     .ng-draggable {
-      cursor: move;
+      cursor: grab;
+    }
+
+    .ng-dragging {
+      cursor: grabbing;
     }
     ```
 
@@ -219,6 +231,12 @@ Well you can use both directives concurrently if you wish:
       position: {
         top: number;
         left: number;
+      };
+      direction: {
+        n: boolean;
+        s: boolean;
+        w: boolean;
+        e: boolean;
       };
     }
     ```

@@ -51,6 +51,7 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
   private _helperBlock: HelperBlock = null;
 
   private draggingSub: Subscription = null;
+  private _adjusted = false;
 
   /** Disables the resizable if set to false. */
   @Input() set ngResizable(v: any) {
@@ -462,9 +463,9 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
   }
 
   private adjustByRatio() {
-    if (this._aspectRatio) {
+    if (this._aspectRatio && !this._adjusted) {
       if (this._direction.e || this._direction.w) {
-        const newHeight = this._currSize.width / this._aspectRatio;
+        const newHeight = Math.floor(this._currSize.width / this._aspectRatio);
 
         if (this._direction.n) {
           this._currPos.y += this._currSize.height - newHeight;
@@ -472,7 +473,7 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
 
         this._currSize.height = newHeight;
       } else {
-        const newWidth = this._aspectRatio * this._currSize.height;
+        const newWidth = Math.floor(this._aspectRatio * this._currSize.height);
 
         if (this._direction.n) {
           this._currPos.x += this._currSize.width - newWidth;
@@ -485,8 +486,8 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
 
   private checkBounds() {
     if (this._containment) {
-      const maxWidth = this._bounding.width - this._bounding.pr - this.el.nativeElement.offsetLeft - this._bounding.translateX;
-      const maxHeight = this._bounding.height - this._bounding.pb - this.el.nativeElement.offsetTop - this._bounding.translateY;
+      const maxWidth = this._bounding.width - this._bounding.pr - this._bounding.deltaL - this._bounding.translateX - this._currPos.x;
+      const maxHeight = this._bounding.height - this._bounding.pb - this._bounding.deltaT - this._bounding.translateY - this._currPos.y;
 
       if (this._direction.n && (this._currPos.y + this._bounding.translateY < 0)) {
         this._currPos.y = -this._bounding.translateY;
@@ -511,20 +512,32 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
        * https://github.com/xieziyu/angular2-draggable/issues/132
        */
       if (this._aspectRatio) {
-        if ((this._currSize.width / this._aspectRatio) > maxHeight) {
-          this._currSize.width = maxHeight * this._aspectRatio;
+        this._adjusted = false;
+
+        if ((this._direction.w || this._direction.e) &&
+            (this._currSize.width / this._aspectRatio) >= maxHeight) {
+          const newWidth = Math.floor(maxHeight * this._aspectRatio);
 
           if (this._direction.w) {
-            this._currPos.x = this._origPos.x;
+            this._currPos.x += this._currSize.width - newWidth;
           }
+
+          this._currSize.width = newWidth;
+          this._currSize.height = maxHeight;
+          this._adjusted = true;
         }
 
-        if ((this._currSize.height * this._aspectRatio) > maxWidth) {
-          this._currSize.height = maxWidth / this._aspectRatio;
+        if ((this._direction.n || this._direction.s) &&
+            (this._currSize.height * this._aspectRatio) >= maxWidth) {
+          const newHeight = Math.floor(maxWidth / this._aspectRatio);
 
           if (this._direction.n) {
-            this._currPos.y = this._origPos.y;
+            this._currPos.y += this._currSize.height - newHeight;
           }
+
+          this._currSize.width = maxWidth;
+          this._currSize.height = newHeight;
+          this._adjusted = true;
         }
       }
     }
@@ -581,6 +594,8 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
       this._bounding.height = el.clientHeight;
       this._bounding.pr = parseInt(computed.getPropertyValue('padding-right'), 10);
       this._bounding.pb = parseInt(computed.getPropertyValue('padding-bottom'), 10);
+      this._bounding.deltaL = this.el.nativeElement.offsetLeft - this._currPos.x;
+      this._bounding.deltaT = this.el.nativeElement.offsetTop - this._currPos.y;
 
       if (transforms.length >= 6) {
         this._bounding.translateX = parseInt(transforms[4], 10);

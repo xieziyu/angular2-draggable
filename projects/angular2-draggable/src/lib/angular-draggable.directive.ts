@@ -229,6 +229,9 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
       this.started.emit(this.el.nativeElement);
       this.moving = true;
 
+      const element = this.getDragEl();
+      this.renderer.addClass(element, 'ng-dragging');
+
       /**
        * Fix performance issue:
        * https://github.com/xieziyu/angular2-draggable/issues/112
@@ -339,6 +342,9 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
       if (!this.trackPosition) {
         this.transform();
       }
+
+      const element = this.getDragEl();
+      this.renderer.removeClass(element, 'ng-dragging');
 
       /**
        * Fix performance issue:

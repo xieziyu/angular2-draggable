@@ -1,3 +1,12 @@
+## 2.3.0 (2019-05-14)
+
+#### New
++ **ngDraggable**: Add CSS class `ng-dragging` when dragging.
++ **ngResizable**: Add `direction` property in `IResizeEvent`. 
+
+#### Bugfix
++ **ngResizable**: Fix [issue #157](https://github.com/xieziyu/angular2-draggable/issues/159): Problem resizing with containment
+
 ## 2.2.4 (2019-04-19)
 
 #### Bugfix

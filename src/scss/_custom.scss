@@ -49,8 +49,12 @@
 }
 
 .ng-draggable {
-  cursor: move;
+  cursor: grab;
   background-color: $blue;
+}
+
+.ng-dragging {
+  cursor: grabbing;
 }
 
 .drag-boundary {

@@ -12,7 +12,7 @@ export class Position implements IPosition {
      * https://github.com/xieziyu/angular2-draggable/issues/164
      * e instanceof MouseEvent check returns false on IE11
      */
-    if (Object.prototype.toString.apply(e).indexOf('MouseEvent') === 8) {
+    if (this.isMouseEvent(e)) {
       return new Position(e.clientX, e.clientY);
     } else {
       if (el === null || e.changedTouches.length === 1) {
@@ -29,6 +29,10 @@ export class Position implements IPosition {
         }
       }
     }
+  }
+
+  static isMouseEvent(e: MouseEvent | TouchEvent): e is MouseEvent {
+    return Object.prototype.toString.apply(e).indexOf('MouseEvent') === 8;
   }
 
   static isIPosition(obj): obj is IPosition {

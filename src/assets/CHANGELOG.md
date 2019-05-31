@@ -1,3 +1,8 @@
+## 2.3.1 (2019-05-31)
+
+#### Bugfix
++ **ngResizable**: Fix [issue #164](https://github.com/xieziyu/angular2-draggable/issues/164): Resize doesn't work on Windows10 IE11 ([by shumih](https://github.com/shumih]) - [PR #171](https://github.com/xieziyu/angular2-draggable/pull/171))
+
 ## 2.3.0 (2019-05-14)
 
 #### New

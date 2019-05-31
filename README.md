@@ -27,6 +27,10 @@ angular2-draggable has angular directives that make the DOM element draggable an
     + provided since v2.0, requires Angular >= 6
 
 # Latest Update
++ 2019.05.31: 2.3.1:
+  + **ngResizable**
+    + Fix [issue #164](https://github.com/xieziyu/angular2-draggable/issues/164): Resize doesn't work on Windows10 IE11 ([by shumih](https://github.com/shumih]) - [PR #171](https://github.com/xieziyu/angular2-draggable/pull/171))
+
 + 2019.05.14: 2.3.0:
   + **ngResizable**:
     + Fix [issue #157](https://github.com/xieziyu/angular2-draggable/issues/159): Problem resizing with containment
@@ -69,10 +73,6 @@ angular2-draggable has angular directives that make the DOM element draggable an
 
 + 2018.10.26: 2.1.6
   + **ngResizable**: fix [issue #115](https://github.com/xieziyu/angular2-draggable/issues/115): rzResizing IE event issue
-
-+ 2018.10.15: 2.1.5
-  + **ngDraggable**: fix [issue #114](https://github.com/xieziyu/angular2-draggable/issues/114): EndOffset event not working properly with SnapToGrid
-
 
 # Installation
 ```

@@ -7,7 +7,12 @@ export class Position implements IPosition {
   constructor(public x: number, public y: number) { }
 
   static fromEvent(e: MouseEvent | TouchEvent, el: any = null) {
-    if (e instanceof MouseEvent) {
+    /**
+     * Fix issue: Resize doesn't work on Windows10 IE11 (and on some windows 7 IE11)
+     * https://github.com/xieziyu/angular2-draggable/issues/164
+     * e instanceof MouseEvent check returns false on IE11
+     */
+    if (this.isMouseEvent(e)) {
       return new Position(e.clientX, e.clientY);
     } else {
       if (el === null || e.changedTouches.length === 1) {
@@ -24,6 +29,10 @@ export class Position implements IPosition {
         }
       }
     }
+  }
+
+  static isMouseEvent(e: MouseEvent | TouchEvent): e is MouseEvent {
+    return Object.prototype.toString.apply(e).indexOf('MouseEvent') === 8;
   }
 
   static isIPosition(obj): obj is IPosition {

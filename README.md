@@ -27,9 +27,9 @@ angular2-draggable has angular directives that make the DOM element draggable an
     + provided since v2.0, requires Angular >= 6
 
 # Latest Update
-+ 2019.05.31: 2.3.1:
++ 2019.06.10: 2.3.2:
   + **ngResizable**
-    + Fix [issue #164](https://github.com/xieziyu/angular2-draggable/issues/164): Resize doesn't work on Windows10 IE11 ([by shumih](https://github.com/shumih]) - [PR #171](https://github.com/xieziyu/angular2-draggable/pull/171))
+    + Fix [issue #164](https://github.com/xieziyu/angular2-draggable/issues/164): Resize doesn't work on Windows10 IE11 ([PR #171](https://github.com/xieziyu/angular2-draggable/pull/171) by [shumih](https://github.com/shumih]), [PR #174](https://github.com/xieziyu/angular2-draggable/pull/174) by [LiorSaadon](https://github.com/LiorSaadon]))
 
 + 2019.05.14: 2.3.0:
   + **ngResizable**:

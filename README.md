@@ -21,12 +21,16 @@
 angular2-draggable has angular directives that make the DOM element draggable and resizable.
 + `ngDraggable`
     + v2.x requires Angular >= 6
-    + v1.4.2 requires Angular >= 4 && < 6
+    + v1.5.0 requires Angular >= 4 && < 6
 
 + `ngResizable`
     + provided since v2.0, requires Angular >= 6
 
 # Latest Update
++ 2019.08.01: 1.5.0:
+  + **ngDraggable**: 
+    + Porting features from v2 to v1
+
 + 2019.06.10: 2.3.2:
   + **ngResizable**
     + Fix [issue #164](https://github.com/xieziyu/angular2-draggable/issues/164): Resize doesn't work on Windows10 IE11 ([PR #171](https://github.com/xieziyu/angular2-draggable/pull/171) by [shumih](https://github.com/shumih]), [PR #174](https://github.com/xieziyu/angular2-draggable/pull/174) by [LiorSaadon](https://github.com/LiorSaadon]))
@@ -38,41 +42,6 @@ angular2-draggable has angular directives that make the DOM element draggable an
 
   + **ngDraggable**: 
     + Add CSS class `ng-dragging` when dragging.
-
-+ 2019.04.19: 2.2.4:
-  + **ngResizable**:
-    + Fix [issue #157](https://github.com/xieziyu/angular2-draggable/issues/157): calling resetSize() method cause exception
-+ 2019.04.18: 2.2.3:
-  + **ngDraggable**: 
-    + Fix draggable position bouncing when draggable is scaled and position is set ([by agnitos](https://github.com/agnitos)) - [PR #150](https://github.com/xieziyu/angular2-draggable/pull/150)
-    + Fix translate in draggable.directive ([by Volker505](https://github.com/Volker505)) - [PR #151](https://github.com/xieziyu/angular2-draggable/pull/151)
-    + Fix issue with dragging window inside iframe for IE ([by fdabrowski](https://github.com/fdabrowski)) - [PR #154](https://github.com/xieziyu/angular2-draggable/pull/154)
-    + Fix Element move when resizing using the NW and NE handles and aspect ratio is enabled ([by dioseltorre](https://github.com/dioseltorre)) - [PR #156](https://github.com/xieziyu/angular2-draggable/pull/156)
-+ 2019.03.01: 2.2.2:
-  + **ngDraggable**: Fixed ngDraggable toggle bug. ([by agnitos](https://github.com/agnitos)) - [PR #145](https://github.com/xieziyu/angular2-draggable/pull/145)
-
-+ 2018.12.25: 2.2.1:
-  + **ngDraggable**: Fixed flickering of the component on initial drag while scale is applied to the parent. ([by rathodsanjay](https://github.com/rathodsanjay) - [PR #134](https://github.com/xieziyu/angular2-draggable/pull/123))
-
-+ 2018.12.22: 2.2.0
-  + **ngDraggable**:
-    + Performance update. Fix [issue #112](https://github.com/xieziyu/angular2-draggable/issues/112): Control change detection with HostListener events.
-    + Fix [issue #128](https://github.com/xieziyu/angular2-draggable/issues/128): Multiple phone draggables at the same time.
-    + New `[lockAxis]` input.
-  + **ngResizable**:
-    + Fix [issue #132](https://github.com/xieziyu/angular2-draggable/issues/132): Aspect ratio feature exits Y-Axis boundary on resize.
-
-+ 2018.11.29: 2.1.9
-  + **ngDraggable**: fix [issue #31](https://github.com/xieziyu/angular2-draggable/issues/31): Problems when scale transform applied to parent. ([by rathodsanjay](https://github.com/rathodsanjay) - [PR #123](https://github.com/xieziyu/angular2-draggable/pull/123))
-
-+ 2018.11.11: 2.1.8
-  + **ngResizable**: add [preventDefaultEvent] flag to ngResizable mousedown ([by mecp](https://github.com/mecp) - [PR #119](https://github.com/xieziyu/angular2-draggable/pull/119))
-
-+ 2018.10.31: 2.1.7
-  + **ngResizable**: fix [issue #116](https://github.com/xieziyu/angular2-draggable/issues/116): ngResizable Locks Height When rzHandles Includes Only e, w. (Thanks to [Yamazaki93](https://github.com/Yamazaki93))
-
-+ 2018.10.26: 2.1.6
-  + **ngResizable**: fix [issue #115](https://github.com/xieziyu/angular2-draggable/issues/115): rzResizing IE event issue
 
 # Installation
 ```

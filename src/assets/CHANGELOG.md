@@ -1,3 +1,10 @@
+## 1.5.0 (2019-08-01)
++ Porting features from 2.x
+
+#### Changes
++ Expose boundsCheck() method.
+
+
 ## 1.4.2 (2018-05-23)
 
 #### Changes

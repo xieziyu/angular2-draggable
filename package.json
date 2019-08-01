@@ -44,7 +44,7 @@
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
-    "@types/prismjs": "^1.6.5",
+    "@types/prismjs": "1.6.5",
     "bootstrap": "4.0.0-beta.2",
     "codelyzer": "^4.0.1",
     "cpr": "^3.0.1",
@@ -65,6 +65,6 @@
     "rimraf": "^2.6.2",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
-    "typescript": "~2.4.2"
+    "typescript": "2.4.2"
   }
 }

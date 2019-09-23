@@ -6,7 +6,9 @@ export const CODE_HTML = `\
     <p><button (click)="useHandle = !useHandle" class="btn btn-outline-primary">toggle [handle]</button></p>
     <p><button (click)="zIndex = '1000'" class="btn btn-outline-primary">set [zIndex] to 1000</button></p>
     <p><button (click)="zIndexMoving = '99999'" class="btn btn-outline-primary">set [zIndexMoving] to 99999</button></p>
-    <p><button (click)="preventDefaultEvent = !preventDefaultEvent" class="btn btn-outline-primary">toggle [preventDefaultEvent]</button></p>
+    <p><button (click)="preventDefaultEvent = !preventDefaultEvent" class="btn btn-outline-primary">
+      toggle [preventDefaultEvent]</button>
+    </p>
     <p><button (click)="trackPosition = !trackPosition" class="btn btn-outline-primary">toggle [trackPosition]</button></p>
   </div>
   <div class="col-sm-6">

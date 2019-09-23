@@ -12,7 +12,9 @@ export class BoundaryComponent implements OnInit {
     <p><button (click)="inBounds = !inBounds" class="btn btn-outline-primary">toggle [inBounds]</button></p>
   </div>
   <div class="col-sm-8">
-    <div class="drag-boundary" [ngClass]="{ 'top-b': !edge?.top, 'bottom-b': !edge?.bottom, 'left-b': !edge?.left, 'right-b': !edge?.right }" #myBounds>
+    <div class="drag-boundary"
+      [ngClass]="{ 'top-b': !edge?.top, 'bottom-b': !edge?.bottom, 'left-b': !edge?.left, 'right-b': !edge?.right }"
+      #myBounds>
       <p class="label">#myBounds</p>
       <div ngDraggable class="drag-block" (edge)="checkEdge($event)" [bounds]="myBounds" [inBounds]="inBounds">
         <p>Drag me {{ inBounds?'in #myBounds':'' }}</p>

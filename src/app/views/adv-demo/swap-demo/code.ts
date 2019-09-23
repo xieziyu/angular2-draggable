@@ -1,6 +1,10 @@
 export const CODE_HTML = `\
 <div class="box-container">
-  <div class="box-swap bg-success" ngDraggable [preventDefaultEvent]="true" [zIndexMoving]="9999" [trackPosition]="false" [position]="positionA"
+  <div class="box-swap bg-success" ngDraggable
+    [preventDefaultEvent]="true"
+    [zIndexMoving]="9999"
+    [trackPosition]="false"
+    [position]="positionA"
     (movingOffset)="onMoving($event)">A (Drag)</div>
   <div class="box-swap bg-info static-block" [ngDraggable]="false" [preventDefaultEvent]="true" [position]="positionB">B</div>
 </div>`;

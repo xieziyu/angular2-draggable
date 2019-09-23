@@ -1,7 +1,13 @@
 export const CODE_HTML = `\
 <div class="grid-container" #myBounds>
   <!-- Draggable block -->
-  <div ngDraggable [bounds]="myBounds" [inBounds]="true" [gridSize]="gridSize" [zIndex]="100" [preventDefaultEvent]="true" class="drag-grid">
+  <div ngDraggable
+    [bounds]="myBounds"
+    [inBounds]="true"
+    [gridSize]="gridSize"
+    [zIndex]="100"
+    [preventDefaultEvent]="true"
+    class="drag-grid">
     <p>Drag</p>
   </div>
   <!-- Draw grids -->

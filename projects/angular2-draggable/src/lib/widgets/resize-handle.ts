@@ -9,10 +9,11 @@ export class ResizeHandle {
     protected renderer: Renderer2,
     public type: string,
     public css: string,
-    private onMouseDown: any
+    private onMouseDown: any,
+    private existHandle?: Element
   ) {
-    // generate handle div
-    let handle = renderer.createElement('div');
+    // generate handle div or using exist handle
+    let handle = this.existHandle || renderer.createElement('div');
     renderer.addClass(handle, 'ng-resizable-handle');
     renderer.addClass(handle, css);
 
@@ -22,7 +23,7 @@ export class ResizeHandle {
     }
 
     // append div to parent
-    if (this.parent) {
+    if (this.parent && !this.existHandle) {
       parent.appendChild(handle);
     }
 
@@ -39,7 +40,7 @@ export class ResizeHandle {
     this._handle.removeEventListener('mousedown', this._onResize);
     this._handle.removeEventListener('touchstart', this._onResize);
 
-    if (this.parent) {
+    if (this.parent && !this.existHandle) {
       this.parent.removeChild(this._handle);
     }
     this._handle = null;

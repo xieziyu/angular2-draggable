@@ -71,6 +71,26 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
   @Input() rzHandles: ResizeHandleType = 'e,s,se';
 
   /**
+   * Using exist handles for resizing instead of generate them.
+   * @example
+   * [rzHandleDoms] = {
+   *   e: handelE,
+   *   s: handelS,
+   *   se: handelSE
+   * };
+   * */
+  @Input() rzHandleDoms: {
+    se?: ElementRef;
+    sw?: ElementRef;
+    ne?: ElementRef;
+    nw?: ElementRef;
+    n?: ElementRef;
+    e?: ElementRef;
+    s?: ElementRef;
+    w?: ElementRef;
+  } = {};
+
+  /**
    * Whether the element should be constrained to a specific aspect ratio.
    *  Multiple types supported:
    *  boolean: When set to true, the element will maintain its original aspect ratio.
@@ -267,13 +287,14 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
   /** Use it to create a handle */
   private createHandleByType(type: string, css: string): ResizeHandle {
     const _el = this.el.nativeElement;
+    const _h = this.rzHandleDoms[type] ? this.rzHandleDoms[type].nativeElement : null;
 
     if (!type.match(/^(se|sw|ne|nw|n|e|s|w)$/)) {
       console.error('Invalid handle type:', type);
       return null;
     }
 
-    return new ResizeHandle(_el, this.renderer, type, css, this.onMouseDown.bind(this));
+    return new ResizeHandle(_el, this.renderer, type, css, this.onMouseDown.bind(this), _h);
   }
 
   private removeHandles() {

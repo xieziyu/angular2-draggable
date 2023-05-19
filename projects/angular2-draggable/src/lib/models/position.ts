@@ -4,7 +4,7 @@ export interface IPosition {
 }
 
 export class Position implements IPosition {
-  constructor(public x: number, public y: number) { }
+  constructor(public x: number, public y: number) {}
 
   static fromEvent(e: MouseEvent | TouchEvent, el: any = null) {
     /**
@@ -29,6 +29,7 @@ export class Position implements IPosition {
         }
       }
     }
+    return null;
   }
 
   static isMouseEvent(e: MouseEvent | TouchEvent): e is MouseEvent {
@@ -36,7 +37,7 @@ export class Position implements IPosition {
   }
 
   static isIPosition(obj): obj is IPosition {
-    return !!obj && ('x' in obj) && ('y' in obj);
+    return !!obj && 'x' in obj && 'y' in obj;
   }
 
   static getCurrent(el: Element) {

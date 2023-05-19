@@ -27,7 +27,9 @@ export class ResizeHandle {
     }
 
     // create and register event listener
-    this._onResize = (event) => { onMouseDown(event, this); };
+    this._onResize = event => {
+      onMouseDown(event, this);
+    };
     handle.addEventListener('mousedown', this._onResize, { passive: false });
     handle.addEventListener('touchstart', this._onResize, { passive: false });
 

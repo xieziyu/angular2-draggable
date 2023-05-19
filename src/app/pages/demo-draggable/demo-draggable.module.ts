@@ -10,7 +10,14 @@ import { DraggableBoundaryComponent } from './draggable-boundary/draggable-bound
 import { DraggableMethodsComponent } from './draggable-methods/draggable-methods.component';
 
 @NgModule({
-  declarations: [DraggableBasicComponent, DraggableLayoutComponent, DraggableOptionsComponent, DraggableEventsComponent, DraggableBoundaryComponent, DraggableMethodsComponent],
+  declarations: [
+    DraggableBasicComponent,
+    DraggableLayoutComponent,
+    DraggableOptionsComponent,
+    DraggableEventsComponent,
+    DraggableBoundaryComponent,
+    DraggableMethodsComponent,
+  ],
   imports: [CommonModule, SharedModule, DemoDraggableRoutingModule],
 })
 export class DemoDraggableModule {}

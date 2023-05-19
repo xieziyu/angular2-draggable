@@ -47,8 +47,8 @@
             "styles": [
               "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "src/styles.scss",
-              "src/styles.scss",
-              "src/prism-material-dark.css"
+              "src/prism-material-dark.css",
+              "dist/angular2-draggable/css/resizable.min.css"
             ],
             "scripts": [
               "node_modules/marked/marked.min.js",

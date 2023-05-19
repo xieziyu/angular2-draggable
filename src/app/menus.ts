@@ -19,4 +19,9 @@ export const APP_MENUS: AppMenu[] = [
     icon: 'drag',
     text: 'Draggable',
   },
+  {
+    path: '/resizable',
+    icon: 'expand',
+    text: 'Resizable',
+  },
 ];

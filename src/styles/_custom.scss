@@ -1,3 +1,19 @@
+$white:                           #fff;
+$gray-100:                        #f0f3f5;
+$gray-200:                        #c2cfd6;
+$gray-300:                        #a4b7c1;
+$gray-400:                        #869fac;
+$gray-500:                        #678898;
+$gray-600:                        #536c79;
+$gray-700:                        #3e515b;
+$gray-800:                        #29363d;
+$gray-900:                        #151b1e;
+$black:                           #000 !default;
+
+$blue:                            #1890ff;
+$red:                             #ff4d4f;
+$green:                           #49aa19;
+
 markdown table {
   margin: auto !important;
 }
@@ -27,10 +43,80 @@ markdown table {
   padding: 16px 0;
 }
 
-.demo-chart {
-  height: 500px;
+.drag-block-sm {
+  width: 100px;
+  height: 100px;
+  color: white;
+  line-height: 100px;
+  text-align: center;
 }
 
-.demo-chart-600 {
-  height: 600px;
+.drag-block {
+  width: 200px;
+  height: 200px;
+  background-color: $blue;
+  color: white;
+  padding: 75px 0px;
+  line-height: 50px;
+  text-align: center;
+}
+
+.drag-block-lg {
+  width: 300px;
+  height: 300px;
+  background-color: $red;
+  padding-top: 20px;
+  color: white;
+  text-align: center;
+  overflow-y: auto;
+}
+
+.drag-block-handle {
+  width: 100px;
+  height: 43px;
+  margin-top: -20px;
+  padding-top: 10px;
+  margin-bottom: 10px;
+}
+
+.ng-draggable {
+  cursor: grab;
+  background-color: $blue;
+}
+
+.ng-dragging {
+  cursor: grabbing;
+}
+
+.drag-boundary {
+  width: 400px;
+  height: 400px;
+  overflow: hidden;
+  border: solid 1px $green;
+  position: relative;
+
+  .label {
+    color: white;
+    background-color: $green;
+    width: 100px;
+    text-align: center;
+    right: 0px;
+    position: absolute;
+  }
+}
+
+.top-b {
+  border-top-color: $red !important;
+}
+
+.bottom-b {
+  border-bottom-color: $red !important;
+}
+
+.left-b {
+  border-left-color: $red !important;
+}
+
+.right-b {
+  border-right-color: $red !important;
 }

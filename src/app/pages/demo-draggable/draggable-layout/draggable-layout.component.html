@@ -1,0 +1,38 @@
+<nz-page-header nzTitle="ngDraggable">
+  <nz-breadcrumb nz-page-header-breadcrumb>
+    <nz-breadcrumb-item>
+      <a routerLink="/welcome">Home</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>Draggable</nz-breadcrumb-item>
+  </nz-breadcrumb>
+</nz-page-header>
+
+<nz-divider></nz-divider>
+
+<nz-tabset style="margin-top: 8px" [nzTabPosition]="'left'">
+  <nz-tab nzTitle="Basic Usage">
+    <ng-template nz-tab>
+      <app-draggable-basic></app-draggable-basic>
+    </ng-template>
+  </nz-tab>
+  <nz-tab nzTitle="Options">
+    <ng-template nz-tab>
+      <app-draggable-options></app-draggable-options>
+    </ng-template>
+  </nz-tab>
+  <nz-tab nzTitle="Events">
+    <ng-template nz-tab>
+      <app-draggable-events></app-draggable-events>
+    </ng-template>
+  </nz-tab>
+  <nz-tab nzTitle="Boundary">
+    <ng-template nz-tab>
+      <app-draggable-boundary></app-draggable-boundary>
+    </ng-template>
+  </nz-tab>
+  <nz-tab nzTitle="Methods">
+    <ng-template nz-tab>
+      <app-draggable-methods></app-draggable-methods>
+    </ng-template>
+  </nz-tab>
+</nz-tabset>

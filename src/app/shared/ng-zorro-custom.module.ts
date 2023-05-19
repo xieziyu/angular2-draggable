@@ -11,6 +11,8 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
 
 const NG_ZORRO_MODULES = [
   NzIconModule,
@@ -24,6 +26,8 @@ const NG_ZORRO_MODULES = [
   NzCardModule,
   NzDividerModule,
   NzPageHeaderModule,
+  NzAlertModule,
+  NzTypographyModule,
 ];
 
 @NgModule({

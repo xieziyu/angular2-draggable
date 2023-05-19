@@ -18,11 +18,5 @@ export const APP_MENUS: AppMenu[] = [
     path: '/draggable',
     icon: 'drag',
     text: 'Draggable',
-    submenus: [
-      {
-        path: '/draggable/basic',
-        text: 'Basic',
-      },
-    ],
   },
 ];

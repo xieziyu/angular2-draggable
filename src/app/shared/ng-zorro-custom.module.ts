@@ -13,6 +13,7 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
 
 const NG_ZORRO_MODULES = [
   NzIconModule,
@@ -28,6 +29,7 @@ const NG_ZORRO_MODULES = [
   NzPageHeaderModule,
   NzAlertModule,
   NzTypographyModule,
+  NzSpaceModule,
 ];
 
 @NgModule({

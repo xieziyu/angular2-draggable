@@ -1,33 +1,29 @@
 <!-- DEMO START -->
-<div nz-row [nzGutter]="6">
-  <div nz-col [nzSpan]="6">
+<nz-row [nzGutter]="6">
+  <nz-col nzSpan="6">
     <nz-alert
       nzType="info"
-      nzMessage="
-    movingOffset: { x: {{ movingOffset.x }}, y: {{ movingOffset.y }} }
-    "></nz-alert>
-  </div>
-  <div nz-col [nzSpan]="6">
+      nzMessage="movingOffset: { x: {{ movingOffset.x }}, y: {{ movingOffset.y }} }">
+    </nz-alert>
+    <br />
     <nz-alert
       nzType="info"
-      nzMessage="
-      endOffset: { x: {{ endOffset.x }}, y: {{ endOffset.y }} }
-    "></nz-alert>
-  </div>
-</div>
-<nz-divider></nz-divider>
-<div
-  ngDraggable
-  class="drag-block"
-  [zIndex]="'1000'"
-  (started)="onStart($event)"
-  (stopped)="onStop($event)"
-  (movingOffset)="onMoving($event)"
-  [preventDefaultEvent]="true"
-  (endOffset)="onMoveEnd($event)">
-  <p>Drag me</p>
-  <p>check your console</p>
-</div>
+      nzMessage="endOffset: { x: {{ endOffset.x }}, y: {{ endOffset.y }} }"></nz-alert>
+  </nz-col>
+  <nz-col nzSpan="18">
+    <div
+      ngDraggable
+      class="drag-block"
+      (started)="onStart($event)"
+      (stopped)="onStop($event)"
+      (movingOffset)="onMoving($event)"
+      [preventDefaultEvent]="true"
+      (endOffset)="onMoveEnd($event)">
+      <p>Drag me</p>
+      <p>check your console</p>
+    </div>
+  </nz-col>
+</nz-row>
 <!-- DEMO END -->
 
 <app-code-block [html]="html" [component]="component"></app-code-block>

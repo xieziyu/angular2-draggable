@@ -41,6 +41,13 @@ markdown table {
   }
 }
 
+.code-block-sm {
+  pre {
+    height: 200px;
+    overflow-y: auto;
+  }
+}
+
 .button-groups {
   button {
     margin-right: 16px;

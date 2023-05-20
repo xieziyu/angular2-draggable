@@ -1,6 +1,6 @@
 <div class="text-center">
   <h1>
-    <img src="assets/img/angular.svg" alt="version" width="40px" />
+    <img src="assets/logo.svg" alt="version" width="40px" />
     Angular2-Draggable
   </h1>
   <p>
@@ -34,10 +34,19 @@
 <div class="container">
   <div nz-row nzGutter="16">
     <div nz-col nzSpan="12">
-      <markdown ngPreserveWhitespaces [data]="installText"></markdown>
+      <markdown class="code-block-sm" ngPreserveWhitespaces [data]="installText"></markdown>
     </div>
     <div nz-col nzSpan="12">
-      <markdown ngPreserveWhitespaces [data]="importText"></markdown>
+      <markdown class="code-block-sm" ngPreserveWhitespaces [data]="importText"></markdown>
+    </div>
+    <div nz-col nzSpan="12">
+      <markdown class="code-block-sm" ngPreserveWhitespaces [data]="draggableHTML"></markdown>
+    </div>
+    <div nz-col nzSpan="12">
+      <markdown class="code-block-sm" ngPreserveWhitespaces [data]="resizableHTML"></markdown>
+    </div>
+    <div nz-col nzSpan="12">
+      <markdown class="code-block-sm" ngPreserveWhitespaces [data]="resizableCSS"></markdown>
     </div>
   </div>
 </div>

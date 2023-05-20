@@ -1,7 +1,16 @@
 import {
-  Directive, ElementRef, Renderer2,
-  Input, Output, OnInit, HostListener,
-  EventEmitter, OnChanges, SimpleChanges, OnDestroy, AfterViewInit
+  Directive,
+  ElementRef,
+  Renderer2,
+  Input,
+  Output,
+  OnInit,
+  HostListener,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges,
+  OnDestroy,
+  AfterViewInit,
 } from '@angular/core';
 
 import { Subscription, fromEvent } from 'rxjs';
@@ -10,7 +19,7 @@ import { HelperBlock } from './widgets/helper-block';
 
 @Directive({
   selector: '[ngDraggable]',
-  exportAs: 'ngDraggable'
+  exportAs: 'ngDraggable',
 })
 export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, AfterViewInit {
   private allowDrag = true;
@@ -46,7 +55,7 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
     top: false,
     right: false,
     bottom: false,
-    left: false
+    left: false,
   };
 
   /** Round the position to nearest grid */
@@ -175,7 +184,10 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
       this.transform();
 
       if (this.bounds) {
-        this.edge.emit(this.boundsCheck());
+        let edgeEv = this.boundsCheck();
+        if (edgeEv) {
+          this.edge.emit(edgeEv);
+        }
       }
 
       this.movingOffset.emit(this.currTrans.value);
@@ -200,7 +212,7 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
       translateY = Math.round(translateY / this.gridSize) * this.gridSize;
     }
 
-    let value = `translate(${ Math.round(translateX) }px, ${ Math.round(translateY) }px)`;
+    let value = `translate(${Math.round(translateX)}px, ${Math.round(translateY)}px)`;
 
     this.renderer.setStyle(this.el.nativeElement, 'transform', value);
     this.renderer.setStyle(this.el.nativeElement, '-webkit-transform', value);
@@ -218,7 +230,9 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
     this.oldZIndex = this.el.nativeElement.style.zIndex ? this.el.nativeElement.style.zIndex : '';
 
     if (window) {
-      this.oldZIndex = window.getComputedStyle(this.el.nativeElement, null).getPropertyValue('z-index');
+      this.oldZIndex = window
+        .getComputedStyle(this.el.nativeElement, null)
+        .getPropertyValue('z-index');
     }
 
     if (this.zIndexMoving) {
@@ -241,16 +255,30 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
   }
 
   private subscribeEvents() {
-    this.draggingSub = fromEvent(document, 'mousemove', { passive: false }).subscribe(event => this.onMouseMove(event as MouseEvent));
-    this.draggingSub.add(fromEvent(document, 'touchmove', { passive: false }).subscribe(event => this.onMouseMove(event as TouchEvent)));
-    this.draggingSub.add(fromEvent(document, 'mouseup', { passive: false }).subscribe(() => this.putBack()));
+    this.draggingSub = fromEvent(document, 'mousemove', { passive: false }).subscribe(event =>
+      this.onMouseMove(event as MouseEvent)
+    );
+    this.draggingSub.add(
+      fromEvent(document, 'touchmove', { passive: false }).subscribe(event =>
+        this.onMouseMove(event as TouchEvent)
+      )
+    );
+    this.draggingSub.add(
+      fromEvent(document, 'mouseup', { passive: false }).subscribe(() => this.putBack())
+    );
     // checking if browser is IE or Edge - https://github.com/xieziyu/angular2-draggable/issues/153
     let isIEOrEdge = /msie\s|trident\//i.test(window.navigator.userAgent);
     if (!isIEOrEdge) {
-      this.draggingSub.add(fromEvent(document, 'mouseleave', {passive: false}).subscribe(() => this.putBack()));
+      this.draggingSub.add(
+        fromEvent(document, 'mouseleave', { passive: false }).subscribe(() => this.putBack())
+      );
     }
-    this.draggingSub.add(fromEvent(document, 'touchend', { passive: false }).subscribe(() => this.putBack()));
-    this.draggingSub.add(fromEvent(document, 'touchcancel', { passive: false }).subscribe(() => this.putBack()));
+    this.draggingSub.add(
+      fromEvent(document, 'touchend', { passive: false }).subscribe(() => this.putBack())
+    );
+    this.draggingSub.add(
+      fromEvent(document, 'touchcancel', { passive: false }).subscribe(() => this.putBack())
+    );
   }
 
   private unsubscribeEvents() {
@@ -263,10 +291,10 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
       let boundary = this.bounds.getBoundingClientRect();
       let elem = this.el.nativeElement.getBoundingClientRect();
       let result = {
-        'top': this.outOfBounds.top ? true : boundary.top < elem.top,
-        'right': this.outOfBounds.right ? true : boundary.right > elem.right,
-        'bottom': this.outOfBounds.bottom ? true : boundary.bottom > elem.bottom,
-        'left': this.outOfBounds.left ? true : boundary.left < elem.left
+        top: this.outOfBounds.top ? true : boundary.top < elem.top,
+        right: this.outOfBounds.right ? true : boundary.right > elem.right,
+        bottom: this.outOfBounds.bottom ? true : boundary.bottom > elem.bottom,
+        left: this.outOfBounds.left ? true : boundary.left < elem.left,
       };
 
       if (this.inBounds) {
@@ -291,6 +319,7 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
 
       return result;
     }
+    return null;
   }
 
   /** Get current offset */
@@ -327,7 +356,10 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
       }
 
       if (this.bounds) {
-        this.edge.emit(this.boundsCheck());
+        let edgeEv = this.boundsCheck();
+        if (edgeEv) {
+          this.edge.emit(edgeEv);
+        }
       }
 
       this.moving = false;

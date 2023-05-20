@@ -1,0 +1,43 @@
+<nz-page-header nzTitle="ngResizable">
+  <nz-breadcrumb nz-page-header-breadcrumb>
+    <nz-breadcrumb-item>
+      <a routerLink="/welcome">Home</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>Resizable</nz-breadcrumb-item>
+  </nz-breadcrumb>
+</nz-page-header>
+
+<nz-divider></nz-divider>
+
+<nz-tabset style="margin-top: 8px" [nzTabPosition]="'left'">
+  <nz-tab nzTitle="Basic Usage">
+    <ng-template nz-tab>
+      <app-resizable-basic></app-resizable-basic>
+    </ng-template>
+  </nz-tab>
+  <nz-tab nzTitle="Events">
+    <ng-template nz-tab>
+      <app-resizable-events></app-resizable-events>
+    </ng-template>
+  </nz-tab>
+  <nz-tab nzTitle="Containment">
+    <ng-template nz-tab>
+      <app-resizable-containment></app-resizable-containment>
+    </ng-template>
+  </nz-tab>
+  <nz-tab nzTitle="Snap To Grid">
+    <ng-template nz-tab>
+      <app-resizable-grid></app-resizable-grid>
+    </ng-template>
+  </nz-tab>
+  <nz-tab nzTitle="Min/Max Size">
+    <ng-template nz-tab>
+      <app-resizable-min-max></app-resizable-min-max>
+    </ng-template>
+  </nz-tab>
+  <nz-tab nzTitle="Iframe">
+    <ng-template nz-tab>
+      <app-resizable-iframe></app-resizable-iframe>
+    </ng-template>
+  </nz-tab>
+</nz-tabset>

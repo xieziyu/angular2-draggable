@@ -4,10 +4,7 @@ export class HelperBlock {
   protected _helper: Element;
   private _added = false;
 
-  constructor(
-    protected parent: Element,
-    protected renderer: Renderer2
-  ) {
+  constructor(protected parent: Element, protected renderer: Renderer2) {
     // generate helper div
     let helper = renderer.createElement('div');
     renderer.setStyle(helper, 'position', 'absolute');

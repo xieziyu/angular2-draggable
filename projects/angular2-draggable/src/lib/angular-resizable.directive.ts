@@ -1,7 +1,15 @@
 import {
-  Directive, ElementRef, Renderer2,
-  Input, Output, OnInit, EventEmitter, OnChanges, SimpleChanges,
-  OnDestroy, AfterViewInit
+  Directive,
+  ElementRef,
+  Renderer2,
+  Input,
+  Output,
+  OnInit,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges,
+  OnDestroy,
+  AfterViewInit,
 } from '@angular/core';
 
 import { Subscription, fromEvent } from 'rxjs';
@@ -14,15 +22,15 @@ import { IResizeEvent } from './models/resize-event';
 
 @Directive({
   selector: '[ngResizable]',
-  exportAs: 'ngResizable'
+  exportAs: 'ngResizable',
 })
 export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, AfterViewInit {
   private _resizable = true;
   private _handles: { [key: string]: ResizeHandle } = {};
   private _handleType: string[] = [];
   private _handleResizing: ResizeHandle = null;
-  private _direction: { 'n': boolean, 's': boolean, 'w': boolean, 'e': boolean } = null;
-  private _directionChanged: { 'n': boolean, 's': boolean, 'w': boolean, 'e': boolean } = null;
+  private _direction: { n: boolean; s: boolean; w: boolean; e: boolean } = null;
+  private _directionChanged: { n: boolean; s: boolean; w: boolean; e: boolean } = null;
   private _aspectRatio = 0;
   private _containment: HTMLElement = null;
   private _origMousePos: Position = null;
@@ -173,12 +181,12 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
     return {
       size: {
         width: this._currSize.width,
-        height: this._currSize.height
+        height: this._currSize.height,
       },
       position: {
         top: this._currPos.y,
-        left: this._currPos.x
-      }
+        left: this._currPos.x,
+      },
     };
   }
 
@@ -200,7 +208,7 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
   private updateAspectRatio() {
     if (typeof this.rzAspectRatio === 'boolean') {
       if (this.rzAspectRatio && this._currSize.height) {
-        this._aspectRatio = (this._currSize.width / this._currSize.height);
+        this._aspectRatio = this._currSize.width / this._currSize.height;
       } else {
         this._aspectRatio = 0;
       }
@@ -261,7 +269,6 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
         }
       }
     }
-
   }
 
   /** Use it to create a handle */
@@ -306,16 +313,30 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
   }
 
   private subscribeEvents() {
-    this.draggingSub = fromEvent(document, 'mousemove', { passive: false }).subscribe(event => this.onMouseMove(event as MouseEvent));
-    this.draggingSub.add(fromEvent(document, 'touchmove', { passive: false }).subscribe(event => this.onMouseMove(event as TouchEvent)));
-    this.draggingSub.add(fromEvent(document, 'mouseup', { passive: false }).subscribe(() => this.onMouseLeave()));
+    this.draggingSub = fromEvent(document, 'mousemove', { passive: false }).subscribe(event =>
+      this.onMouseMove(event as MouseEvent)
+    );
+    this.draggingSub.add(
+      fromEvent(document, 'touchmove', { passive: false }).subscribe(event =>
+        this.onMouseMove(event as TouchEvent)
+      )
+    );
+    this.draggingSub.add(
+      fromEvent(document, 'mouseup', { passive: false }).subscribe(() => this.onMouseLeave())
+    );
     // fix for issue #164
     let isIEOrEdge = /msie\s|trident\//i.test(window.navigator.userAgent);
     if (!isIEOrEdge) {
-      this.draggingSub.add(fromEvent(document, 'mouseleave', { passive: false }).subscribe(() => this.onMouseLeave()));
+      this.draggingSub.add(
+        fromEvent(document, 'mouseleave', { passive: false }).subscribe(() => this.onMouseLeave())
+      );
     }
-    this.draggingSub.add(fromEvent(document, 'touchend', { passive: false }).subscribe(() => this.onMouseLeave()));
-    this.draggingSub.add(fromEvent(document, 'touchcancel', { passive: false }).subscribe(() => this.onMouseLeave()));
+    this.draggingSub.add(
+      fromEvent(document, 'touchend', { passive: false }).subscribe(() => this.onMouseLeave())
+    );
+    this.draggingSub.add(
+      fromEvent(document, 'touchcancel', { passive: false }).subscribe(() => this.onMouseLeave())
+    );
   }
 
   private unsubscribeEvents() {
@@ -332,7 +353,13 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
   }
 
   onMouseMove(event: MouseEvent | TouchEvent) {
-    if (this._handleResizing && this._resizable && this._origMousePos && this._origPos && this._origSize) {
+    if (
+      this._handleResizing &&
+      this._resizable &&
+      this._origMousePos &&
+      this._origPos &&
+      this._origSize
+    ) {
       this.resizeTo(Position.fromEvent(event));
       this.onResizing();
     }
@@ -379,11 +406,11 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
       handle: this._handleResizing ? this._handleResizing.el : null,
       size: {
         width: this._currSize.width,
-        height: this._currSize.height
+        height: this._currSize.height,
       },
       position: {
         top: this._currPos.y,
-        left: this._currPos.x
+        left: this._currPos.x,
       },
       direction: { ...this._directionChanged },
     };
@@ -394,14 +421,13 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
       n: !!this._handleResizing.type.match(/n/),
       s: !!this._handleResizing.type.match(/s/),
       w: !!this._handleResizing.type.match(/w/),
-      e: !!this._handleResizing.type.match(/e/)
+      e: !!this._handleResizing.type.match(/e/),
     };
 
     this._directionChanged = { ...this._direction };
 
     // if aspect ration should be preserved:
     if (this.rzAspectRatio) {
-
       // if north then west (unless ne)
       if (this._directionChanged.n && !this._directionChanged.e) {
         this._directionChanged.w = true;
@@ -490,15 +516,25 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
 
   private checkBounds() {
     if (this._containment) {
-      const maxWidth = this._bounding.width - this._bounding.pr - this._bounding.deltaL - this._bounding.translateX - this._currPos.x;
-      const maxHeight = this._bounding.height - this._bounding.pb - this._bounding.deltaT - this._bounding.translateY - this._currPos.y;
+      const maxWidth =
+        this._bounding.width -
+        this._bounding.pr -
+        this._bounding.deltaL -
+        this._bounding.translateX -
+        this._currPos.x;
+      const maxHeight =
+        this._bounding.height -
+        this._bounding.pb -
+        this._bounding.deltaT -
+        this._bounding.translateY -
+        this._currPos.y;
 
-      if (this._direction.n && (this._currPos.y + this._bounding.translateY < 0)) {
+      if (this._direction.n && this._currPos.y + this._bounding.translateY < 0) {
         this._currPos.y = -this._bounding.translateY;
         this._currSize.height = this._origSize.height + this._origPos.y + this._bounding.translateY;
       }
 
-      if (this._direction.w && (this._currPos.x + this._bounding.translateX) < 0) {
+      if (this._direction.w && this._currPos.x + this._bounding.translateX < 0) {
         this._currPos.x = -this._bounding.translateX;
         this._currSize.width = this._origSize.width + this._origPos.x + this._bounding.translateX;
       }
@@ -518,8 +554,10 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
       if (this._aspectRatio) {
         this._adjusted = false;
 
-        if ((this._direction.w || this._direction.e) &&
-            (this._currSize.width / this._aspectRatio) >= maxHeight) {
+        if (
+          (this._direction.w || this._direction.e) &&
+          this._currSize.width / this._aspectRatio >= maxHeight
+        ) {
           const newWidth = Math.floor(maxHeight * this._aspectRatio);
 
           if (this._direction.w) {
@@ -531,8 +569,10 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
           this._adjusted = true;
         }
 
-        if ((this._direction.n || this._direction.s) &&
-            (this._currSize.height * this._aspectRatio) >= maxWidth) {
+        if (
+          (this._direction.n || this._direction.s) &&
+          this._currSize.height * this._aspectRatio >= maxWidth
+        ) {
           const newHeight = Math.floor(maxWidth / this._aspectRatio);
 
           if (this._direction.n) {
@@ -591,7 +631,10 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
       let p = computed.getPropertyValue('position');
 
       const nativeEl = window.getComputedStyle(this.el.nativeElement);
-      let transforms = nativeEl.getPropertyValue('transform').replace(/[^-\d,]/g, '').split(',');
+      let transforms = nativeEl
+        .getPropertyValue('transform')
+        .replace(/[^-\d,]/g, '')
+        .split(',');
 
       this._bounding = {};
       this._bounding.width = el.clientWidth;

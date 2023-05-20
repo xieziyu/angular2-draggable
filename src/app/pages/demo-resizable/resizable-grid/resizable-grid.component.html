@@ -1,0 +1,18 @@
+<!-- DEMO START -->
+<nz-row>
+  <nz-col [nzSpan]="12" style="min-height: 200px">
+    <div ngResizable [rzGrid]="50" class="resizable-widget">
+      <h4 class="widget-header">Resizable</h4>
+      <div>[rzGrid]=50</div>
+    </div>
+  </nz-col>
+  <nz-col [nzSpan]="12" style="min-height: 200px">
+    <div ngResizable [rzGrid]="[50, 100]" class="resizable-widget">
+      <h4 class="widget-header">Resizable</h4>
+      <div>[rzGrid]=[50, 100]</div>
+    </div>
+  </nz-col>
+</nz-row>
+<!-- DEMO END -->
+
+<app-code-block [html]="html" [component]="component"></app-code-block>

@@ -1,0 +1,29 @@
+<!-- DEMO START -->
+<nz-row [nzGutter]="6">
+  <nz-col nzSpan="6">
+    <nz-alert
+      nzType="info"
+      nzMessage="movingOffset: { x: {{ movingOffset.x }}, y: {{ movingOffset.y }} }">
+    </nz-alert>
+    <br />
+    <nz-alert
+      nzType="info"
+      nzMessage="endOffset: { x: {{ endOffset.x }}, y: {{ endOffset.y }} }"></nz-alert>
+  </nz-col>
+  <nz-col nzSpan="18">
+    <div
+      ngDraggable
+      class="drag-block"
+      (started)="onStart($event)"
+      (stopped)="onStop($event)"
+      (movingOffset)="onMoving($event)"
+      [preventDefaultEvent]="true"
+      (endOffset)="onMoveEnd($event)">
+      <p>Drag me</p>
+      <p>check your console</p>
+    </div>
+  </nz-col>
+</nz-row>
+<!-- DEMO END -->
+
+<app-code-block [html]="html" [component]="component"></app-code-block>

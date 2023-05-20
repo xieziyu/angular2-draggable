@@ -1,0 +1,34 @@
+<nz-layout class="app-layout">
+  <nz-sider
+    class="menu-sidebar"
+    nzCollapsible
+    nzWidth="256px"
+    nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a href="https://xieziyu.github.io/angular2-draggable" target="_blank">
+        <img src="assets/logo.svg" alt="logo" />
+        <h1>Draggable</h1>
+      </a>
+    </div>
+    <app-menu [isCollapsed]="isCollapsed"></app-menu>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+        </span>
+        <a class="github-logo" href="https://github.com/xieziyu/angular2-draggable" target="_blank">
+          <i class="trigger" nz-icon nzType="github" nzTheme="outline"></i>
+        </a>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

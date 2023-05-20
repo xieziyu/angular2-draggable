@@ -4,7 +4,7 @@ export interface ISize {
 }
 
 export class Size implements ISize {
-  constructor(public width: number, public height: number) { }
+  constructor(public width: number, public height: number) {}
 
   static getCurrent(el: Element) {
     let size = new Size(0, 0);

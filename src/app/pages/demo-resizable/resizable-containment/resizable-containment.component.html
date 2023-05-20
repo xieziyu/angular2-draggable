@@ -1,0 +1,20 @@
+<!-- DEMO START -->
+<nz-row>
+  <nz-col>
+    <div #container class="widget-container">
+      <h4 class="widget-header">Containment</h4>
+      <!-- rzContainment could be a CSS selector string, 'parent' or an Element object -->
+      <div
+        ngResizable
+        [rzAspectRatio]="true"
+        class="resizable-widget"
+        [rzContainment]="container"
+        rzHandles="all">
+        <h4 class="widget-header">Resizable</h4>
+      </div>
+    </div>
+  </nz-col>
+</nz-row>
+<!-- DEMO END -->
+
+<app-code-block [html]="html" [component]="component"></app-code-block>

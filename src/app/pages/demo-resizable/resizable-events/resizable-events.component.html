@@ -1,0 +1,29 @@
+<!-- DEMO START -->
+<nz-space>
+  <button *nzSpaceItem (click)="onReset(block)" nz-button nzType="default">.resetSize()</button>
+  <button *nzSpaceItem (click)="aspectRatio = !aspectRatio" nz-button nzType="default">
+    Toggle aspectRatio
+  </button>
+</nz-space>
+<nz-divider></nz-divider>
+<div
+  ngResizable
+  class="resizable-widget"
+  #block="ngResizable"
+  rzHandles="all"
+  [rzAspectRatio]="aspectRatio"
+  (rzStart)="onResizeStart($event)"
+  (rzStop)="onResizeStop($event)"
+  (rzResizing)="onResizing($event)">
+  <h4 class="widget-header">
+    Resizable
+    <span nz-icon nzType="unlock" nzTheme="outline" *ngIf="!aspectRatio"></span>
+    <span nz-icon nzType="link" nzTheme="outline" *ngIf="aspectRatio"></span>
+  </h4>
+</div>
+<p><strong>State:</strong> {{ state }}</p>
+<p><strong>Size:</strong> {{ size | json }}</p>
+<p><strong>Position:</strong> {{ position | json }}</p>
+<!-- DEMO END -->
+
+<app-code-block [html]="html" [component]="component"></app-code-block>

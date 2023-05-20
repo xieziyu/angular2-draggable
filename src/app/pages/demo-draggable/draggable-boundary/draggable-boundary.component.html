@@ -1,0 +1,55 @@
+<!-- DEMO START -->
+<div nz-row [nzGutter]="4">
+  <div nz-col [nzSpan]="6">
+    <p>
+      <button (click)="inBounds = !inBounds" nz-button nzType="default">toggle [inBounds]</button>
+    </p>
+    <p>
+      <button (click)="outOfBounds('top')" nz-button nzType="default">
+        toggle [outOfBounds] top {{ myOutOfBounds.top ? ' (active)' : '' }}
+      </button>
+    </p>
+    <p>
+      <button (click)="outOfBounds('right')" nz-button nzType="default">
+        toggle [outOfBounds] right {{ myOutOfBounds.right ? ' (active)' : '' }}
+      </button>
+    </p>
+    <p>
+      <button (click)="outOfBounds('bottom')" nz-button nzType="default">
+        toggle [outOfBounds] bottom {{ myOutOfBounds.bottom ? ' (active)' : '' }}
+      </button>
+    </p>
+    <p>
+      <button (click)="outOfBounds('left')" nz-button nzType="default">
+        toggle [outOfBounds] left {{ myOutOfBounds.left ? ' (active)' : '' }}
+      </button>
+    </p>
+  </div>
+  <div nz-col [nzSpan]="18">
+    <div
+      class="drag-boundary"
+      [ngClass]="{
+        'top-b': !edge?.top,
+        'bottom-b': !edge?.bottom,
+        'left-b': !edge?.left,
+        'right-b': !edge?.right
+      }"
+      #myBounds>
+      <p class="label">#myBounds</p>
+      <div
+        ngDraggable
+        class="drag-block"
+        (edge)="checkEdge($event)"
+        [bounds]="myBounds"
+        [inBounds]="inBounds"
+        [outOfBounds]="myOutOfBounds">
+        <p>Drag me {{ inBounds ? 'in #myBounds' : '' }}</p>
+        <p>check your console</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DEMO END -->
+
+<app-code-block [html]="html" [component]="component"></app-code-block>

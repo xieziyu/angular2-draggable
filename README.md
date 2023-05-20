@@ -3,45 +3,35 @@
 <!-- Badges section here. -->
 [![npm](https://img.shields.io/npm/v/angular2-draggable.svg)][npm-badge-url]
 [![npm](https://img.shields.io/npm/dm/angular2-draggable.svg)][npm-badge-url]
-[![Build Status](https://travis-ci.org/xieziyu/angular2-draggable.svg?branch=master)][ci-url]
+[![Build Status](https://github.com/xieziyu/angular2-draggable/actions/workflows/ci.yaml/badge.svg)][ci-url]
 
 + [Online Demo](https://xieziyu.github.io/angular2-draggable)
 + [Online Docs](https://xieziyu.github.io/angular2-draggable/api-doc)
 
 ## Table of contents 
-1. [Getting Started](#getting-started)
-2. [Latest Update](#latest-update)
-3. [Installation](#installation)
-4. [Draggable](#draggable)
-4. [Resizable](#resizable)
-5. [API](#api)
-6. [Events](#events)
+- [angular2-draggable](#angular2-draggable)
+  - [Table of contents](#table-of-contents)
+- [Getting Started](#getting-started)
+- [Installation](#installation)
+- [Draggable](#draggable)
+- [Resizable](#resizable)
+- [API](#api)
+  - [Directive:](#directive)
+  - [CSS:](#css)
+- [Events](#events)
+- [Demo](#demo)
 
 # Getting Started
 angular2-draggable has angular directives that make the DOM element draggable and resizable.
 + `ngDraggable`
+    + v16.x requires Angular >= 16
     + v2.x requires Angular >= 6
     + v1.5.0 requires Angular >= 4 && < 6
 
 + `ngResizable`
     + provided since v2.0, requires Angular >= 6
 
-# Latest Update
-+ 2019.08.01: 1.5.0:
-  + **ngDraggable**: 
-    + Porting features from v2 to v1
-
-+ 2019.06.10: 2.3.2:
-  + **ngResizable**
-    + Fix [issue #164](https://github.com/xieziyu/angular2-draggable/issues/164): Resize doesn't work on Windows10 IE11 ([PR #171](https://github.com/xieziyu/angular2-draggable/pull/171) by [shumih](https://github.com/shumih]), [PR #174](https://github.com/xieziyu/angular2-draggable/pull/174) by [LiorSaadon](https://github.com/LiorSaadon]))
-
-+ 2019.05.14: 2.3.0:
-  + **ngResizable**:
-    + Fix [issue #157](https://github.com/xieziyu/angular2-draggable/issues/159): Problem resizing with containment
-    + Add `direction` property in `IResizeEvent`. 
-
-  + **ngDraggable**: 
-    + Add CSS class `ng-dragging` when dragging.
+[CHANGELOG](./CHANGELOG.md)
 
 # Installation
 ```

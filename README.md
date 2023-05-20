@@ -225,4 +225,4 @@ The demo page server is listening to: http://localhost:4203
 
 
 [npm-badge-url]: https://www.npmjs.com/package/angular2-draggable
-[ci-url]: https://travis-ci.org/xieziyu/angular2-draggable
+[ci-url]: https://github.com/xieziyu/angular2-draggable/actions/workflows/ci.yaml

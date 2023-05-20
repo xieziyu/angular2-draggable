@@ -133,6 +133,7 @@ Well you can use both directives concurrently if you wish:
     | rzMinHeight | number | 1 | The minimum height the resizable should be allowed to resize to. |
     | rzMaxHeight | number | 1 | The maximum height the resizable should be allowed to resize to. |
     | preventDefaultEvent | boolean | `false` | Whether to prevent default mouse event. |
+    | rzScale | number | 1 | Set it when parent element has CSS transform scale |
 
 ## CSS:
 + When `ngDraggable` is enabled on some element, `ng-draggable` and `ng-dragging` class is automatically toggled on it. You can use it to customize the pointer style. For example:

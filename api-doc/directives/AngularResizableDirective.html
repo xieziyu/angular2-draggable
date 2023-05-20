@@ -1,0 +1,3854 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>angular2-draggable-demo documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/stripe.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">angular2-draggable-demo documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content directive">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Directives</li>
+  <li >AngularResizableDirective</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>projects/angular2-draggable/src/lib/angular-resizable.directive.ts</code>
+        </p>
+
+
+
+
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                            <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                            <code><a href="https://angular.io/api/core/OnChanges" target="_blank" >OnChanges</a></code>
+                            <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+                            <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+            </p>
+
+
+        <section>
+            <h3>Metadata</h3>
+            <table class="table table-sm table-hover metadata">
+                <tbody>
+
+                    <tr>
+                        <td class="col-md-3">Selector</td>
+                        <td class="col-md-9"><code>[ngResizable]</code></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </section>
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_adjusted" >_adjusted</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_aspectRatio" >_aspectRatio</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_bounding" >_bounding</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_containment" >_containment</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_currPos" >_currPos</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_currSize" >_currSize</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_direction" >_direction</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_directionChanged" >_directionChanged</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_gridSize" >_gridSize</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_handleResizing" >_handleResizing</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_handles" >_handles</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_handleType" >_handleType</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_helperBlock" >_helperBlock</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_initPos" >_initPos</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_initSize" >_initSize</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_origMousePos" >_origMousePos</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_origPos" >_origPos</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_origSize" >_origSize</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_resizable" >_resizable</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#draggingSub" >draggingSub</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#adjustByRatio" >adjustByRatio</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#checkBounds" >checkBounds</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#checkSize" >checkSize</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#createHandleByType" >createHandleByType</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#createHandles" >createHandles</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#doResize" >doResize</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getBounding" >getBounding</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getGridSize" >getGridSize</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getResizingEvent" >getResizingEvent</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#getStatus" >getStatus</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnChanges" >ngOnChanges</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onMouseDown" >onMouseDown</a>
+                            </li>
+                            <li>
+                                <a href="#onMouseLeave" >onMouseLeave</a>
+                            </li>
+                            <li>
+                                <a href="#onMouseMove" >onMouseMove</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#onResizing" >onResizing</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#removeHandles" >removeHandles</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#resetBounding" >resetBounding</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#resetSize" >resetSize</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#resizeTo" >resizeTo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#startResize" >startResize</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#stopResize" >stopResize</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#subscribeEvents" >subscribeEvents</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#unsubscribeEvents" >unsubscribeEvents</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#updateAspectRatio" >updateAspectRatio</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#updateContainment" >updateContainment</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#updateDirection" >updateDirection</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#updateResizable" >updateResizable</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngResizable" >ngResizable</a>
+                            </li>
+                            <li>
+                                <a href="#preventDefaultEvent" >preventDefaultEvent</a>
+                            </li>
+                            <li>
+                                <a href="#rzAspectRatio" >rzAspectRatio</a>
+                            </li>
+                            <li>
+                                <a href="#rzContainment" >rzContainment</a>
+                            </li>
+                            <li>
+                                <a href="#rzGrid" >rzGrid</a>
+                            </li>
+                            <li>
+                                <a href="#rzHandleDoms" >rzHandleDoms</a>
+                            </li>
+                            <li>
+                                <a href="#rzHandles" >rzHandles</a>
+                            </li>
+                            <li>
+                                <a href="#rzMaxHeight" >rzMaxHeight</a>
+                            </li>
+                            <li>
+                                <a href="#rzMaxWidth" >rzMaxWidth</a>
+                            </li>
+                            <li>
+                                <a href="#rzMinHeight" >rzMinHeight</a>
+                            </li>
+                            <li>
+                                <a href="#rzMinWidth" >rzMinWidth</a>
+                            </li>
+                            <li>
+                                <a href="#rzScale" >rzScale</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#rzResizing" >rzResizing</a>
+                            </li>
+                            <li>
+                                <a href="#rzStart" >rzStart</a>
+                            </li>
+                            <li>
+                                <a href="#rzStop" >rzStop</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#ngResizable" >ngResizable</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(el: ElementRef<HTMLElement>, renderer: <a href="https://angular.io/api/core/Renderer2" target="_blank">Renderer2</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:150</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>el</td>
+                                                  
+                                                        <td>
+                                                                    <code>ElementRef&lt;HTMLElement&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>renderer</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/Renderer2" target="_blank" >Renderer2</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngResizable"></a>
+                        <b>ngResizable</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:65</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Disables the resizable if set to false.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="preventDefaultEvent"></a>
+                        <b>preventDefaultEvent</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:141</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether to prevent default event</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rzAspectRatio"></a>
+                        <b>rzAspectRatio</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>boolean | number</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:107</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether the element should be constrained to a specific aspect ratio.
+ Multiple types supported:
+ boolean: When set to true, the element will maintain its original aspect ratio.
+ number: Force the element to maintain a specific aspect ratio during resizing.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rzContainment"></a>
+                        <b>rzContainment</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | HTMLElement</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:117</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Constrains resizing to within the bounds of the specified element or region.
+ Multiple types supported:
+ Selector: The resizable element will be contained to the bounding box of the first element found by the selector.
+           If no element is found, no containment will be set.
+ Element: The resizable element will be contained to the bounding box of this element.
+ String: Possible values: &quot;parent&quot;.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rzGrid"></a>
+                        <b>rzGrid</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number | number[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:123</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Snaps the resizing element to a grid, every x and y pixels.
+A number for both width and height or an array values like [ x, y ]</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rzHandleDoms"></a>
+                        <b>rzHandleDoms</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{}</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:90</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Using exist handles for resizing instead of generate them.</p>
+<div><pre class="line-numbers"><code class="language-html">[rzHandleDoms] = {
+  e: handelE,
+  s: handelS,
+  se: handelSE
+};</code></pre></div></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rzHandles"></a>
+                        <b>rzHandles</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/ResizeHandle.html" target="_self" >ResizeHandleType</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;e,s,se&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:79</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Which handles can be used for resizing.</p>
+<div><pre class="line-numbers"><code class="language-html">[rzHandles] = &quot;&#39;n,e,s,w,se,ne,sw,nw&#39;&quot;
+equals to: [rzHandles] = &quot;&#39;all&#39;&quot;</code></pre></div></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rzMaxHeight"></a>
+                        <b>rzMaxHeight</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:135</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The maximum height the resizable should be allowed to resize to.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rzMaxWidth"></a>
+                        <b>rzMaxWidth</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:132</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The maximum width the resizable should be allowed to resize to.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rzMinHeight"></a>
+                        <b>rzMinHeight</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:129</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The minimum height the resizable should be allowed to resize to.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rzMinWidth"></a>
+                        <b>rzMinWidth</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:126</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The minimum width the resizable should be allowed to resize to.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rzScale"></a>
+                        <b>rzScale</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>1</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:138</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Input css scale transform of element so translations are correct</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+            <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rzResizing"></a>
+                        <b>rzResizing</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:147</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>emitted when start resizing</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rzStart"></a>
+                        <b>rzStart</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:144</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>emitted when start resizing</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rzStop"></a>
+                        <b>rzStop</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:150</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>emitted when stop resizing</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="adjustByRatio"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>adjustByRatio</b></span>
+                        <a href="#adjustByRatio"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>adjustByRatio()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="519"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:519</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkBounds"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>checkBounds</b></span>
+                        <a href="#checkBounds"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>checkBounds()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="541"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:541</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkSize"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>checkSize</b></span>
+                        <a href="#checkSize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>checkSize()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="614"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:614</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createHandleByType"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>createHandleByType</b></span>
+                        <a href="#createHandleByType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createHandleByType(type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, css: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="298"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:298</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Use it to create a handle</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>type</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>css</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/ResizeHandle.html" target="_self" >ResizeHandle</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createHandles"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>createHandles</b></span>
+                        <a href="#createHandles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createHandles()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="263"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:263</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Use it to create handle divs</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="doResize"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>doResize</b></span>
+                        <a href="#doResize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>doResize()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="507"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:507</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getBounding"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>getBounding</b></span>
+                        <a href="#getBounding"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getBounding()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="651"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:651</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getGridSize"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>getGridSize</b></span>
+                        <a href="#getGridSize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getGridSize()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="694"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:694</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getResizingEvent"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>getResizingEvent</b></span>
+                        <a href="#getResizingEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getResizingEvent()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="427"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:427</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/IResizeEvent.html" target="_self" >IResizeEvent</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getStatus"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span ><b>getStatus</b></span>
+                        <a href="#getStatus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getStatus()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="199"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:199</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>A method to get current status</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{ size: { width: any; height: any; }; position: { top: any; left: any; }; }</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                        <span ><b>ngAfterViewInit</b></span>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="181"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:181</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnChanges"></a>
+                    <span class="name">
+                        <span ><b>ngOnChanges</b></span>
+                        <a href="#ngOnChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnChanges(changes: <a href="https://angular.io/api/core/SimpleChanges" target="_blank">SimpleChanges</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="156"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:156</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>changes</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/core/SimpleChanges" target="_blank" >SimpleChanges</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="174"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:174</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="170"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:170</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onMouseDown"></a>
+                    <span class="name">
+                        <span ><b>onMouseDown</b></span>
+                        <a href="#onMouseDown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onMouseDown(event: MouseEvent | TouchEvent, handle: <a href="../classes/ResizeHandle.html" target="_self">ResizeHandle</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="319"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:319</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>MouseEvent | TouchEvent</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>handle</td>
+                                    <td>
+                                                <code><a href="../classes/ResizeHandle.html" target="_self" >ResizeHandle</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onMouseLeave"></a>
+                    <span class="name">
+                        <span ><b>onMouseLeave</b></span>
+                        <a href="#onMouseLeave"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onMouseLeave()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="371"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:371</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onMouseMove"></a>
+                    <span class="name">
+                        <span ><b>onMouseMove</b></span>
+                        <a href="#onMouseMove"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onMouseMove(event: MouseEvent | TouchEvent)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="379"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:379</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>MouseEvent | TouchEvent</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onResizing"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>onResizing</b></span>
+                        <a href="#onResizing"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onResizing()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="423"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:423</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeHandles"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>removeHandles</b></span>
+                        <a href="#removeHandles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeHandles()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="310"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:310</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetBounding"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>resetBounding</b></span>
+                        <a href="#resetBounding"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>resetBounding()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="687"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:687</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetSize"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span ><b>resetSize</b></span>
+                        <a href="#resetSize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>resetSize()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="192"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:192</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>A method to reset size</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resizeTo"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>resizeTo</b></span>
+                        <a href="#resizeTo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>resizeTo(p: <a href="../classes/Position.html" target="_self">Position</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="477"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:477</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>p</td>
+                                    <td>
+                                                <code><a href="../classes/Position.html" target="_self" >Position</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="startResize"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>startResize</b></span>
+                        <a href="#startResize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>startResize(handle: <a href="../classes/ResizeHandle.html" target="_self">ResizeHandle</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="392"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:392</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>handle</td>
+                                    <td>
+                                                <code><a href="../classes/ResizeHandle.html" target="_self" >ResizeHandle</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="stopResize"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>stopResize</b></span>
+                        <a href="#stopResize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>stopResize()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="410"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:410</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subscribeEvents"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>subscribeEvents</b></span>
+                        <a href="#subscribeEvents"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>subscribeEvents()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="339"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:339</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="unsubscribeEvents"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>unsubscribeEvents</b></span>
+                        <a href="#unsubscribeEvents"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>unsubscribeEvents()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="366"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:366</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateAspectRatio"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>updateAspectRatio</b></span>
+                        <a href="#updateAspectRatio"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateAspectRatio()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="231"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:231</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Use it to update aspect</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateContainment"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>updateContainment</b></span>
+                        <a href="#updateContainment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateContainment()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="245"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:245</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Use it to update containment</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateDirection"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>updateDirection</b></span>
+                        <a href="#updateDirection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateDirection()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="443"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:443</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateResizable"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>updateResizable</b></span>
+                        <a href="#updateResizable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateResizable()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="216"
+                            class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:216</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_adjusted"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_adjusted</b></span>
+                        <a href="#_adjusted"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_aspectRatio"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_aspectRatio</b></span>
+                        <a href="#_aspectRatio"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_bounding"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_bounding</b></span>
+                        <a href="#_bounding"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_containment"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_containment</b></span>
+                        <a href="#_containment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>HTMLElement</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_currPos"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_currPos</b></span>
+                        <a href="#_currPos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Position.html" target="_self" >Position</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_currSize"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_currSize</b></span>
+                        <a href="#_currSize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Size.html" target="_self" >Size</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:43</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Current Size and Position</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_direction"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_direction</b></span>
+                        <a href="#_direction"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_directionChanged"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_directionChanged</b></span>
+                        <a href="#_directionChanged"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_gridSize"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_gridSize</b></span>
+                        <a href="#_gridSize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/IPosition.html" target="_self" >IPosition</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:51</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Snap to gird</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_handleResizing"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_handleResizing</b></span>
+                        <a href="#_handleResizing"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/ResizeHandle.html" target="_self" >ResizeHandle</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_handles"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_handles</b></span>
+                        <a href="#_handles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_handleType"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_handleType</b></span>
+                        <a href="#_handleType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_helperBlock"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_helperBlock</b></span>
+                        <a href="#_helperBlock"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/HelperBlock.html" target="_self" >HelperBlock</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:59</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Bugfix: iFrames, and context unrelated elements block all events, and are unusable
+<a href="https://github.com/xieziyu/angular2-draggable/issues/84">https://github.com/xieziyu/angular2-draggable/issues/84</a></p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_initPos"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_initPos</b></span>
+                        <a href="#_initPos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Position.html" target="_self" >Position</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_initSize"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_initSize</b></span>
+                        <a href="#_initSize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Size.html" target="_self" >Size</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:47</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Initial Size and Position</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_origMousePos"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_origMousePos</b></span>
+                        <a href="#_origMousePos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Position.html" target="_self" >Position</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_origPos"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_origPos</b></span>
+                        <a href="#_origPos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Position.html" target="_self" >Position</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_origSize"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_origSize</b></span>
+                        <a href="#_origSize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Size.html" target="_self" >Size</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:39</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Original Size and Position</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_resizable"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_resizable</b></span>
+                        <a href="#_resizable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="draggingSub"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>draggingSub</b></span>
+                        <a href="#draggingSub"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngResizable"></a>
+                        <span class="name"><b>ngResizable</b><a href="#ngResizable"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>ngResizable(v: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">projects/angular2-draggable/src/lib/angular-resizable.directive.ts:65</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Disables the resizable if set to false.</p>
+</div>
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>v</td>
+                                                    
+                                                            <td>
+                                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  Directive,
+  ElementRef,
+  Renderer2,
+  Input,
+  Output,
+  OnInit,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges,
+  OnDestroy,
+  AfterViewInit,
+} from &#x27;@angular/core&#x27;;
+
+import { Subscription, fromEvent } from &#x27;rxjs&#x27;;
+import { HelperBlock } from &#x27;./widgets/helper-block&#x27;;
+import { ResizeHandle } from &#x27;./widgets/resize-handle&#x27;;
+import { ResizeHandleType } from &#x27;./models/resize-handle-type&#x27;;
+import { Position, IPosition } from &#x27;./models/position&#x27;;
+import { Size } from &#x27;./models/size&#x27;;
+import { IResizeEvent } from &#x27;./models/resize-event&#x27;;
+
+@Directive({
+  selector: &#x27;[ngResizable]&#x27;,
+  exportAs: &#x27;ngResizable&#x27;,
+})
+export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, AfterViewInit {
+  private _resizable &#x3D; true;
+  private _handles: { [key: string]: ResizeHandle } &#x3D; {};
+  private _handleType: string[] &#x3D; [];
+  private _handleResizing: ResizeHandle &#x3D; null;
+  private _direction: { n: boolean; s: boolean; w: boolean; e: boolean } &#x3D; null;
+  private _directionChanged: { n: boolean; s: boolean; w: boolean; e: boolean } &#x3D; null;
+  private _aspectRatio &#x3D; 0;
+  private _containment: HTMLElement &#x3D; null;
+  private _origMousePos: Position &#x3D; null;
+
+  /** Original Size and Position */
+  private _origSize: Size &#x3D; null;
+  private _origPos: Position &#x3D; null;
+
+  /** Current Size and Position */
+  private _currSize: Size &#x3D; null;
+  private _currPos: Position &#x3D; null;
+
+  /** Initial Size and Position */
+  private _initSize: Size &#x3D; null;
+  private _initPos: Position &#x3D; null;
+
+  /** Snap to gird */
+  private _gridSize: IPosition &#x3D; null;
+
+  private _bounding: any &#x3D; null;
+
+  /**
+   * Bugfix: iFrames, and context unrelated elements block all events, and are unusable
+   * https://github.com/xieziyu/angular2-draggable/issues/84
+   */
+  private _helperBlock: HelperBlock &#x3D; null;
+
+  private draggingSub: Subscription &#x3D; null;
+  private _adjusted &#x3D; false;
+
+  /** Disables the resizable if set to false. */
+  @Input() set ngResizable(v: any) {
+    if (v !&#x3D;&#x3D; undefined &amp;&amp; v !&#x3D;&#x3D; null &amp;&amp; v !&#x3D;&#x3D; &#x27;&#x27;) {
+      this._resizable &#x3D; !!v;
+      this.updateResizable();
+    }
+  }
+
+  /**
+   * Which handles can be used for resizing.
+   * @example
+   * [rzHandles] &#x3D; &quot;&#x27;n,e,s,w,se,ne,sw,nw&#x27;&quot;
+   * equals to: [rzHandles] &#x3D; &quot;&#x27;all&#x27;&quot;
+   *
+   * */
+  @Input() rzHandles: ResizeHandleType &#x3D; &#x27;e,s,se&#x27;;
+
+  /**
+   * Using exist handles for resizing instead of generate them.
+   * @example
+   * [rzHandleDoms] &#x3D; {
+   *   e: handelE,
+   *   s: handelS,
+   *   se: handelSE
+   * };
+   * */
+  @Input() rzHandleDoms: {
+    se?: ElementRef;
+    sw?: ElementRef;
+    ne?: ElementRef;
+    nw?: ElementRef;
+    n?: ElementRef;
+    e?: ElementRef;
+    s?: ElementRef;
+    w?: ElementRef;
+  } &#x3D; {};
+
+  /**
+   * Whether the element should be constrained to a specific aspect ratio.
+   *  Multiple types supported:
+   *  boolean: When set to true, the element will maintain its original aspect ratio.
+   *  number: Force the element to maintain a specific aspect ratio during resizing.
+   */
+  @Input() rzAspectRatio: boolean | number &#x3D; false;
+
+  /**
+   * Constrains resizing to within the bounds of the specified element or region.
+   *  Multiple types supported:
+   *  Selector: The resizable element will be contained to the bounding box of the first element found by the selector.
+   *            If no element is found, no containment will be set.
+   *  Element: The resizable element will be contained to the bounding box of this element.
+   *  String: Possible values: &quot;parent&quot;.
+   */
+  @Input() rzContainment: string | HTMLElement &#x3D; null;
+
+  /**
+   * Snaps the resizing element to a grid, every x and y pixels.
+   * A number for both width and height or an array values like [ x, y ]
+   */
+  @Input() rzGrid: number | number[] &#x3D; null;
+
+  /** The minimum width the resizable should be allowed to resize to. */
+  @Input() rzMinWidth: number &#x3D; null;
+
+  /** The minimum height the resizable should be allowed to resize to. */
+  @Input() rzMinHeight: number &#x3D; null;
+
+  /** The maximum width the resizable should be allowed to resize to. */
+  @Input() rzMaxWidth: number &#x3D; null;
+
+  /** The maximum height the resizable should be allowed to resize to. */
+  @Input() rzMaxHeight: number &#x3D; null;
+
+  /** Input css scale transform of element so translations are correct */
+  @Input() rzScale &#x3D; 1;
+
+  /** Whether to prevent default event */
+  @Input() preventDefaultEvent &#x3D; true;
+
+  /** emitted when start resizing */
+  @Output() rzStart &#x3D; new EventEmitter&lt;IResizeEvent&gt;();
+
+  /** emitted when start resizing */
+  @Output() rzResizing &#x3D; new EventEmitter&lt;IResizeEvent&gt;();
+
+  /** emitted when stop resizing */
+  @Output() rzStop &#x3D; new EventEmitter&lt;IResizeEvent&gt;();
+
+  constructor(private el: ElementRef&lt;HTMLElement&gt;, private renderer: Renderer2) {
+    this._helperBlock &#x3D; new HelperBlock(el.nativeElement, renderer);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes[&#x27;rzHandles&#x27;] &amp;&amp; !changes[&#x27;rzHandles&#x27;].isFirstChange()) {
+      this.updateResizable();
+    }
+
+    if (changes[&#x27;rzAspectRatio&#x27;] &amp;&amp; !changes[&#x27;rzAspectRatio&#x27;].isFirstChange()) {
+      this.updateAspectRatio();
+    }
+
+    if (changes[&#x27;rzContainment&#x27;] &amp;&amp; !changes[&#x27;rzContainment&#x27;].isFirstChange()) {
+      this.updateContainment();
+    }
+  }
+
+  ngOnInit() {
+    this.updateResizable();
+  }
+
+  ngOnDestroy() {
+    this.removeHandles();
+    this._containment &#x3D; null;
+    this._helperBlock.dispose();
+    this._helperBlock &#x3D; null;
+  }
+
+  ngAfterViewInit() {
+    const elm &#x3D; this.el.nativeElement;
+    this._initSize &#x3D; Size.getCurrent(elm);
+    this._initPos &#x3D; Position.getCurrent(elm);
+    this._currSize &#x3D; Size.copy(this._initSize);
+    this._currPos &#x3D; Position.copy(this._initPos);
+    this.updateAspectRatio();
+    this.updateContainment();
+  }
+
+  /** A method to reset size */
+  public resetSize() {
+    this._currSize &#x3D; Size.copy(this._initSize);
+    this._currPos &#x3D; Position.copy(this._initPos);
+    this.doResize();
+  }
+
+  /** A method to get current status */
+  public getStatus() {
+    if (!this._currPos || !this._currSize) {
+      return null;
+    }
+
+    return {
+      size: {
+        width: this._currSize.width,
+        height: this._currSize.height,
+      },
+      position: {
+        top: this._currPos.y,
+        left: this._currPos.x,
+      },
+    };
+  }
+
+  private updateResizable() {
+    const element &#x3D; this.el.nativeElement;
+
+    // clear handles:
+    this.renderer.removeClass(element, &#x27;ng-resizable&#x27;);
+    this.removeHandles();
+
+    // create new ones:
+    if (this._resizable) {
+      this.renderer.addClass(element, &#x27;ng-resizable&#x27;);
+      this.createHandles();
+    }
+  }
+
+  /** Use it to update aspect */
+  private updateAspectRatio() {
+    if (typeof this.rzAspectRatio &#x3D;&#x3D;&#x3D; &#x27;boolean&#x27;) {
+      if (this.rzAspectRatio &amp;&amp; this._currSize.height) {
+        this._aspectRatio &#x3D; this._currSize.width / this._currSize.height;
+      } else {
+        this._aspectRatio &#x3D; 0;
+      }
+    } else {
+      let r &#x3D; Number(this.rzAspectRatio);
+      this._aspectRatio &#x3D; isNaN(r) ? 0 : r;
+    }
+  }
+
+  /** Use it to update containment */
+  private updateContainment() {
+    if (!this.rzContainment) {
+      this._containment &#x3D; null;
+      return;
+    }
+
+    if (typeof this.rzContainment &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
+      if (this.rzContainment &#x3D;&#x3D;&#x3D; &#x27;parent&#x27;) {
+        this._containment &#x3D; this.el.nativeElement.parentElement;
+      } else {
+        this._containment &#x3D; document.querySelector&lt;HTMLElement&gt;(this.rzContainment);
+      }
+    } else {
+      this._containment &#x3D; this.rzContainment;
+    }
+  }
+
+  /** Use it to create handle divs */
+  private createHandles() {
+    if (!this.rzHandles) {
+      return;
+    }
+
+    let tmpHandleTypes: string[];
+    if (typeof this.rzHandles &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
+      if (this.rzHandles &#x3D;&#x3D;&#x3D; &#x27;all&#x27;) {
+        tmpHandleTypes &#x3D; [&#x27;n&#x27;, &#x27;e&#x27;, &#x27;s&#x27;, &#x27;w&#x27;, &#x27;ne&#x27;, &#x27;se&#x27;, &#x27;nw&#x27;, &#x27;sw&#x27;];
+      } else {
+        tmpHandleTypes &#x3D; this.rzHandles.replace(/ /g, &#x27;&#x27;).toLowerCase().split(&#x27;,&#x27;);
+      }
+
+      for (let type of tmpHandleTypes) {
+        // default handle theme: ng-resizable-$type.
+        let handle &#x3D; this.createHandleByType(type, &#x60;ng-resizable-${type}&#x60;);
+        if (handle) {
+          this._handleType.push(type);
+          this._handles[type] &#x3D; handle;
+        }
+      }
+    } else {
+      tmpHandleTypes &#x3D; Object.keys(this.rzHandles);
+      for (let type of tmpHandleTypes) {
+        // custom handle theme.
+        let handle &#x3D; this.createHandleByType(type, this.rzHandles[type]);
+        if (handle) {
+          this._handleType.push(type);
+          this._handles[type] &#x3D; handle;
+        }
+      }
+    }
+  }
+
+  /** Use it to create a handle */
+  private createHandleByType(type: string, css: string): ResizeHandle {
+    const _el &#x3D; this.el.nativeElement;
+    const _h &#x3D; this.rzHandleDoms[type] ? this.rzHandleDoms[type].nativeElement : null;
+
+    if (!type.match(/^(se|sw|ne|nw|n|e|s|w)$/)) {
+      console.error(&#x27;Invalid handle type:&#x27;, type);
+      return null;
+    }
+
+    return new ResizeHandle(_el, this.renderer, type, css, this.onMouseDown.bind(this), _h);
+  }
+
+  private removeHandles() {
+    for (let type of this._handleType) {
+      this._handles[type].dispose();
+    }
+
+    this._handleType &#x3D; [];
+    this._handles &#x3D; {};
+  }
+
+  onMouseDown(event: MouseEvent | TouchEvent, handle: ResizeHandle) {
+    // skip right click;
+    if (event instanceof MouseEvent &amp;&amp; event.button &#x3D;&#x3D;&#x3D; 2) {
+      return;
+    }
+
+    if (this.preventDefaultEvent) {
+      // prevent default events
+      event.stopPropagation();
+      event.preventDefault();
+    }
+
+    if (!this._handleResizing) {
+      this._origMousePos &#x3D; Position.fromEvent(event);
+      this.startResize(handle);
+
+      this.subscribeEvents();
+    }
+  }
+
+  private subscribeEvents() {
+    this.draggingSub &#x3D; fromEvent(document, &#x27;mousemove&#x27;, { passive: false }).subscribe(event &#x3D;&gt;
+      this.onMouseMove(event as MouseEvent)
+    );
+    this.draggingSub.add(
+      fromEvent(document, &#x27;touchmove&#x27;, { passive: false }).subscribe(event &#x3D;&gt;
+        this.onMouseMove(event as TouchEvent)
+      )
+    );
+    this.draggingSub.add(
+      fromEvent(document, &#x27;mouseup&#x27;, { passive: false }).subscribe(() &#x3D;&gt; this.onMouseLeave())
+    );
+    // fix for issue #164
+    let isIEOrEdge &#x3D; /msie\s|trident\//i.test(window.navigator.userAgent);
+    if (!isIEOrEdge) {
+      this.draggingSub.add(
+        fromEvent(document, &#x27;mouseleave&#x27;, { passive: false }).subscribe(() &#x3D;&gt; this.onMouseLeave())
+      );
+    }
+    this.draggingSub.add(
+      fromEvent(document, &#x27;touchend&#x27;, { passive: false }).subscribe(() &#x3D;&gt; this.onMouseLeave())
+    );
+    this.draggingSub.add(
+      fromEvent(document, &#x27;touchcancel&#x27;, { passive: false }).subscribe(() &#x3D;&gt; this.onMouseLeave())
+    );
+  }
+
+  private unsubscribeEvents() {
+    this.draggingSub.unsubscribe();
+    this.draggingSub &#x3D; null;
+  }
+
+  onMouseLeave() {
+    if (this._handleResizing) {
+      this.stopResize();
+      this._origMousePos &#x3D; null;
+      this.unsubscribeEvents();
+    }
+  }
+
+  onMouseMove(event: MouseEvent | TouchEvent) {
+    if (
+      this._handleResizing &amp;&amp;
+      this._resizable &amp;&amp;
+      this._origMousePos &amp;&amp;
+      this._origPos &amp;&amp;
+      this._origSize
+    ) {
+      this.resizeTo(Position.fromEvent(event));
+      this.onResizing();
+    }
+  }
+
+  private startResize(handle: ResizeHandle) {
+    const elm &#x3D; this.el.nativeElement;
+    this._origSize &#x3D; Size.getCurrent(elm);
+    this._origPos &#x3D; Position.getCurrent(elm); // x: left, y: top
+    this._currSize &#x3D; Size.copy(this._origSize);
+    this._currPos &#x3D; Position.copy(this._origPos);
+    if (this._containment) {
+      this.getBounding();
+    }
+    this.getGridSize();
+
+    // Add a transparent helper div:
+    this._helperBlock.add();
+    this._handleResizing &#x3D; handle;
+    this.updateDirection();
+    this.rzStart.emit(this.getResizingEvent());
+  }
+
+  private stopResize() {
+    // Remove the helper div:
+    this._helperBlock.remove();
+    this.rzStop.emit(this.getResizingEvent());
+    this._handleResizing &#x3D; null;
+    this._direction &#x3D; null;
+    this._origSize &#x3D; null;
+    this._origPos &#x3D; null;
+    if (this._containment) {
+      this.resetBounding();
+    }
+  }
+
+  private onResizing() {
+    this.rzResizing.emit(this.getResizingEvent());
+  }
+
+  private getResizingEvent(): IResizeEvent {
+    return {
+      host: this.el.nativeElement,
+      handle: this._handleResizing ? this._handleResizing.el : null,
+      size: {
+        width: this._currSize.width,
+        height: this._currSize.height,
+      },
+      position: {
+        top: this._currPos.y,
+        left: this._currPos.x,
+      },
+      direction: { ...this._directionChanged },
+    };
+  }
+
+  private updateDirection() {
+    this._direction &#x3D; {
+      n: !!this._handleResizing.type.match(/n/),
+      s: !!this._handleResizing.type.match(/s/),
+      w: !!this._handleResizing.type.match(/w/),
+      e: !!this._handleResizing.type.match(/e/),
+    };
+
+    this._directionChanged &#x3D; { ...this._direction };
+
+    // if aspect ration should be preserved:
+    if (this.rzAspectRatio) {
+      // if north then west (unless ne)
+      if (this._directionChanged.n &amp;&amp; !this._directionChanged.e) {
+        this._directionChanged.w &#x3D; true;
+      }
+
+      // if south then east (unless sw)
+      if (this._directionChanged.s &amp;&amp; !this._directionChanged.w) {
+        this._directionChanged.e &#x3D; true;
+      }
+
+      // if east then south (unless ne)
+      if (this._directionChanged.e &amp;&amp; !this._directionChanged.n) {
+        this._directionChanged.s &#x3D; true;
+      }
+
+      // if west then south (unless nw)
+      if (this._directionChanged.w &amp;&amp; !this._directionChanged.n) {
+        this._directionChanged.s &#x3D; true;
+      }
+    }
+  }
+
+  private resizeTo(p: Position) {
+    p.subtract(this._origMousePos).divide(this.rzScale);
+
+    const tmpX &#x3D; Math.round(p.x / this._gridSize.x) * this._gridSize.x;
+    const tmpY &#x3D; Math.round(p.y / this._gridSize.y) * this._gridSize.y;
+
+    if (this._direction.n) {
+      // n, ne, nw
+      this._currPos.y &#x3D; this._origPos.y + tmpY;
+      this._currSize.height &#x3D; this._origSize.height - tmpY;
+    } else if (this._direction.s) {
+      // s, se, sw
+      this._currSize.height &#x3D; this._origSize.height + tmpY;
+    }
+
+    if (this._direction.e) {
+      // e, ne, se
+      this._currSize.width &#x3D; this._origSize.width + tmpX;
+    } else if (this._direction.w) {
+      // w, nw, sw
+      this._currSize.width &#x3D; this._origSize.width - tmpX;
+      this._currPos.x &#x3D; this._origPos.x + tmpX;
+    }
+
+    this.checkBounds();
+    this.checkSize();
+    this.adjustByRatio();
+    this.doResize();
+  }
+
+  private doResize() {
+    const container &#x3D; this.el.nativeElement;
+    if (!this._direction || this._direction.n || this._direction.s || this._aspectRatio) {
+      this.renderer.setStyle(container, &#x27;height&#x27;, this._currSize.height + &#x27;px&#x27;);
+    }
+    if (!this._direction || this._direction.w || this._direction.e || this._aspectRatio) {
+      this.renderer.setStyle(container, &#x27;width&#x27;, this._currSize.width + &#x27;px&#x27;);
+    }
+    this.renderer.setStyle(container, &#x27;left&#x27;, this._currPos.x + &#x27;px&#x27;);
+    this.renderer.setStyle(container, &#x27;top&#x27;, this._currPos.y + &#x27;px&#x27;);
+  }
+
+  private adjustByRatio() {
+    if (this._aspectRatio &amp;&amp; !this._adjusted) {
+      if (this._direction.e || this._direction.w) {
+        const newHeight &#x3D; Math.floor(this._currSize.width / this._aspectRatio);
+
+        if (this._direction.n) {
+          this._currPos.y +&#x3D; this._currSize.height - newHeight;
+        }
+
+        this._currSize.height &#x3D; newHeight;
+      } else {
+        const newWidth &#x3D; Math.floor(this._aspectRatio * this._currSize.height);
+
+        if (this._direction.n) {
+          this._currPos.x +&#x3D; this._currSize.width - newWidth;
+        }
+
+        this._currSize.width &#x3D; newWidth;
+      }
+    }
+  }
+
+  private checkBounds() {
+    if (this._containment) {
+      const maxWidth &#x3D;
+        this._bounding.width -
+        this._bounding.pr -
+        this._bounding.deltaL -
+        this._bounding.translateX -
+        this._currPos.x;
+      const maxHeight &#x3D;
+        this._bounding.height -
+        this._bounding.pb -
+        this._bounding.deltaT -
+        this._bounding.translateY -
+        this._currPos.y;
+
+      if (this._direction.n &amp;&amp; this._currPos.y + this._bounding.translateY &lt; 0) {
+        this._currPos.y &#x3D; -this._bounding.translateY;
+        this._currSize.height &#x3D; this._origSize.height + this._origPos.y + this._bounding.translateY;
+      }
+
+      if (this._direction.w &amp;&amp; this._currPos.x + this._bounding.translateX &lt; 0) {
+        this._currPos.x &#x3D; -this._bounding.translateX;
+        this._currSize.width &#x3D; this._origSize.width + this._origPos.x + this._bounding.translateX;
+      }
+
+      if (this._currSize.width &gt; maxWidth) {
+        this._currSize.width &#x3D; maxWidth;
+      }
+
+      if (this._currSize.height &gt; maxHeight) {
+        this._currSize.height &#x3D; maxHeight;
+      }
+
+      /**
+       * Fix Issue: Additional check for aspect ratio
+       * https://github.com/xieziyu/angular2-draggable/issues/132
+       */
+      if (this._aspectRatio) {
+        this._adjusted &#x3D; false;
+
+        if (
+          (this._direction.w || this._direction.e) &amp;&amp;
+          this._currSize.width / this._aspectRatio &gt;&#x3D; maxHeight
+        ) {
+          const newWidth &#x3D; Math.floor(maxHeight * this._aspectRatio);
+
+          if (this._direction.w) {
+            this._currPos.x +&#x3D; this._currSize.width - newWidth;
+          }
+
+          this._currSize.width &#x3D; newWidth;
+          this._currSize.height &#x3D; maxHeight;
+          this._adjusted &#x3D; true;
+        }
+
+        if (
+          (this._direction.n || this._direction.s) &amp;&amp;
+          this._currSize.height * this._aspectRatio &gt;&#x3D; maxWidth
+        ) {
+          const newHeight &#x3D; Math.floor(maxWidth / this._aspectRatio);
+
+          if (this._direction.n) {
+            this._currPos.y +&#x3D; this._currSize.height - newHeight;
+          }
+
+          this._currSize.width &#x3D; maxWidth;
+          this._currSize.height &#x3D; newHeight;
+          this._adjusted &#x3D; true;
+        }
+      }
+    }
+  }
+
+  private checkSize() {
+    const minHeight &#x3D; !this.rzMinHeight ? 1 : this.rzMinHeight;
+    const minWidth &#x3D; !this.rzMinWidth ? 1 : this.rzMinWidth;
+
+    if (this._currSize.height &lt; minHeight) {
+      this._currSize.height &#x3D; minHeight;
+
+      if (this._direction.n) {
+        this._currPos.y &#x3D; this._origPos.y + (this._origSize.height - minHeight);
+      }
+    }
+
+    if (this._currSize.width &lt; minWidth) {
+      this._currSize.width &#x3D; minWidth;
+
+      if (this._direction.w) {
+        this._currPos.x &#x3D; this._origPos.x + (this._origSize.width - minWidth);
+      }
+    }
+
+    if (this.rzMaxHeight &amp;&amp; this._currSize.height &gt; this.rzMaxHeight) {
+      this._currSize.height &#x3D; this.rzMaxHeight;
+
+      if (this._direction.n) {
+        this._currPos.y &#x3D; this._origPos.y + (this._origSize.height - this.rzMaxHeight);
+      }
+    }
+
+    if (this.rzMaxWidth &amp;&amp; this._currSize.width &gt; this.rzMaxWidth) {
+      this._currSize.width &#x3D; this.rzMaxWidth;
+
+      if (this._direction.w) {
+        this._currPos.x &#x3D; this._origPos.x + (this._origSize.width - this.rzMaxWidth);
+      }
+    }
+  }
+
+  private getBounding() {
+    const el &#x3D; this._containment;
+    const computed &#x3D; window.getComputedStyle(el);
+    if (computed) {
+      let p &#x3D; computed.getPropertyValue(&#x27;position&#x27;);
+
+      const nativeEl &#x3D; window.getComputedStyle(this.el.nativeElement);
+      let transforms &#x3D; nativeEl
+        .getPropertyValue(&#x27;transform&#x27;)
+        .replace(/[^-\d,]/g, &#x27;&#x27;)
+        .split(&#x27;,&#x27;);
+
+      this._bounding &#x3D; {};
+      this._bounding.width &#x3D; el.clientWidth;
+      this._bounding.height &#x3D; el.clientHeight;
+      this._bounding.pr &#x3D; parseInt(computed.getPropertyValue(&#x27;padding-right&#x27;), 10);
+      this._bounding.pb &#x3D; parseInt(computed.getPropertyValue(&#x27;padding-bottom&#x27;), 10);
+      this._bounding.deltaL &#x3D; this.el.nativeElement.offsetLeft - this._currPos.x;
+      this._bounding.deltaT &#x3D; this.el.nativeElement.offsetTop - this._currPos.y;
+
+      if (transforms.length &gt;&#x3D; 6) {
+        this._bounding.translateX &#x3D; parseInt(transforms[4], 10);
+        this._bounding.translateY &#x3D; parseInt(transforms[5], 10);
+      } else {
+        this._bounding.translateX &#x3D; 0;
+        this._bounding.translateY &#x3D; 0;
+      }
+
+      this._bounding.position &#x3D; computed.getPropertyValue(&#x27;position&#x27;);
+
+      if (p &#x3D;&#x3D;&#x3D; &#x27;static&#x27;) {
+        this.renderer.setStyle(el, &#x27;position&#x27;, &#x27;relative&#x27;);
+      }
+    }
+  }
+
+  private resetBounding() {
+    if (this._bounding &amp;&amp; this._bounding.position &#x3D;&#x3D;&#x3D; &#x27;static&#x27;) {
+      this.renderer.setStyle(this._containment, &#x27;position&#x27;, &#x27;relative&#x27;);
+    }
+    this._bounding &#x3D; null;
+  }
+
+  private getGridSize() {
+    // set default value:
+    this._gridSize &#x3D; { x: 1, y: 1 };
+
+    if (this.rzGrid) {
+      if (typeof this.rzGrid &#x3D;&#x3D;&#x3D; &#x27;number&#x27;) {
+        this._gridSize &#x3D; { x: this.rzGrid, y: this.rzGrid };
+      } else if (Array.isArray(this.rzGrid)) {
+        this._gridSize &#x3D; { x: this.rzGrid[0], y: this.rzGrid[1] };
+      }
+    }
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'directive';
+            var COMPODOC_CURRENT_PAGE_URL = 'AngularResizableDirective.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

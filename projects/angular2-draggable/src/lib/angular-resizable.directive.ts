@@ -135,7 +135,7 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
   @Input() rzMaxHeight: number = null;
 
   /** Input css scale transform of element so translations are correct */
-  @Input() scale = 1;
+  @Input() rzScale = 1;
 
   /** Whether to prevent default event */
   @Input() preventDefaultEvent = true;
@@ -475,7 +475,7 @@ export class AngularResizableDirective implements OnInit, OnChanges, OnDestroy, 
   }
 
   private resizeTo(p: Position) {
-    p.subtract(this._origMousePos).divide(this.scale);
+    p.subtract(this._origMousePos).divide(this.rzScale);
 
     const tmpX = Math.round(p.x / this._gridSize.x) * this._gridSize.x;
     const tmpY = Math.round(p.y / this._gridSize.y) * this._gridSize.y;

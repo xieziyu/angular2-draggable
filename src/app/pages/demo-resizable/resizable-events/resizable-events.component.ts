@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AngularResizableDirective } from 'angular2-draggable';
-
 // IGNORE START
 declare const require: any;
 // IGNORE END

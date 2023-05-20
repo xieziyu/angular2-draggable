@@ -18,7 +18,7 @@
     "compodoc": "compodoc -p projects/angular2-draggable/tsconfig.lib.json -d dist/docs/api-doc --theme stripe",
     "serve:doc": "compodoc -p projects/angular2-draggable/tsconfig.lib.json -s",
     "build:doc": "run-s build:prod compodoc",
-    "update:file": "cpr README.md dist/angular2-draggable/README.md -o",
+    "update:file": "cpr README.md dist/angular2-draggable/README.md -o && cpr CHANGELOG.md dist/angular2-draggable/CHANGELOG.md -o",
     "release": "run-s clean dist build:doc",
     "demo": "run-s build:lib build:css start",
     "dist": "run-s clean build:lib:prod build:css update:file"

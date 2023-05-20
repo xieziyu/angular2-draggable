@@ -14,6 +14,11 @@ $blue:                            #1890ff;
 $red:                             #ff4d4f;
 $green:                           #49aa19;
 
+@font-face {
+  font-family: 'Roboto Mono';
+  src: url('../assets/fonts/RobotoMono-Regular.ttf');
+}
+
 markdown table {
   margin: auto !important;
 }

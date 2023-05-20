@@ -1,0 +1,29 @@
+<!-- DEMO START -->
+<div class="grid-container" #myBounds>
+  <!-- Draggable block -->
+  <div
+    ngDraggable
+    [bounds]="myBounds"
+    [inBounds]="true"
+    [gridSize]="gridSize"
+    zIndex="100"
+    [preventDefaultEvent]="true"
+    class="drag-grid">
+    <p>Drag</p>
+  </div>
+  <!-- Draw grids -->
+  <div *ngFor="let x of grids">
+    <div *ngFor="let y of grids">
+      <div
+        [ngDraggable]="false"
+        [position]="{ x: x, y: y }"
+        [preventDefaultEvent]="true"
+        class="grid">
+        <small>grid</small>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- DEMO END -->
+
+<app-code-block [html]="html" [component]="component"></app-code-block>

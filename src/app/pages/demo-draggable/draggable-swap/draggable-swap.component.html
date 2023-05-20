@@ -1,0 +1,23 @@
+<!-- DEMO START -->
+<div class="box-container">
+  <div
+    class="box-swap"
+    ngDraggable
+    [preventDefaultEvent]="true"
+    [zIndexMoving]="'9999'"
+    [trackPosition]="false"
+    [position]="positionA"
+    (movingOffset)="onMoving($event)">
+    A (Drag)
+  </div>
+  <div
+    class="box-swap static-block"
+    [ngDraggable]="false"
+    [preventDefaultEvent]="true"
+    [position]="positionB">
+    B
+  </div>
+</div>
+<!-- DEMO END -->
+
+<app-code-block [html]="html" [component]="component" [scss]="scss"></app-code-block>

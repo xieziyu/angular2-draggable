@@ -14,7 +14,7 @@
     "lint": "ng lint",
     "fix": "ng lint --fix",
     "e2e": "ng e2e",
-    "clean": "rm -rf dist",
+    "clean": "rimraf -rf dist",
     "compodoc": "compodoc -p projects/angular2-draggable/tsconfig.lib.json -d dist/docs/api-doc --theme stripe",
     "serve:doc": "compodoc -p projects/angular2-draggable/tsconfig.lib.json -s",
     "build:doc": "run-s build:prod compodoc",
@@ -71,6 +71,7 @@
     "prettier": "^2.8.8",
     "prettier-eslint": "^15.0.1",
     "raw-loader": "^4.0.2",
+    "rimraf": "^5.0.1",
     "ts-node": "^10.9.1",
     "typescript": "~5.0.2"
   }

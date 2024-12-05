@@ -1,0 +1,399 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>angular2-draggable-demo documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+        <link rel="stylesheet" href="./styles/stripe.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="./" class="navbar-brand">angular2-draggable-demo documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h2 id="1600-2023-05-20">16.0.0 (2023-05-20)</h2>
+<h4 id="new">New</h4>
+<ul>
+<li>Support Angular 16</li>
+</ul>
+<h2 id="232-2019-06-10">2.3.2 (2019-06-10)</h2>
+<ul>
+<li><strong>ngResizable</strong>: Fix <a href="https://github.com/xieziyu/angular2-draggable/issues/164">issue #164</a>: Resize doesn&#39;t work on Windows10 IE11 (<a href="https://github.com/xieziyu/angular2-draggable/pull/171">PR #171</a> by <a href="https://github.com/shumih%5D">shumih</a>, <a href="https://github.com/xieziyu/angular2-draggable/pull/174">PR #174</a> by <a href="https://github.com/LiorSaadon%5D">LiorSaadon</a>)</li>
+</ul>
+<h2 id="230-2019-05-14">2.3.0 (2019-05-14)</h2>
+<h4 id="new-1">New</h4>
+<ul>
+<li><strong>ngDraggable</strong>: Add CSS class <code>ng-dragging</code> when dragging.</li>
+<li><strong>ngResizable</strong>: Add <code>direction</code> property in <code>IResizeEvent</code>.</li>
+</ul>
+<h4 id="bugfix">Bugfix</h4>
+<ul>
+<li><strong>ngResizable</strong>: Fix <a href="https://github.com/xieziyu/angular2-draggable/issues/159">issue #157</a>: Problem resizing with containment</li>
+</ul>
+<h2 id="224-2019-04-19">2.2.4 (2019-04-19)</h2>
+<h4 id="bugfix-1">Bugfix</h4>
+<ul>
+<li><strong>ngResizable</strong>: Fix <a href="https://github.com/xieziyu/angular2-draggable/issues/157">issue #157</a>: calling resetSize() method cause exception</li>
+</ul>
+<h2 id="223-2019-04-18">2.2.3 (2019-04-18)</h2>
+<h4 id="bugfix-2">Bugfix</h4>
+<ul>
+<li><strong>ngDraggable</strong>: <ul>
+<li>Fix draggable position bouncing when draggable is scaled and position is set (<a href="https://github.com/agnitos">by agnitos</a>) - <a href="https://github.com/xieziyu/angular2-draggable/pull/150">PR #150</a></li>
+<li>Fix translate in draggable.directive (<a href="https://github.com/Volker505">by Volker505</a>) - <a href="https://github.com/xieziyu/angular2-draggable/pull/151">PR #151</a></li>
+<li>Fix issue with dragging window inside iframe for IE (<a href="https://github.com/fdabrowski">by fdabrowski</a>) - <a href="https://github.com/xieziyu/angular2-draggable/pull/154">PR #154</a></li>
+<li>Fix Element move when resizing using the NW and NE handles and aspect ratio is enabled (<a href="https://github.com/dioseltorre">by dioseltorre</a>) - <a href="https://github.com/xieziyu/angular2-draggable/pull/156">PR #156</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="222-2019-03-01">2.2.2 (2019-03-01)</h2>
+<h4 id="bugfix-3">Bugfix</h4>
+<ul>
+<li><strong>ngDraggable</strong>: Fixed ngDraggable toggle bug. (<a href="https://github.com/agnitos">by agnitos</a>) - <a href="https://github.com/xieziyu/angular2-draggable/pull/145">PR #145</a></li>
+</ul>
+<h2 id="221-2018-12-25">2.2.1 (2018-12-25)</h2>
+<h4 id="bugfix-4">Bugfix</h4>
+<ul>
+<li><strong>ngDraggable</strong>: Fixed flickering of the component on initial drag while scale is applied to the parent. (<a href="https://github.com/rathodsanjay">by rathodsanjay</a> - <a href="https://github.com/xieziyu/angular2-draggable/pull/123">PR #134</a>)</li>
+</ul>
+<hr>
+<h2 id="220-2018-12-22">2.2.0 (2018-12-22)</h2>
+<h4 id="new-2">New</h4>
+<ul>
+<li><strong>ngDraggable</strong>: add [lockAxis] input to restrict dragging to a specific axis by locking another one.</li>
+</ul>
+<h4 id="bugfix-5">Bugfix</h4>
+<ul>
+<li><strong>ngDraggable</strong>:<ul>
+<li>fix <a href="https://github.com/xieziyu/angular2-draggable/issues/112">issue #112</a>: Control change detection with HostListener events. Performance updated.</li>
+<li>fix <a href="https://github.com/xieziyu/angular2-draggable/issues/128">issue #128</a>: Multiple phone draggables at the same time.</li>
+</ul>
+</li>
+<li><strong>ngResizable</strong>:<ul>
+<li>fix <a href="https://github.com/xieziyu/angular2-draggable/issues/132">issue #132</a>: Aspect ratio feature exits Y-Axis boundary on resize.</li>
+<li>Performance updated.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="219-2018-11-29">2.1.9 (2018-11-29)</h2>
+<h4 id="bugfix-6">Bugfix</h4>
+<ul>
+<li><strong>ngDraggable</strong>: <a href="https://github.com/xieziyu/angular2-draggable/issues/31">#31</a> Problems when scale transform applied to parent. (<a href="https://github.com/rathodsanjay">by rathodsanjay</a> - <a href="https://github.com/xieziyu/angular2-draggable/pull/123">PR #123</a>)</li>
+</ul>
+<hr>
+<h2 id="218-2018-11-11">2.1.8 (2018-11-11)</h2>
+<h4 id="new-3">New</h4>
+<ul>
+<li><strong>ngResizable</strong>: add [preventDefaultEvent] flag to ngResizable mousedown (<a href="https://github.com/mecp">by mecp</a> - <a href="https://github.com/xieziyu/angular2-draggable/pull/119">PR #119</a>)</li>
+</ul>
+<hr>
+<h2 id="217-2018-10-31">2.1.7 (2018-10-31)</h2>
+<h4 id="bugfix-7">Bugfix</h4>
+<ul>
+<li><strong>ngResizable</strong>: <a href="https://github.com/xieziyu/angular2-draggable/issues/116">#116</a> ngResizable Locks Height When rzHandles Includes Only e, w. (Thanks to <a href="https://github.com/Yamazaki93">Yamazaki93</a>)</li>
+</ul>
+<hr>
+<h2 id="216-2018-10-26">2.1.6 (2018-10-26)</h2>
+<h4 id="bugfix-8">Bugfix</h4>
+<ul>
+<li><strong>ngResizable</strong>: rzResizing IE event issue. <a href="https://github.com/xieziyu/angular2-draggable/issues/115">#115</a></li>
+</ul>
+<hr>
+<h2 id="215-2018-10-15">2.1.5 (2018-10-15)</h2>
+<h4 id="bugfix-9">Bugfix</h4>
+<ul>
+<li><strong>ngDraggable</strong>: EndOffset event not working properly with SnapToGrid. <a href="https://github.com/xieziyu/angular2-draggable/issues/114">#114</a></li>
+</ul>
+<hr>
+<h2 id="214-2018-09-17">2.1.4 (2018-09-17)</h2>
+<h4 id="bugfix-10">Bugfix</h4>
+<ul>
+<li>Fix a build issue</li>
+<li><strong>ngResizable</strong>: Resize bounds on a draggable element inside a containment is off. <a href="https://github.com/xieziyu/angular2-draggable/issues/100">#100</a></li>
+</ul>
+<hr>
+<h2 id="212-2018-08-20">2.1.2 (2018-08-20)</h2>
+<h4 id="bugfix-11">Bugfix</h4>
+<ul>
+<li><strong>ngDraggable</strong>: Item is produced with div partially out of bounds. <a href="https://github.com/xieziyu/angular2-draggable/issues/97">#97</a></li>
+</ul>
+<hr>
+<h2 id="211-2018-08-14">2.1.1 (2018-08-14)</h2>
+<h4 id="new-4">New</h4>
+<ul>
+<li><strong>ngResizable</strong>: Provide <code>[rzGrid]</code>. Snaps the resizing element to a grid.</li>
+<li><strong>ngResizable</strong>: Provide <code>[rzMinWidth]</code>, <code>[rzMaxWidth]</code>, <code>[rzMinHeight]</code>, <code>[rzMaxHeight]</code>. The minimum/maximum width/height the resizable should be allowed to resize to.</li>
+</ul>
+<h4 id="bugfix-12">Bugfix</h4>
+<ul>
+<li><strong>ngResizable</strong>: resizing from w, nw or n with a min/max size moves the window if it goes below/above the min/max size. <a href="https://github.com/xieziyu/angular2-draggable/issues/94">#94</a></li>
+</ul>
+<hr>
+<h2 id="201-2018-08-08">2.0.1 (2018-08-08)</h2>
+<h4 id="bugfix-13">Bugfix</h4>
+<ul>
+<li>click events are blocked. <a href="https://github.com/xieziyu/angular2-draggable/issues/87">#87</a>, <a href="https://github.com/xieziyu/angular2-draggable/issues/84">#84</a></li>
+</ul>
+<hr>
+<h2 id="200-2018-08-03">2.0.0 (2018-08-03)</h2>
+<h4 id="bugfix-14">Bugfix</h4>
+<ul>
+<li>Fix <a href="https://github.com/xieziyu/angular2-draggable/issues/84">issue #84</a>: iFrames, and context unrelated elements block all events, and are unusable</li>
+</ul>
+<hr>
+<h2 id="200-beta2-2018-07-02">2.0.0-beta.2 (2018-07-02)</h2>
+<h4 id="new-5">New</h4>
+<ul>
+<li><strong>ngResizable</strong>: Provide <code>[rzAspectRatio]</code>, whether the element should be constrained to a specific aspect ratio.</li>
+<li><strong>ngResizable</strong>: Provide <code>[rzContainment]</code>, constrains resizing to within the bounds of the specified element or region.</li>
+</ul>
+<hr>
+<h2 id="200-beta1-2018-06-26">2.0.0-beta.1 (2018-06-26)</h2>
+<h4 id="new-6">New</h4>
+<ul>
+<li><strong>ngResizable</strong>: Provide <code>(rzStart)</code>, <code>(rzResizing)</code>, <code>(rzStop)</code> event emitters</li>
+<li><strong>ngResizable</strong>: Provide <code>resetSize()</code>, <code>getStatus()</code> methods</li>
+</ul>
+<hr>
+<h2 id="200-beta0-2018-06-25">2.0.0-beta.0 (2018-06-25)</h2>
+<h4 id="new-7">New</h4>
+<ul>
+<li><code>ngResizable</code> directive which you can use to make the element resizable.</li>
+<li>Provide <code>[rzHandles]</code> option for which handles can be used for resizing.</li>
+</ul>
+<h2 id="142-2018-05-23">1.4.2 (2018-05-23)</h2>
+<h4 id="changes">Changes</h4>
+<ul>
+<li>Expose boundsCheck() method.</li>
+</ul>
+<hr>
+<h2 id="141-2018-05-11">1.4.1 (2018-05-11)</h2>
+<h4 id="bugfix-15">Bugfix</h4>
+<ul>
+<li>Handle Drag is not working in Firefox <a href="https://github.com/xieziyu/angular2-draggable/issues/68">#68</a>.</li>
+</ul>
+<hr>
+<h2 id="140-2018-05-04">1.4.0 (2018-05-04)</h2>
+<h4 id="new-8">New</h4>
+<ul>
+<li>Provide <code>[gridSize]</code> option for snapping to grid. Refer to <a href="https://xieziyu.github.io/angular2-draggable/#/advance/snap-grid">demo</a>. (PR <a href="https://github.com/xieziyu/angular2-draggable/pull/64">#64</a> by <a href="https://github.com/PAHADIx">PAHADIx</a>)</li>
+</ul>
+<h4 id="changes-1">Changes</h4>
+<ul>
+<li>Code optimized. (PR <a href="https://github.com/xieziyu/angular2-draggable/pull/60">#60</a> by <a href="https://github.com/korn3l">korn3l</a>)</li>
+</ul>
+<hr>
+<h2 id="132-2018-04-10">1.3.2 (2018-04-10)</h2>
+<h4 id="new-9">New</h4>
+<ul>
+<li>Provide <code>[outOfBounds]</code> option. Set it to allow element get out of bounds from the direction. (PR <a href="https://github.com/xieziyu/angular2-draggable/issues/58">#57</a> by <a href="https://github.com/waldo2188">waldo2188</a>)</li>
+</ul>
+<hr>
+<h2 id="131-2018-03-15">1.3.1 (2018-03-15)</h2>
+<h4 id="new-10">New</h4>
+<ul>
+<li>Provide <code>(movingOffset)</code> event emitter: emit position offset when moving</li>
+<li>Provide <code>(endOffset)</code> event emitter: emit position offset when stop moving</li>
+</ul>
+<hr>
+<h2 id="130-2018-03-09">1.3.0 (2018-03-09)</h2>
+<h4 id="new-11">New</h4>
+<ul>
+<li>Provide <code>[position]</code> option: to set initial position offset.</li>
+</ul>
+<hr>
+<h2 id="121-2018-02-08">1.2.1 (2018-02-08)</h2>
+<h4 id="bugfix-16">Bugfix</h4>
+<ul>
+<li><code>[preventDefaultEvent]</code> should not prevent events of elements outside the handle.</li>
+</ul>
+<hr>
+<h2 id="120-2018-02-07">1.2.0 (2018-02-07)</h2>
+<h4 id="new-12">New</h4>
+<ul>
+<li>Provide <code>resetPosition()</code> method to reset position.</li>
+</ul>
+<h4 id="breaking-changes">Breaking Changes</h4>
+<ul>
+<li>Use <code>Renderer2</code> of angular-core. So we don&#39;t support angular version &lt; 4.0.</li>
+</ul>
+<h4 id="bugfix-17">Bugfix</h4>
+<ul>
+<li><code>[trackPosition]</code> was not working as expected.</li>
+</ul>
+<h4 id="changes-2">Changes</h4>
+<ul>
+<li>The directive now <code>exportAs: &#39;ngDraggable&#39;</code>.</li>
+<li><code>[preventDefaultEvent]</code> set default to false.</li>
+</ul>
+<hr>
+<h2 id="110-2018-02-01">1.1.0 (2018-02-01)</h2>
+<h4 id="new-13">New</h4>
+<ul>
+<li>Provide <code>[trackPosition]</code> option: whether to track the element&#39;s movement. (PR by <a href="https://github.com/Blackbaud-MikitaYankouski">Blackbaud-MikitaYankouski</a>)</li>
+<li>Provide <code>[scale]</code> option: to fix scaling issue <a href="https://github.com/xieziyu/angular2-draggable/issues/31">#31</a></li>
+<li>Provide <code>[preventDefaultEvent]</code> option: whether to prevent default mouse or touch event. (default: true)</li>
+</ul>
+<hr>
+<h2 id="110-beta0-2017-12-20">1.1.0-beta.0 (2017-12-20)</h2>
+<h4 id="new-14">New</h4>
+<ul>
+<li>Provide <code>[zIndex]</code> and <code>[zIndexMoving]</code> to control z-index property.</li>
+<li>Provide <code>[bounds]</code>, <code>(edge)</code> and <code>[inBounds]</code> to do boundary check and limit element staying in the bounds.</li>
+</ul>
+<hr>
+<p><a name="1.0.7"></a></p>
+<h2 id="107-2017-09-19"><a href="https://github.com/xieziyu/angular2-draggable/compare/v1.0.6...v1.0.7">1.0.7</a> (2017-09-19)</h2>
+<h3 id="bugfix-18">Bugfix</h3>
+<ul>
+<li>Fix an issue when dragging with touch.</li>
+</ul>
+<hr>
+<p><a name="1.0.6"></a></p>
+<h2 id="106-2017-08-26"><a href="https://github.com/xieziyu/angular2-draggable/compare/v1.0.5...v1.0.6">1.0.6</a> (2017-08-26)</h2>
+<h3 id="bugfix-19">Bugfix</h3>
+<ul>
+<li>Fix an issue: clicking before dragging leading to unexpected offset (<a href="https://github.com/xieziyu/angular2-draggable/pull/12">PR #12</a> by <a href="https://github.com/bmartinson13">bmartinson13</a>)</li>
+</ul>
+<hr>
+<p><a name="1.0.5"></a></p>
+<h2 id="105-2017-07-24"><a href="https://github.com/xieziyu/angular2-draggable/compare/v1.0.4...v1.0.5">1.0.5</a> (2017-07-24)</h2>
+<h3 id="new-15">New</h3>
+<ul>
+<li>Fix cross-browser compatibility issues.</li>
+</ul>
+<hr>
+<p><a name="1.0.4"></a></p>
+<h2 id="104-2017-07-05"><a href="https://github.com/xieziyu/angular2-draggable/compare/v1.0.3...v1.0.4">1.0.4</a> (2017-07-05)</h2>
+<h3 id="new-16">New</h3>
+<ul>
+<li>Publish <code>UMD</code> bundle</li>
+</ul>
+<hr>
+<p><a name="1.0.3"></a></p>
+<h2 id="103-2017-06-13"><a href="https://github.com/xieziyu/angular2-draggable/compare/v1.0.2...v1.0.3">1.0.3</a> (2017-06-13)</h2>
+<h3 id="new-17">New</h3>
+<ul>
+<li>Support <code>started</code> and <code>stopped</code> dragging event.</li>
+</ul>
+<hr>
+<p><a name="1.0.2"></a></p>
+<h2 id="102-2017-05-05"><a href="https://github.com/xieziyu/angular2-draggable/compare/v1.0.1...v1.0.2">1.0.2</a> (2017-05-05)</h2>
+<h3 id="bugfix-20">BugFix</h3>
+<ul>
+<li>It now saves and restores the <code>position</code> and <code>z-index</code> properties.</li>
+<li>It now calculates the correct <code>left</code> and <code>top</code> properties from CSS value.</li>
+</ul>
+<hr>
+<p><a name="1.0.1"></a></p>
+<h2 id="101-2017-05-05"><a href="https://github.com/xieziyu/angular2-draggable/compare/v1.0.0...v1.0.1">1.0.1</a> (2017-05-05)</h2>
+<h3 id="bugfix-21">BugFix</h3>
+<ul>
+<li>Giving all draggable elements the position relative (PR: <a href="https://github.com/xieziyu/angular2-draggable/pull/1">#1</a>, thanks to tylerlindell)</li>
+</ul>
+<h3 id="changes-3">Changes</h3>
+<ul>
+<li>Bring moving element to the top by setting z-index (PR: <a href="https://github.com/xieziyu/angular2-draggable/pull/1">#1</a>, thanks to tylerlindell)</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'changelog.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

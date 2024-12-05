@@ -1,0 +1,493 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>angular2-draggable-demo documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+        <link rel="stylesheet" href="./styles/stripe.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="./" class="navbar-brand">angular2-draggable-demo documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h1 id="angular2-draggable">angular2-draggable</h1>
+<!-- Badges section here. -->
+<p><a href="https://www.npmjs.com/package/angular2-draggable"><img src="https://img.shields.io/npm/v/angular2-draggable.svg" alt="npm" class="img-responsive"></a>
+<a href="https://www.npmjs.com/package/angular2-draggable"><img src="https://img.shields.io/npm/dm/angular2-draggable.svg" alt="npm" class="img-responsive"></a>
+<a href="https://github.com/xieziyu/angular2-draggable/actions/workflows/ci.yaml"><img src="https://github.com/xieziyu/angular2-draggable/actions/workflows/ci.yaml/badge.svg" alt="Build Status" class="img-responsive"></a></p>
+<ul>
+<li><a href="https://xieziyu.github.io/angular2-draggable">Online Demo</a></li>
+<li><a href="https://xieziyu.github.io/angular2-draggable/api-doc">Online Docs</a></li>
+</ul>
+<h2 id="table-of-contents">Table of contents</h2>
+<ul>
+<li><a href="#angular2-draggable">angular2-draggable</a><ul>
+<li><a href="#table-of-contents">Table of contents</a></li>
+</ul>
+</li>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#draggable">Draggable</a></li>
+<li><a href="#resizable">Resizable</a></li>
+<li><a href="#api">API</a><ul>
+<li><a href="#directive">Directive:</a></li>
+<li><a href="#css">CSS:</a></li>
+</ul>
+</li>
+<li><a href="#events">Events</a></li>
+<li><a href="#demo">Demo</a></li>
+</ul>
+<h1 id="getting-started">Getting Started</h1>
+<p>angular2-draggable has angular directives that make the DOM element draggable and resizable.</p>
+<ul>
+<li><p><code>ngDraggable</code></p>
+<ul>
+<li>v16.x requires Angular &gt;= 16</li>
+<li>v2.x requires Angular &gt;= 6</li>
+<li>v1.5.0 requires Angular &gt;= 4 &amp;&amp; &lt; 6</li>
+</ul>
+</li>
+<li><p><code>ngResizable</code></p>
+<ul>
+<li>provided since v2.0, requires Angular &gt;= 6</li>
+</ul>
+</li>
+</ul>
+<p><a href="./CHANGELOG.md">CHANGELOG</a></p>
+<h1 id="installation">Installation</h1>
+<div><pre class="line-numbers"><code class="language-none">npm install angular2-draggable --save</code></pre></div><h1 id="draggable">Draggable</h1>
+<p>Please refer to the <a href="https://xieziyu.github.io/angular2-draggable">demo</a> page.</p>
+<ol>
+<li><p>Firstly, import <code>AngularDraggableModule</code> in your app module (or any other proper angular module):</p>
+<div><pre class="line-numbers"><code class="language-typescript">import { AngularDraggableModule } from &#39;angular2-draggable&#39;;
+
+&#64;NgModule({
+  imports: [
+    ...,
+    AngularDraggableModule
+  ],
+  ...
+})
+export class AppModule { }</code></pre></div></li>
+<li><p>Then: use <code>ngDraggable</code> directive to make the DOM element draggable.</p>
+<ul>
+<li><p>Simple example:</p>
+<ul>
+<li>html:</li>
+</ul>
+<div><pre class="line-numbers"><code class="language-html">&lt;div ngDraggable&gt;Drag me!&lt;/div&gt;</code></pre></div></li>
+<li><p>Use <code>[handle]</code> to move parent element:</p>
+<ul>
+<li>html:</li>
+</ul>
+<div><pre class="line-numbers"><code class="language-html">&lt;div ngDraggable [handle]=&quot;DemoHandle&quot; class=&quot;card&quot;&gt;
+  &lt;div #DemoHandle class=&quot;card-header&quot;&gt;I&#39;m handle. Drag me!&lt;/div&gt;
+  &lt;div class=&quot;card-block&quot;&gt;You can&#39;t drag this block now!&lt;/div&gt;
+&lt;/div&gt;</code></pre></div></li>
+</ul>
+</li>
+</ol>
+<h1 id="resizable">Resizable</h1>
+<p>Please refer to the <a href="https://xieziyu.github.io/angular2-draggable/#/resizable/default">demo</a> page.</p>
+<p>Besides of importing <code>AngularDraggableModule</code>, you need to import <code>resizable.min.css</code> in your project. If you use <code>angular-cli</code>, you can add this in <code>angular.json</code>:</p>
+<div><pre class="line-numbers"><code class="language-diff">&quot;styles&quot;: [
+    ...
++   &quot;node_modules/angular2-draggable/css/resizable.min.css&quot;
+]</code></pre></div><p>Then you can use <code>ngResizable</code> directive to make the element resizable:</p>
+<div><pre class="line-numbers"><code class="language-html">&lt;div ngResizable&gt; I&#39;m now resizable &lt;/div&gt;
+
+&lt;div [ngResizable]=&quot;false&quot;&gt; Resizable is disabled now &lt;/div&gt;
+
+&lt;div ngResizable [rzHandles]=&quot;&#39;n,e,s,w,se,sw,ne,nw&#39;&quot;&gt; Each side is resizable &lt;/div&gt;</code></pre></div><p>Well you can use both directives concurrently if you wish:</p>
+<div><pre class="line-numbers"><code class="language-html">&lt;div ngDraggable ngResizable&gt; I&#39;m now draggable and resizable &lt;/div&gt;</code></pre></div><h1 id="api">API</h1>
+<h2 id="directive">Directive:</h2>
+<ul>
+<li><p><code>ngDraggable</code> directive support following input porperties:</p>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Input</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ngDraggable</td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td>You can toggle the draggable capability by setting <code>true</code> or <code>false</code></td>
+</tr>
+<tr>
+<td>handle</td>
+<td>HTMLElement</td>
+<td>null</td>
+<td>Use template variable to refer to the handle element. Then only the handle element is draggable</td>
+</tr>
+<tr>
+<td>zIndex</td>
+<td>string</td>
+<td>null</td>
+<td>Use it to set z-index property when element is not moving</td>
+</tr>
+<tr>
+<td>zIndexMoving</td>
+<td>string</td>
+<td>null</td>
+<td>Use it to set z-index property when element is moving</td>
+</tr>
+<tr>
+<td>bounds</td>
+<td>HTMLElemnt</td>
+<td>null</td>
+<td>Use it to set the boundary</td>
+</tr>
+<tr>
+<td>inBounds</td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Use it make element stay in the bounds</td>
+</tr>
+<tr>
+<td>outOfBounds</td>
+<td><code>{ top: boolean; bottom: boolean; right: boolean; left: boolean }</code></td>
+<td><code>false</code></td>
+<td>Set it to allow element get out of bounds from the direction. Refer to <a href="https://xieziyu.github.io/angular2-draggable/#/usage/boundary">demo</a></td>
+</tr>
+<tr>
+<td>position</td>
+<td><code>{ x: number, y: number }</code></td>
+<td><code>{ x:0, y:0 }</code></td>
+<td>Use it to set position offset</td>
+</tr>
+<tr>
+<td>gridSize</td>
+<td>number</td>
+<td>1</td>
+<td>Use it for snapping to grid. Refer to <a href="https://xieziyu.github.io/angular2-draggable/#/advance/snap-grid">demo</a></td>
+</tr>
+<tr>
+<td>preventDefaultEvent</td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Whether to prevent default mouse event</td>
+</tr>
+<tr>
+<td>scale</td>
+<td>number</td>
+<td>1</td>
+<td>Set it when parent element has CSS transform scale</td>
+</tr>
+<tr>
+<td>lockAxis</td>
+<td><code>&#39;x&#39; | &#39;y&#39;</code></td>
+<td>null</td>
+<td>Restrict dragging to a specific axis by locking another one</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p><code>ngResizable</code> directive support following input porperties:</p>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Input</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ngResizable</td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td>You can toggle the resizable capability by setting <code>true</code> or <code>false</code></td>
+</tr>
+<tr>
+<td>rzHandles</td>
+<td>string</td>
+<td><code>&quot;e,s,se&quot;</code></td>
+<td>Which handles can be used for resizing. Optional types in <code>&quot;n,e,s,w,se,sw,ne,nw&quot;</code> or <code>&quot;all&quot;</code></td>
+</tr>
+<tr>
+<td>rzAspectRatio</td>
+<td>boolean | number</td>
+<td><code>false</code></td>
+<td><code>boolean</code>: Whether the element should be constrained to a specific aspect ratio. <code>number</code>: Force the element to maintain a specific aspect ratio during resizing (width/height)</td>
+</tr>
+<tr>
+<td>rzContainment</td>
+<td>Selector | string | Element</td>
+<td>null</td>
+<td>Constrains resizing to within the bounds of the specified element or region. It accepts an HTMLElement, <code>&#39;parent&#39;</code> or a valid CSS selector string such as &#39;#id&#39;</td>
+</tr>
+<tr>
+<td>rzGrid</td>
+<td>number | number[]</td>
+<td>1</td>
+<td>Snaps the resizing element to a grid, every x and y pixels. Array values: <code>[x, y]</code></td>
+</tr>
+<tr>
+<td>rzMinWidth</td>
+<td>number</td>
+<td>1</td>
+<td>The minimum width the resizable should be allowed to resize to.</td>
+</tr>
+<tr>
+<td>rzMaxWidth</td>
+<td>number</td>
+<td>1</td>
+<td>The maximum width the resizable should be allowed to resize to.</td>
+</tr>
+<tr>
+<td>rzMinHeight</td>
+<td>number</td>
+<td>1</td>
+<td>The minimum height the resizable should be allowed to resize to.</td>
+</tr>
+<tr>
+<td>rzMaxHeight</td>
+<td>number</td>
+<td>1</td>
+<td>The maximum height the resizable should be allowed to resize to.</td>
+</tr>
+<tr>
+<td>preventDefaultEvent</td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Whether to prevent default mouse event.</td>
+</tr>
+<tr>
+<td>rzScale</td>
+<td>number</td>
+<td>1</td>
+<td>Set it when parent element has CSS transform scale</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h2 id="css">CSS:</h2>
+<ul>
+<li><p>When <code>ngDraggable</code> is enabled on some element, <code>ng-draggable</code> and <code>ng-dragging</code> class is automatically toggled on it. You can use it to customize the pointer style. For example:</p>
+<div><pre class="line-numbers"><code class="language-css">.ng-draggable {
+  cursor: grab;
+}
+
+.ng-dragging {
+  cursor: grabbing;
+}</code></pre></div></li>
+<li><p>When <code>ngResizable</code> is enabled on some element, <code>ng-resizable</code> class is automatically assigned to it. And handle elements will be created with <code>ng-resizable-handle</code>. You can customize the handle style.</p>
+</li>
+</ul>
+<h1 id="events">Events</h1>
+<ul>
+<li><p><code>ngDraggable</code> directive:</p>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Output</th>
+<th>$event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>started</td>
+<td><code>nativeElement</code> of host</td>
+<td>emitted when start dragging</td>
+</tr>
+<tr>
+<td>stopped</td>
+<td><code>nativeElement</code> of host</td>
+<td>emitted when stop dragging</td>
+</tr>
+<tr>
+<td>edge</td>
+<td>{ top: boolean, right: boolean, bottom: boolean, left: boolean }</td>
+<td>emitted after <code>[bounds]</code> is set</td>
+</tr>
+<tr>
+<td>movingOffset</td>
+<td>{ x: number, y: number }</td>
+<td>emit position offset when moving</td>
+</tr>
+<tr>
+<td>endOffset</td>
+<td>{ x: number, y: number }</td>
+<td>emit position offset when stop moving</td>
+</tr>
+</tbody>
+</table>
+<p>  Simple example:</p>
+<div><pre class="line-numbers"><code class="language-html">&lt;div ngDraggable
+  (started)=&quot;onDragBegin($event)&quot;
+  (stopped)=&quot;onDragEnd($event)&quot;
+  (movingOffset)=&quot;onMoving($event)&quot;
+  (endOffset)=&quot;onMoveEnd($event)&quot;&gt;
+  Drag me!
+&lt;/div&gt;</code></pre></div></li>
+<li><p><code>ngResizable</code> directive:</p>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Output</th>
+<th>$event</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rzStart</td>
+<td><code>IResizeEvent</code></td>
+<td>emitted when start resizing</td>
+</tr>
+<tr>
+<td>rzResizing</td>
+<td><code>IResizeEvent</code></td>
+<td>emitted when resizing</td>
+</tr>
+<tr>
+<td>rzStop</td>
+<td><code>IResizeEvent</code></td>
+<td>emitted when stop resizing</td>
+</tr>
+</tbody>
+</table>
+<div><pre class="line-numbers"><code class="language-typescript">export interface IResizeEvent {
+  host: any;
+  handle: any;
+  size: {
+    width: number;
+    height: number;
+  };
+  position: {
+    top: number;
+    left: number;
+  };
+  direction: {
+    n: boolean;
+    s: boolean;
+    w: boolean;
+    e: boolean;
+  };
+}</code></pre></div><p>  Simple example:</p>
+<div><pre class="line-numbers"><code class="language-html">&lt;div ngResizable
+  (rzStart)=&quot;onResizeStart($event)&quot;
+  (rzResizing)=&quot;onResizing($event)&quot;
+  (rzStop)=&quot;onResizeStop($event)&quot;&gt;
+  Resizable
+&lt;/div&gt;</code></pre></div></li>
+</ul>
+<h1 id="demo">Demo</h1>
+<p>You can clone this repo to your working copy and then launch the demo page in your local machine:</p>
+<div><pre class="line-numbers"><code class="language-bash">npm install
+npm run demo
+
+# or
+yarn install
+yarn demo</code></pre></div><p>The demo page server is listening to: <a href="http://localhost:4203">http://localhost:4203</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

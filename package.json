@@ -1,6 +1,7 @@
 {
   "name": "angular2-draggable-demo",
   "version": "16.0.0",
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port=4202",
